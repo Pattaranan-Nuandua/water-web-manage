@@ -22,17 +22,14 @@ const style = {
     pb: 3,
 };
 
-const style1 ={
-    position: "absolute" as "absolute",
-}
-
-function SBtnAdd() {
+export default function GBtnAdd() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     return (
         <Stack>
-            <Button 
+            <Button
                 sx={{ fontFamily: "Kanit" }}
                 onClick={handleOpen}
                 type="submit"
@@ -54,45 +51,46 @@ function SBtnAdd() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                        <Box
-                            
-                            component="form"
-                            sx={{
-                            "& > :not(style)": { width: "35ch", m: 1, align: "center" , fontFamily: "kanit" },
-                            }}
-                            noValidate
-                            autoComplete="off"
-                        >
-                            <p className='text-header'>เพิ่มกลุ่มผู้ใช้</p>
-                            <TextField id="outlined-basic" label="ชื่อกลุ่มผู้ใช้" variant="outlined" 
-                            style={{
-                            position: 'absolute',
-                            width: '550px',
-                            height: '64px',
-                            left: '25px',
-                            top: '80px',}} />
+                    <Box
 
-                            <TextField id="outlined-basic" label="รายละเอียด" variant="outlined" 
+                        component="form"
+                        sx={{
+                            "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <p className='text-header'>เพิ่มกลุ่มผู้ใช้</p>
+                        <TextField id="outlined-basic" label="ชื่อกลุ่มผู้ใช้" variant="outlined"
                             style={{
-                            position: 'absolute',
-                            width: '550px',
-                            height: '64px',
-                            left: '25px',
-                            top: '160px',}} />
+                                position: 'absolute',
+                                width: '550px',
+                                height: '64px',
+                                left: '25px',
+                                top: '80px',
+                            }} />
+
+                        <TextField id="outlined-basic" label="รายละเอียด" variant="outlined"
+                            style={{
+                                position: 'absolute',
+                                width: '550px',
+                                height: '64px',
+                                left: '25px',
+                                top: '160px',
+                            }} />
 
 
-                            <TextField id="outlined-basic" label="สาขา" variant="outlined" 
+                        <TextField id="outlined-basic" label="สาขา" variant="outlined"
                             style={{
-                            position: 'absolute',
-                            width: '550px',
-                            height: '64px',
-                            left: '25px',
-                            top: '320px',}} />
-                        </Box>
+                                position: 'absolute',
+                                width: '550px',
+                                height: '64px',
+                                left: '25px',
+                                top: '320px',
+                            }} />
+                    </Box>
                 </Box>
             </Modal>
         </Stack>
     );
 }
-
-export default SBtnAdd;
