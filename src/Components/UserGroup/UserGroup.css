@@ -1,0 +1,33 @@
+
+.bg-user{
+    background: #FFFFFF ;
+    min-height: 100vh;
+    display: flex;
+    font-weight: 400;
+}
+.text-user{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    position: absolute;
+    width: 170px;
+    height: 23px;
+    font-size: 22px;
+    top: 80px;
+    left: 290px;
+}
+.frame-btn{
+    display: flex;
+    position: absolute;
+    width: 1274px;
+    height: 48px;
+    left: 166px;
+    top: 156px;
+}
+.Table{
+    display: flex;
+    left: 290px;
+    position: absolute;
+    margin-top: 250px;
+}
