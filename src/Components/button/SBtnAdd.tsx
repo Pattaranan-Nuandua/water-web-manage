@@ -71,30 +71,35 @@ function SBtnAdd() {
                             height: '64px',
                             left: '25px',
                             top: '80px',}} />
+
                             <TextField id="outlined-basic" label="ชื่อ" variant="outlined" style={{
                             position: 'absolute',
                             width: '255px',
                             height: '64px',
                             left: '25px',
                             top: '160px',}} />
+
                             <TextField id="outlined-basic" label="นามสกุล" variant="outlined" style={{
                             position: 'absolute',
                             width: '255px',
                             height: '64px',
                             left: '320px',
                             top: '160px',}}  />
+
                             <TextField id="outlined-basic" label="ประเภทผู้ใช้" variant="outlined" style={{
                             position: 'absolute',
                             width: '550px',
                             height: '64px',
                             left: '20px',
                             top: '240px',}} />
+                            
                             <TextField id="outlined-basic" label="กลุ่มผู้ใช้" variant="outlined" style={{
                             position: 'absolute',
                             width: '555px',
                             height: '64px',
                             left: '20px',
                             top: '320px',}} />
+
                             <TextField id="outlined-basic" label="Password" variant="outlined" style={{
                             position: 'absolute',
                             width: '555px',
