@@ -99,25 +99,32 @@ export default function UserTable() {
                                     aria-describedby="modal-modal-description"
                                 >
                                     <Box sx={style1}>
-                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                                            Reset Your Password
-                                        </Typography>
-                                        <TextField id="outlined-basic" label="New password" variant="outlined"
-                                            style={{
-                                                position: 'absolute',
-                                                width: '420px',
-                                                height: '64px',
-                                                left: '65px',
-                                                top: '90px',
-                                            }} />
-                                        <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
-                                            style={{
-                                                position: 'absolute',
-                                                width: '420px',
-                                                height: '64px',
-                                                left: '65px',
-                                                top: '180px',
-                                            }} />
+                                        <Box component="form"
+                                            sx={{
+                                                "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
+                                            }}
+                                            noValidate
+                                            autoComplete="off">
+                                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                Reset Your Password
+                                            </Typography>
+                                            <TextField id="outlined-basic" label="New password" variant="outlined"
+                                                style={{
+                                                    position: 'absolute',
+                                                    width: '420px',
+                                                    height: '64px',
+                                                    left: '65px',
+                                                    top: '90px',
+                                                }} />
+                                            <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
+                                                style={{
+                                                    position: 'absolute',
+                                                    width: '420px',
+                                                    height: '64px',
+                                                    left: '65px',
+                                                    top: '180px',
+                                                }} />
+                                        </Box>
                                     </Box>
                                 </Modal>
                             </StyledTableCell>

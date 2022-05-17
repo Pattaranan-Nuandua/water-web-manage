@@ -23,9 +23,6 @@ const style = {
     pb: 3,
 };
 
-const style1 ={
-    position: "absolute" as "absolute",
-}
 
 function SBtnAdd() {
     const [open, setOpen] = React.useState(false);
