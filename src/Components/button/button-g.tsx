@@ -11,7 +11,7 @@ function BtnGroup() {
         <Button className="add-group"
                 variant="contained"
                 
-                style={{ background :"#0C3483" , marginLeft: "auto" ,marginRight: 380 }}
+                style={{ background :"#0C3483" , marginLeft: "auto" ,marginRight: 260 }}
                 
                 onClick={() => {
                   alert('เพิ่มผู้กลุ่มใช้สำเร็จ');

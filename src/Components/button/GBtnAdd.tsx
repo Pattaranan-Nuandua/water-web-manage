@@ -19,8 +19,8 @@ const style = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "550px",
-    height: "630px",
+    width: "490px",
+    height: "620px",
     bgcolor: "background.paper",
     borderRadius: "16px",
     boxShadow: 24,
@@ -48,10 +48,10 @@ const names = [
     'เขต5',
 ];
 
-function getStyles(name: string, personName: string[], theme: Theme) {
+function getStyles(name: string, districtName: string[], theme: Theme) {
     return {
         fontWeight:
-            personName.indexOf(name) === -1
+            districtName.indexOf(name) === -1
                 ? theme.typography.fontWeightRegular
                 : theme.typography.fontWeightMedium,
     };
@@ -63,12 +63,12 @@ export default function GBtnAdd() {
     const handleClose = () => setOpen(false);
     ///////////////////////////////////////////////////////////////////////////////////////////////
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState<string[]>([]);
-    const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+    const [districtName, setdistrictName] = React.useState<string[]>([]);
+    const handleChange = (event: SelectChangeEvent<typeof districtName>) => {
         const {
             target: { value },
         } = event;
-        setPersonName(
+        setdistrictName(
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
@@ -111,37 +111,45 @@ export default function GBtnAdd() {
                         <TextField id="outlined-basic" label="ชื่อกลุ่มผู้ใช้" variant="outlined"
                             style={{
                                 position: 'absolute',
-                                width: '550px',
+                                width: '420px',
                                 height: '64px',
-                                left: '25px',
+                                left: '58px',
                                 top: '80px',
                             }} />
 
-                        <TextField id="outlined-basic" label="รายละเอียด" variant="outlined"
+                        <TextField id="outlined-multiline-static" label="รายละเอียด" variant="outlined" multiline
+                                    rows={4}
                             style={{
                                 position: 'absolute',
-                                width: '550px',
+                                width: '420px',
                                 height: '64px',
-                                left: '25px',
+                                left: '58px',
                                 top: '160px',
                             }} />
 
                         <TextField id="outlined-basic" label="สาขา" variant="outlined"
                             style={{
                                 position: 'absolute',
-                                width: '550px',
+                                width: '420px',
                                 height: '64px',
-                                left: '25px',
-                                top: '320px',
+                                left: '58px',
+                                top: '330px',
                             }} />
                         <div>
-                            <FormControl sx={{ m: 1, width: 300 }}>
+                            <FormControl 
+                            style={{
+                                position: 'absolute',
+                                width: '420px',
+                                height: '64px',
+                                left: '66px',
+                                top: '410px',
+                            }} >
                                 <InputLabel id="demo-multiple-name-label">เขต</InputLabel>
                                 <Select
                                     labelId="demo-multiple-name-label"
                                     id="demo-multiple-name"
                                     multiple
-                                    value={personName}
+                                    value={districtName}
                                     onChange={handleChange}
                                     input={<OutlinedInput label="Name" />}
                                     MenuProps={MenuProps}
@@ -150,7 +158,7 @@ export default function GBtnAdd() {
                                         <MenuItem
                                             key={name}
                                             value={name}
-                                            style={getStyles(name, personName, theme)}
+                                            style={getStyles(name, districtName, theme)}
                                         >
                                             {name}
                                         </MenuItem>
