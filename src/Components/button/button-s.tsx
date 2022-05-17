@@ -9,7 +9,7 @@ function BtnUser() {
             <Stack direction="row" spacing={2} >
                 <Button className="add-user"
                     variant="contained"
-                    style={{ background: "#0C3483", marginLeft: "auto", marginRight: 380 , }}
+                    style={{ background: "#0C3483", marginLeft: "auto", marginRight: 265 , }}
                     onClick={() => {
                         alert('เพิ่มผู้ใช้สำเร็จ');
                     }}
