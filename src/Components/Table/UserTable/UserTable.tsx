@@ -106,24 +106,24 @@ export default function UserTable() {
                                             noValidate
                                             autoComplete="off">
                                             <Typography id="modal-modal-title" variant="h6" component="h2">
-                                                Reset Your Password
-                                            </Typography>
-                                            <TextField id="outlined-basic" label="New password" variant="outlined"
-                                                style={{
-                                                    position: 'absolute',
-                                                    width: '420px',
-                                                    height: '64px',
-                                                    left: '65px',
-                                                    top: '90px',
-                                                }} />
-                                            <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
-                                                style={{
-                                                    position: 'absolute',
-                                                    width: '420px',
-                                                    height: '64px',
-                                                    left: '65px',
-                                                    top: '180px',
-                                                }} />
+                                            Reset Your Password
+                                        </Typography>
+                                        <TextField id="outlined-basic" label="New password" variant="outlined"
+                                            style={{
+                                                position: 'absolute',
+                                                width: '420px',
+                                                height: '64px',
+                                                left: '65px',
+                                                top: '90px',
+                                            }} />
+                                        <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
+                                            style={{
+                                                position: 'absolute',
+                                                width: '420px',
+                                                height: '64px',
+                                                left: '65px',
+                                                top: '180px',
+                                            }} />            
                                         </Box>
                                     </Box>
                                 </Modal>
