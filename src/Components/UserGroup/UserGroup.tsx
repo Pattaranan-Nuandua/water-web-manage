@@ -1,3 +1,4 @@
+import * as React from 'react';
 import './UserGroup.css'
 import GBtnDelete from "../button/GBtnDelete";
 import GBtnAdd from "../button/GBtnAdd";
@@ -9,7 +10,7 @@ import Sidebar from '../Navbar/sidebar';
 function UserGroup(){
     return(
 
-        <div className="bg-user">
+        <div>
             <h3 className="text-user">
                 จัดการกลุ่มผู้ใช้
             </h3>

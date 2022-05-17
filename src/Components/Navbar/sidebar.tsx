@@ -40,6 +40,7 @@ export default function Sidebar() {
                             </Badge>
                         </IconButton>
                     </Box>
+                
                 </Toolbar>
             </AppBar>
         </Box>

@@ -6,14 +6,15 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './btn.css'
 import './AddUser.css'
+import BtnUser from './button-s';
 
 const style = {
     position: "absolute" as "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "550px",
-    height: "630px",
+    width: "490px",
+    height: "620px",
     bgcolor: "background.paper",
     borderRadius: "16px",
     boxShadow: 24,
@@ -67,46 +68,47 @@ function SBtnAdd() {
                             <TextField id="outlined-basic" label="Username" variant="outlined" 
                             style={{
                             position: 'absolute',
-                            width: '550px',
+                            width: '420px',
                             height: '64px',
-                            left: '25px',
+                            left: '55px',
                             top: '80px',}} />
 
                             <TextField id="outlined-basic" label="ชื่อ" variant="outlined" style={{
                             position: 'absolute',
-                            width: '255px',
+                            width: '205px',
                             height: '64px',
-                            left: '25px',
+                            left: '55px',
                             top: '160px',}} />
 
                             <TextField id="outlined-basic" label="นามสกุล" variant="outlined" style={{
                             position: 'absolute',
-                            width: '255px',
+                            width: '205px',
                             height: '64px',
-                            left: '320px',
+                            left: '270px',
                             top: '160px',}}  />
 
                             <TextField id="outlined-basic" label="ประเภทผู้ใช้" variant="outlined" style={{
                             position: 'absolute',
-                            width: '550px',
+                            width: '420px',
                             height: '64px',
-                            left: '20px',
+                            left: '55px',
                             top: '240px',}} />
                             
                             <TextField id="outlined-basic" label="กลุ่มผู้ใช้" variant="outlined" style={{
                             position: 'absolute',
-                            width: '555px',
+                            width: '420px',
                             height: '64px',
-                            left: '20px',
+                            left: '55px',
                             top: '320px',}} />
 
                             <TextField id="outlined-basic" label="Password" variant="outlined" style={{
                             position: 'absolute',
-                            width: '555px',
+                            width: '420px',
                             height: '64px',
-                            left: '20px',
+                            left: '55px',
                             top: '400px',}} />
                         </Box>
+                        <BtnUser/>
                 </Box>
             </Modal>
         </Stack>
