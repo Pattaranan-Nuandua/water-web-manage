@@ -15,18 +15,20 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+const style1 = {
+    display: 'flex',
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: "490px",
-    height: "490px",
-    bgcolor: 'background.paper',
-    border: '0',
-    boxShadow: 24,
+    height: "390px",
+    bgcolor: "background.paper",
     borderRadius: "16px",
-    p: 4,
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
 };
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -96,17 +98,25 @@ export default function UserTable() {
                                     aria-labelledby="modal-modal-title"
                                     aria-describedby="modal-modal-description"
                                 >
-                                    <Box sx={style}>
+                                    <Box sx={style1}>
                                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                                            Reset Password
+                                            Reset Your Password
                                         </Typography>
-                                        <TextField id="outlined-basic" label="Username" variant="outlined"
+                                        <TextField id="outlined-basic" label="New password" variant="outlined"
                                             style={{
                                                 position: 'absolute',
                                                 width: '420px',
                                                 height: '64px',
-                                                left: '58px',
-                                                top: '80px',
+                                                left: '65px',
+                                                top: '90px',
+                                            }} />
+                                        <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
+                                            style={{
+                                                position: 'absolute',
+                                                width: '420px',
+                                                height: '64px',
+                                                left: '65px',
+                                                top: '180px',
                                             }} />
                                     </Box>
                                 </Modal>
