@@ -56,7 +56,6 @@ function SBtnAdd() {
             >
                 <Box sx={style}>
                         <Box
-                            
                             component="form"
                             sx={{
                             "& > :not(style)": { width: "35ch", m: 1, align: "center" , fontFamily: "kanit" },
@@ -70,42 +69,42 @@ function SBtnAdd() {
                             position: 'absolute',
                             width: '420px',
                             height: '64px',
-                            left: '55px',
+                            left: '58px',
                             top: '80px',}} />
 
                             <TextField id="outlined-basic" label="ชื่อ" variant="outlined" style={{
                             position: 'absolute',
                             width: '205px',
                             height: '64px',
-                            left: '55px',
+                            left: '58px',
                             top: '160px',}} />
 
                             <TextField id="outlined-basic" label="นามสกุล" variant="outlined" style={{
                             position: 'absolute',
                             width: '205px',
                             height: '64px',
-                            left: '270px',
+                            left: '273px',
                             top: '160px',}}  />
 
                             <TextField id="outlined-basic" label="ประเภทผู้ใช้" variant="outlined" style={{
                             position: 'absolute',
                             width: '420px',
                             height: '64px',
-                            left: '55px',
+                            left: '58px',
                             top: '240px',}} />
                             
                             <TextField id="outlined-basic" label="กลุ่มผู้ใช้" variant="outlined" style={{
                             position: 'absolute',
                             width: '420px',
                             height: '64px',
-                            left: '55px',
+                            left: '58px',
                             top: '320px',}} />
 
                             <TextField id="outlined-basic" label="Password" variant="outlined" style={{
                             position: 'absolute',
                             width: '420px',
                             height: '64px',
-                            left: '55px',
+                            left: '58px',
                             top: '400px',}} />
                         </Box>
                         <BtnUser/>
