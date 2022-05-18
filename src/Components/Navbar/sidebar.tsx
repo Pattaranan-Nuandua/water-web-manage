@@ -13,13 +13,14 @@ export default function Sidebar() {
     return (
         <Box>
             <AppBar style={{background: '#2B4586',
-                            display: 'flex',
+                            display: 'fixed',
+                            
                             position: 'absolute',
                             width: '100%',
                             height: '64px',
                             left: '0px',
                             top: '0px',
-                            zIndex: '9999 !important'}}>
+                            }}>
                 <Toolbar>
                     <Typography
                         variant="inherit"

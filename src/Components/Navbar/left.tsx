@@ -16,7 +16,7 @@ export default function Left() {
                             display: 'flex',
                             position: 'absolute',
                             height: '967px',
-                            width: '180px',
+                            width: '200px',
                             left: '0px',
                             top: '63px',}}>
                 <Toolbar>
