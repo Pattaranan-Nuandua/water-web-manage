@@ -61,48 +61,55 @@ function SBtnAdd() {
                             autoComplete="off"
                         >
                             <p className='text-header'>เพิ่มผู้ใช้</p>
-                            <TextField id="outlined-basic" label="Username" variant="outlined" 
+
+                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '70px'}}>Username</h3>
+                            <TextField id="outlined-basic" variant="outlined" 
                             style={{
                             position: 'absolute',
                             width: '420px',
                             height: '64px',
                             left: '58px',
-                            top: '80px',}} />
-
-                            <TextField id="outlined-basic" label="ชื่อ" variant="outlined" style={{
+                            top: '100px',}} />
+                            
+                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '170px'}}>ชื่อ</h3>
+                            <TextField id="outlined-basic"  variant="outlined" style={{
                             position: 'absolute',
                             width: '205px',
                             height: '64px',
                             left: '58px',
-                            top: '160px',}} />
+                            top: '200px',}} />
 
-                            <TextField id="outlined-basic" label="นามสกุล" variant="outlined" style={{
+                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '273px', top: '170px'}}>นามสกุล</h3>
+                            <TextField id="outlined-basic"  variant="outlined" style={{
                             position: 'absolute',
                             width: '205px',
                             height: '64px',
                             left: '273px',
-                            top: '160px',}}  />
+                            top: '200px',}}  />
 
-                            <TextField id="outlined-basic" label="ประเภทผู้ใช้" variant="outlined" style={{
+                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '270px'}}>ประเภทผู้ใช้</h3>
+                            <TextField id="outlined-basic"  variant="outlined" style={{
                             position: 'absolute',
                             width: '420px',
                             height: '64px',
                             left: '58px',
-                            top: '240px',}} />
+                            top: '300px',}} />
                             
-                            <TextField id="outlined-basic" label="กลุ่มผู้ใช้" variant="outlined" style={{
-                            position: 'absolute',
-                            width: '420px',
-                            height: '64px',
-                            left: '58px',
-                            top: '320px',}} />
-
-                            <TextField id="outlined-basic" label="Password" variant="outlined" style={{
+                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '370px'}}>กลุ่มผู้ใช้</h3>
+                            <TextField id="outlined-basic"  variant="outlined" style={{
                             position: 'absolute',
                             width: '420px',
                             height: '64px',
                             left: '58px',
                             top: '400px',}} />
+
+                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '470px'}}>Password</h3>
+                            <TextField id="outlined-basic"  variant="outlined" style={{
+                            position: 'absolute',
+                            width: '420px',
+                            height: '64px',
+                            left: '58px',
+                            top: '500px',}} />
                         </Box>
                         <BtnUser/>
                 </Box>

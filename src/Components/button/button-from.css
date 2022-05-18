@@ -1,12 +1,19 @@
 .add-user{
-    Top:560px;
+    Top:580px;
 }
 .btn-cancle{
-    Top:560px;
+    Top:580px;
 }
 .add-group{
     Top:560px;
 }
 .cancle-group{
     Top:560px;
+}
+.btn-resetpass{
+    top: 260px;
+    left: 50px;
+}
+.text-heder{
+    text-align: center;
 }

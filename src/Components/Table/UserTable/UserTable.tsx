@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import BtnResetPassword from "../../button/resetpass-button";
 
 const style1 = {
     display: 'flex',
@@ -105,15 +106,15 @@ export default function UserTable() {
                                             }}
                                             noValidate
                                             autoComplete="off">
-                                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                            Reset Your Password
+                                            <Typography id="modal-modal-title" variant="h6" component="h2" className="header">
+                                            Reset Password
                                         </Typography>
                                         <TextField id="outlined-basic" label="New password" variant="outlined"
                                             style={{
                                                 position: 'absolute',
                                                 width: '420px',
                                                 height: '64px',
-                                                left: '65px',
+                                                left: '60px',
                                                 top: '90px',
                                             }} />
                                         <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
@@ -121,9 +122,10 @@ export default function UserTable() {
                                                 position: 'absolute',
                                                 width: '420px',
                                                 height: '64px',
-                                                left: '65px',
+                                                left: '60px',
                                                 top: '180px',
-                                            }} />            
+                                            }} />
+                                        <BtnResetPassword/>            
                                         </Box>
                                     </Box>
                                 </Modal>
