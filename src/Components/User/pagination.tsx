@@ -26,8 +26,8 @@ export default function TablePaginationDemo() {
                 position: 'absolute',
                 width: '420px',
                 height: '64px',
-                right: '-5px',
-                bottom: '-80px',
+                right: '-10px',
+                top: '-40px',
             }}
             component="div"
             count={100}

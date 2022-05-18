@@ -81,8 +81,8 @@ export default function UserTable() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 1216 }} aria-label="customized table">
+        <TableContainer component={Paper} sx={{ minWidth: 1216 , marginTop: '20px',}}>
+            <Table  aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Username</StyledTableCell>
