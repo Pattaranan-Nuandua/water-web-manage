@@ -13,10 +13,10 @@ export default function Left() {
     return (
         <Box>
             <AppBar style={{background: '#2B4586',
-                            display: 'flex',
+                            display: 'fixed',
                             position: 'absolute',
-                            height: '967px',
-                            width: '200px',
+                            height: '100%',
+                            width: '230px',
                             left: '0px',
                             top: '63px',}}>
                 <Toolbar>
