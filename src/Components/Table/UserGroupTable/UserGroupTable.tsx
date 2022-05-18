@@ -31,16 +31,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(Group : string, Details : any, Quantity : number) {
-    return { Group, Details, Quantity };
+function createData(Group : string, Details : any,) {
+    return { Group, Details, };
 }
 
 const rows = [
-    createData('renebaebae1', 'sfafafafafawfafafafafawfafafafafafawfafaefefeafawfafafafafafawfafafafafawfafafafafawfafafafafawfwa', 29),
-    createData('hiiseulgi2', 'RV3', 10),
-    createData('imyourjoy3', 'RV3', 5),
-    createData('todayiswendy4', 'RV3', 21),
-    createData('yerimise5', 'RV3', 9),
+    createData('renebaebae1', 'sfafafafafawfafafafafawfafafafafafawfafaefefeafawfafafafafafawfafafafafawfafafafafawfafafafafawfwa', ),
+    createData('hiiseulgi2', 'RV3'),
+    createData('imyourjoy3', 'RV3',),
+    createData('todayiswendy4', 'RV3', ),
+    createData('yerimise5', 'RV3', ),
 ];
 export default function UserGroupTable() {
     return (
@@ -50,7 +50,6 @@ export default function UserGroupTable() {
                     <TableRow>
                         <StyledTableCell>ชื่อกลุ่มผู้ใช้</StyledTableCell>
                         <StyledTableCell align="left" >รายละเอียด</StyledTableCell>
-                        <StyledTableCell align="right" >จำนวน</StyledTableCell>
                         
                     </TableRow>
                 </TableHead>
@@ -59,7 +58,6 @@ export default function UserGroupTable() {
                         <StyledTableRow key={row.Group}>
                             <StyledTableCell component="th" scope="row">{row.Group}</StyledTableCell>
                             <StyledTableCell align="left" >{row.Details}</StyledTableCell>
-                            <StyledTableCell align="right"  >{row.Quantity}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>
