@@ -7,6 +7,7 @@ import Search from "../button/Search";
 import UserTable from "../Table/UserTable/UserTable";
 import Sidebar from "../Navbar/sidebar";
 import TablePaginationDemo from "./pagination";
+import Left from "../Navbar/left";
 
 function User() {
     return (
@@ -25,6 +26,7 @@ function User() {
                 <TablePaginationDemo/>
             </div>
             <Sidebar />
+            <Left/>
         </div>
     );
 }

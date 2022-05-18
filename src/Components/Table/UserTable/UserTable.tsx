@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import BtnResetPassword from "../../button/resetpass-button";
-import TablePagination from '@mui/material/TablePagination';
+
 import * as React from 'react';
 
 

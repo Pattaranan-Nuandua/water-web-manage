@@ -18,7 +18,8 @@ export default function Sidebar() {
                             width: '100%',
                             height: '64px',
                             left: '0px',
-                            top: '0px',}}>
+                            top: '0px',
+                            zIndex: '9999 !important'}}>
                 <Toolbar>
                     <Typography
                         variant="inherit"
