@@ -1,33 +1,40 @@
 import * as React from 'react';
-import { Link, MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
-import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
+import TablePagination from '@mui/material/TablePagination';
 
-function Content() {
-    const location = useLocation();
-    const query = new URLSearchParams(location.search);
-    const page = parseInt(query.get('page') || '1', 10);
+export default function TablePaginationDemo() {
+    const [page, setPage] = React.useState(2);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
     return (
-        <Pagination
+        <TablePagination
+            style={{
+                display: 'flex',
+                position: 'absolute',
+                width: '420px',
+                height: '64px',
+                right: '-5px',
+                bottom: '-80px',
+            }}
+            component="div"
+            count={100}
             page={page}
-            count={10}
-            renderItem={(item) => (
-                <PaginationItem
-                    component={Link}
-                    to={`/inbox${item.page === 1 ? '' : `?page=${item.page}`}`}
-                    {...item}
-                />
-            )}
+            onPageChange={handleChangePage}
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
         />
-    );
-}
-
-export default function PaginationLink() {
-    return (
-        <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
-            <Routes>
-                <Route path="*" element={<Content />} />
-            </Routes>
-        </MemoryRouter>
     );
 }

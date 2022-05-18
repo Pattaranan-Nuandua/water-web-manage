@@ -6,7 +6,7 @@ import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
 import UserTable from "../Table/UserTable/UserTable";
 import Sidebar from "../Navbar/sidebar";
-import PaginationLink from './pagination'
+import TablePaginationDemo from "./pagination";
 
 function User() {
     return (
@@ -22,16 +22,7 @@ function User() {
             </div >
             <div className="Table">
                 <UserTable />
-            <div style={{
-                    display: 'flex',
-                    position: 'absolute',
-                    width: '420px',
-                    height: '64px',
-                    right: '-80px',
-                    bottom: '-80px',
-                }}>
-                <PaginationLink/>
-            </div>
+                <TablePaginationDemo/>
             </div>
             <Sidebar />
         </div>

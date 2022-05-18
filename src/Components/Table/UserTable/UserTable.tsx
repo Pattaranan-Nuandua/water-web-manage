@@ -1,4 +1,4 @@
-import React from "react";
+
 import './UserTable.css'
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -15,6 +15,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import BtnResetPassword from "../../button/resetpass-button";
+import TablePagination from '@mui/material/TablePagination';
+import * as React from 'react';
 
 
 const style1 = {
@@ -53,7 +55,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 0,
     },
 }));
+/////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////
 function createData(Username: any, name: string, lastname: string, Usertype: string, UserGroup: string, ResetPassword: any) {
     return { Username, name, lastname, Usertype, UserGroup, ResetPassword };
 }
@@ -63,6 +67,13 @@ const rows = [
     createData('hiiseulgi', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
     createData('imyourjoy', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
     createData('todayiswendy', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
+    createData('yerimise', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
+    createData('yerimise', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
+    createData('yerimise', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
+    createData('yerimise', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
+    createData('yerimise', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
+    createData('yerimise', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
+    createData('yerimise', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
     createData('yerimise', 'fsfs', 'xxxxx', 'ผู้ใช้xx', 'กลุ่มผู้ใช้xxx', 'pass123'),
 ];
 export default function UserTable() {
@@ -107,25 +118,25 @@ export default function UserTable() {
                                             noValidate
                                             autoComplete="off">
                                             <Typography id="modal-modal-title" variant="h6" component="h2" className="header">
-                                            Reset Password
-                                        </Typography>
-                                        <TextField id="outlined-basic" label="New password" variant="outlined"
-                                            style={{
-                                                position: 'absolute',
-                                                width: '420px',
-                                                height: '64px',
-                                                left: '60px',
-                                                top: '90px',
-                                            }} />
-                                        <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
-                                            style={{
-                                                position: 'absolute',
-                                                width: '420px',
-                                                height: '64px',
-                                                left: '60px',
-                                                top: '180px',
-                                            }} />
-                                        <BtnResetPassword/>            
+                                                Reset Password
+                                            </Typography>
+                                            <TextField id="outlined-basic" label="New password" variant="outlined"
+                                                style={{
+                                                    position: 'absolute',
+                                                    width: '420px',
+                                                    height: '64px',
+                                                    left: '60px',
+                                                    top: '90px',
+                                                }} />
+                                            <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
+                                                style={{
+                                                    position: 'absolute',
+                                                    width: '420px',
+                                                    height: '64px',
+                                                    left: '60px',
+                                                    top: '180px',
+                                                }} />
+                                            <BtnResetPassword />
                                         </Box>
                                     </Box>
                                 </Modal>
@@ -135,6 +146,6 @@ export default function UserTable() {
                 </TableBody>
             </Table>
         </TableContainer>
-        
+
     );
 }
