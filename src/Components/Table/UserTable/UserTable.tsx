@@ -103,7 +103,7 @@ export default function UserTable() {
                             <StyledTableCell align="left">{row.Usertype}</StyledTableCell>
                             <StyledTableCell align="left">{row.UserGroup}</StyledTableCell>
                             <StyledTableCell align="right">{row.ResetPassword}
-                                <Button onClick={handleOpen}><EditIcon /></Button>
+                                <Button onClick={handleOpen} ><EditIcon /></Button>
                                 <Modal
                                     open={open}
                                     onClose={handleClose}
