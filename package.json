@@ -17,6 +17,7 @@
     "@types/node": "^16.11.35",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
+    "material-ui-pagination": "^1.1.6",
     "material-ui-search-bar": "^1.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",

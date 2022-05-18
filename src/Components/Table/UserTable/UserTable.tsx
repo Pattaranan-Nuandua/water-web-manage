@@ -16,6 +16,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import BtnResetPassword from "../../button/resetpass-button";
 
+
 const style1 = {
     display: 'flex',
     position: "absolute" as "absolute",
@@ -85,7 +86,6 @@ export default function UserTable() {
                 <TableBody>
                     {rows.map((row) => (
                         <StyledTableRow key={row.Username} >
-
                             <StyledTableCell component="th" scope="row">{row.Username}</StyledTableCell>
                             <StyledTableCell align="left">{row.name}</StyledTableCell>
                             <StyledTableCell align="left">{row.lastname}</StyledTableCell>
@@ -135,5 +135,6 @@ export default function UserTable() {
                 </TableBody>
             </Table>
         </TableContainer>
+        
     );
 }
