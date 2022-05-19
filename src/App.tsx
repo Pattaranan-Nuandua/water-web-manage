@@ -2,8 +2,8 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Test from './Components/test/text';
 import User from './Components/User/User';
-import Sidebar from './Components/Navbar/sidebar';
-import Left from './Components/Navbar/left';
+import Sidebar from './Components/Navbar/Header';
+import Left from './Components/Navbar/Menu-sidebar';
 import UserGroup from './Components/UserGroup/UserGroup';
 import DeleteTable from './Components/Table/UserTable/DeleteTable';
 

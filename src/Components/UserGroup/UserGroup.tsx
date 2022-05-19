@@ -5,7 +5,7 @@ import GBtnAdd from "../button/GBtnAdd";
 import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
 import UserGroupTable from "../Table/UserGroupTable/UserGroupTable";
-import Sidebar from '../Navbar/sidebar';
+import Sidebar from '../Navbar/Header';
 
 function UserGroup(){
     return(
