@@ -9,7 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
-export default function Sidebar() {
+export default function Header() {
     return (
         <Box>
             <AppBar style={{background: '#2B4586',
