@@ -23,7 +23,6 @@ function UserGroup(){
             <div className="Table">
                 <UserGroupTable/>
             </div>
-            <Sidebar/>
         </div>
 
     );
