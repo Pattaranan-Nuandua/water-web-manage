@@ -6,7 +6,13 @@ import Header from './Components/Navbar/Header';
 import Menu from './Components/Navbar/Menu-sidebar';
 import UserGroup from './Components/UserGroup/UserGroup';
 import DeleteTable from './Components/Table/UserTable/DeleteTable';
-import React from 'react';
+import * as React from 'react';
+import Sidebar from './Components/test/Sidebar';
+
+import Team from './Components/test/Team';
+import Home from './Components/test/Home';
+
+
 
 
 function App() {
@@ -20,8 +26,8 @@ function App() {
             <Route path="/deletetable" element={<DeleteTable/>}/>
           </Routes>
         </div>
-            <Header/>
-            <Menu/>
+            
+            <Menu/>  
       </Router>
     );
   }

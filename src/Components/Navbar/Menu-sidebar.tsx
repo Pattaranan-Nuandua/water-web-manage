@@ -1,27 +1,69 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 
+import { Link } from 'react-router-dom'
+import { SidebarData } from './SidebarData'
+import styled from 'styled-components'
+
+
+const MenuItems = styled.li`
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 90px;
+    padding: 1rem 0 1.25rem;
+`
+const MenuItemLinks = styled(Link)`
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    font-size: 20px;
+    text-decoration: none;
+    color: #ffffff;
+
+    &:hover {
+        background-color: #ffffff;
+        color: #000080;
+        width: 100%;
+        height: 55px;
+        text-align: center;
+    }
+`
+const Navbar = styled.div`
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 3.5rem;
+    background-color: #000080;
+`
 export default function Menu() {
     return (
         <Box>
-            <AppBar style={{background: '#2B4586',
-                            display: 'fixed',
-                            position: 'absolute',
-                            height: '100%',
-                            width: '230px',
-                            left: '0px',
-                            top: '63px',}}>
-                <Toolbar>
-                </Toolbar>
+            <Navbar></Navbar>
+            <AppBar style={{
+                background: '#2B4586',
+                display: 'fixed',
+                position: 'absolute',
+                height: '100%',
+                width: '230px',
+                left: '0px',
+                top: '63px',
+            }}>
+                {SidebarData.map((item, index) => {
+                    return (
+                        <MenuItems key={index}>
+                            <MenuItemLinks to={item.path}>
+                                {item.icon}
+                                <span style={{ marginLeft: '16px' }}>{item.title}</span>
+                            </MenuItemLinks>
+                        </MenuItems>
+                    )
+                })}
             </AppBar>
         </Box>
     );
 }
+
