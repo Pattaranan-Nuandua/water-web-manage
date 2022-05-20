@@ -32,17 +32,9 @@ const MenuItemLinks = styled(Link)`
         text-align: center;
     }
 `
-const Navbar = styled.div`
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    height: 3.5rem;
-    background-color: #000080;
-`
 export default function Menu() {
     return (
         <Box>
-            <Navbar></Navbar>
             <AppBar style={{
                 background: '#2B4586',
                 display: 'fixed',
