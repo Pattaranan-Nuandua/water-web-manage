@@ -8,13 +8,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import EditIcon from '@mui/icons-material/Edit';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import BtnResetPassword from "../../button/resetpass-button";
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 import * as React from 'react';
 
@@ -103,7 +103,7 @@ export default function UserTable() {
                             <StyledTableCell align="left">{row.Usertype}</StyledTableCell>
                             <StyledTableCell align="left">{row.UserGroup}</StyledTableCell>
                             <StyledTableCell align="right">{row.ResetPassword}
-                                <Button onClick={handleOpen} ><EditIcon /></Button>
+                                <Button onClick={handleOpen} ><ModeEditIcon/></Button>
                                 <Modal
                                     open={open}
                                     onClose={handleClose}
