@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Theme, useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
+
 /////////////////////////////////////////////////////เขต///////////////////////////////////////////////
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -121,10 +122,10 @@ export default function Header() {
                                         minHeight: '50px',
                                         right: '90px',
                                         top: '5px',
-
                                     }}
                                     size="small">
                                     <Select
+
                                         multiple
                                         displayEmpty
                                         value={districtName}
@@ -164,10 +165,11 @@ export default function Header() {
                                         minHeight: '50px',
                                         right: '300px',
                                         top: '5px',
-
+                                        
                                     }}
                                     size="small">
                                     <Select
+                                        color="info"
                                         multiple
                                         displayEmpty
                                         value={branchName}
