@@ -40,7 +40,7 @@ export default function Menu() {
                 display: 'fixed',
                 position: 'absolute',
                 height: '100%',
-                width: '230px',
+                width: '245px',
                 left: '0px',
                 top: '63px',
             }}>

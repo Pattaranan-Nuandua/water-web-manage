@@ -26,7 +26,7 @@ function App() {
             <Route path="/deletetable" element={<DeleteTable/>}/>
           </Routes>
         </div>
-            
+            <Header/>
             <Menu/>  
       </Router>
     );
