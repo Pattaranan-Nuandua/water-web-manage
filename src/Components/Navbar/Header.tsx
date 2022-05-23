@@ -122,7 +122,9 @@ export default function Header() {
                                         right: '90px',
                                         top: '5px',
                                     }}
-                                    size="small">
+                                    size="small"
+                                    color="warning"
+                                    >
                                     <Select
 
                                         multiple
@@ -176,7 +178,7 @@ export default function Header() {
                                         input={<OutlinedInput />}
                                         renderValue={(selected) => {
                                             if (selected.length === 0) {
-                                                return <em>- เลือกสาขา -</em>;
+                                                return <em color='#fff'>- เลือกสาขา -</em>;
                                             }
 
                                             return selected.join(', ');
