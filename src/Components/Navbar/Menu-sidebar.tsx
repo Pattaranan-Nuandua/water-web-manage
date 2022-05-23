@@ -20,7 +20,7 @@ const MenuItemLinks = styled(Link)`
     display: flex;
     align-items: center;
     padding: 0 2rem;
-    font-size: 20px;
+    font-size: 18px;
     text-decoration: none;
     color: #ffffff;
 
