@@ -83,9 +83,8 @@ export default function Header() {
         <Box>
             <AppBar style={{
                 background: '#2B4586',
-                display: 'fixed',
-
-                position: 'absolute',
+                display: 'flex',
+                position: 'fixed',
                 width: '100%',
                 height: '64px',
                 left: '0px',

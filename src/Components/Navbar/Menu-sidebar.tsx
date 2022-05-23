@@ -37,8 +37,8 @@ export default function Menu() {
         <Box>
             <AppBar style={{
                 background: '#2B4586',
-                display: 'fixed',
-                position: 'absolute',
+                display: 'flex',
+                position: 'fixed',
                 height: '100%',
                 width: '245px',
                 left: '0px',
