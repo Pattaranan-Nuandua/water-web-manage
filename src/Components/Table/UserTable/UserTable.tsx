@@ -120,7 +120,12 @@ export default function UserTable() {
                                 <StyledTableCell align="left">{row.UserGroup}</StyledTableCell>
                                 <StyledTableCell align="left">{row.ResetPassword}
 
-                                    <Button onClick={handleOpen} className='resetpass'><ModeEditIcon color="action"/></Button>
+                                    <Button onClick={handleOpen} className='resetpass'>
+                                        <ModeEditIcon 
+                                        color="action" 
+                                        fontSize="small"
+                                        sx={{ fontSize: 24 }}/>
+                                    </Button>
                                     <Modal
                                         open={open}
                                         onClose={handleClose}
