@@ -123,7 +123,7 @@ export default function Header() {
                                         top: '5px',
                                     }}
                                     size="small"
-                                    color="warning"
+                                    //color="warning"
                                     >
                                     <Select
 
@@ -178,7 +178,7 @@ export default function Header() {
                                         input={<OutlinedInput />}
                                         renderValue={(selected) => {
                                             if (selected.length === 0) {
-                                                return <em color='#fff'>- เลือกสาขา -</em>;
+                                                return <em '>- เลือกสาขา -</em>;
                                             }
 
                                             return selected.join(', ');
