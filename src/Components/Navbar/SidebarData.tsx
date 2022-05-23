@@ -4,6 +4,7 @@ import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 import PersonIcon from '@mui/icons-material/Person';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Settings } from '@mui/icons-material';
 
 export const SidebarData = [
     {
@@ -25,6 +26,11 @@ export const SidebarData = [
         title: 'จัดการกลุ่มผู้ใช้',
         path: '/usergroup',
         icon: <PeopleAltIcon/>
+    },
+    {
+        title: 'ตั้งค่า',
+        path: '/setting',
+        icon: <Settings/>
     },
     {
         title: 'Log out',
