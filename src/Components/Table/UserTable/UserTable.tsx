@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import './UserTable.css'
 import { styled } from '@mui/material/styles';
@@ -19,7 +18,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 
 
-const style1 = {
+const style = {
     display: 'flex',
     position: "absolute" as "absolute",
     top: "50%",
@@ -34,7 +33,16 @@ const style1 = {
     px: 4,
     pb: 3,
 };
-
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
+    },
+};
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         background: 'rgba(53, 83, 164, 0.1)',
@@ -103,6 +111,7 @@ export default function UserTable() {
                             <StyledTableCell align="left">{row.Usertype}</StyledTableCell>
                             <StyledTableCell align="left">{row.UserGroup}</StyledTableCell>
                             <StyledTableCell align="right">{row.ResetPassword}
+                            
                                 <Button onClick={handleOpen} ><ModeEditIcon/></Button>
                                 <Modal
                                     open={open}
@@ -110,7 +119,7 @@ export default function UserTable() {
                                     aria-labelledby="modal-modal-title"
                                     aria-describedby="modal-modal-description"
                                 >
-                                    <Box sx={style1}>
+                                    <Box sx={style}>
                                         <Box component="form"
                                             sx={{
                                                 "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },

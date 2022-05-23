@@ -6,6 +6,7 @@ import Header from './Components/Navbar/Header';
 import Menu from './Components/Navbar/Menu-sidebar';
 import UserGroup from './Components/UserGroup/UserGroup';
 import DeleteTable from './Components/Table/UserTable/DeleteTable';
+import Vz from './Components/test/vz';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="/user" element={<User/>}/>
             <Route path="/usergroup" element={<UserGroup/>}/>
             <Route path="/deletetable" element={<DeleteTable/>}/>
+            <Route path="/test" element={<Vz/>}/>
             
 
           </Routes>
