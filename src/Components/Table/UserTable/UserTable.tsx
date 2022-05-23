@@ -97,7 +97,7 @@ export default function UserTable() {
     const [page, setPage] = React.useState(0);
     return (
         <Paper>
-            <TableContainer sx={{ minWidth: 1216,  }}>
+            <TableContainer sx={{ minWidth: 1216}}>
                 <Table aria-label="customized table">
                     <TableHead>
                         <TableRow>

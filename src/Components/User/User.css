@@ -27,7 +27,7 @@
 }
 .Table{
     display: flex;
+    width: 1216px;
     left: 290px;
-    position: absolute;
-    margin-top: 250px;
+    margin-bottom: 300px;
 }
