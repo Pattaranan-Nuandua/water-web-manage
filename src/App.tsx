@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Test from './Components/test/text';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import User from './Components/User/User';
 import Header from './Components/Navbar/Header';
 import Menu from './Components/Navbar/Menu-sidebar';
@@ -14,7 +13,7 @@ function App() {
       <Router>
         <div className='App'>
           <Routes>
-            <Route path="/test" element={<Test/>}/>
+            
             <Route path="/user" element={<User/>}/>
             <Route path="/usergroup" element={<UserGroup/>}/>
             <Route path="/deletetable" element={<DeleteTable/>}/>
