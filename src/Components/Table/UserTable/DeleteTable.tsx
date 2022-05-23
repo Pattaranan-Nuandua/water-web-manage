@@ -22,45 +22,42 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
 interface Data {
-    calories: number;
-    carbs: number;
-    fat: number;
-    name: string;
-    protein: number;
+    Username: string;
+    Name: string;
+    Lastname: string;
+    Usertype: string;
+    UserGroup: string;
+    ResetPassword: string;
 }
 
 function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
+    Username: string,
+    Name: string,
+    Lastname: string,
+    Usertype: string,
+    UserGroup: string,
+    ResetPassword: string,
 ): Data {
     return {
-        name,
-        calories,
-        fat,
-        carbs,
-        protein,
+        Username,
+        Name,
+        Lastname,
+        Usertype,
+        UserGroup,
+        ResetPassword,
     };
 }
 
 const rows = [
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Donut', 452, 25.0, 51, 4.9),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Honeycomb', 408, 3.2, 87, 6.5),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Jelly Bean', 375, 0.0, 94, 0.0),
-    createData('KitKat', 518, 26.0, 65, 7.0),
-    createData('Lollipop', 392, 0.2, 98, 0.0),
-    createData('Marshmallow', 318, 0, 81, 2.0),
-    createData('Nougat', 360, 19.0, 9, 37.0),
-    createData('Oreo', 437, 18.0, 63, 4.0),
+    createData('Username01', 'name01', 'lastname01', 'ประเภทผู้ใช้01', ' กลุ่มผู้ใช้01', 'pass01'),
+    createData('Username02', 'name02', 'lastname02', 'ประเภทผู้ใช้02', ' กลุ่มผู้ใช้02', 'pass02'),
+    createData('Username03', 'name03', 'lastname03', 'ประเภทผู้ใช้03', ' กลุ่มผู้ใช้03', 'pass03'),
+    createData('Username04', 'name04', 'lastname04', 'ประเภทผู้ใช้04', ' กลุ่มผู้ใช้04', 'pass04'),
+    createData('Username05', 'name05', 'lastname05', 'ประเภทผู้ใช้05', ' กลุ่มผู้ใช้05', 'pass05'),
+    createData('Username06', 'name06', 'lastname06', 'ประเภทผู้ใช้06', ' กลุ่มผู้ใช้06', 'pass06'),
+    createData('Username07', 'name07', 'lastname07', 'ประเภทผู้ใช้07', ' กลุ่มผู้ใช้07', 'pass07'),
+    createData('Username08', 'name08', 'lastname08', 'ประเภทผู้ใช้08', ' กลุ่มผู้ใช้08', 'pass08'),
 ];
-
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) {
         return -1;
@@ -108,34 +105,40 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
     {
-        id: 'name',
+        id: 'Username',
         numeric: false,
         disablePadding: true,
-        label: 'Dessert (100g serving)',
+        label: 'Username',
     },
     {
-        id: 'calories',
+        id: 'Name',
         numeric: true,
         disablePadding: false,
-        label: 'Calories',
+        label: 'ชื่อ',
     },
     {
-        id: 'fat',
+        id: 'Lastname',
         numeric: true,
         disablePadding: false,
-        label: 'Fat (g)',
+        label: 'นามสกุล',
     },
     {
-        id: 'carbs',
+        id: 'Usertype',
         numeric: true,
         disablePadding: false,
-        label: 'Carbs (g)',
+        label: 'ประเภทผู้ใช้',
     },
     {
-        id: 'protein',
+        id: 'UserGroup',
         numeric: true,
         disablePadding: false,
-        label: 'Protein (g)',
+        label: 'กลุ่มผู้ใช้',
+    },
+    {
+        id: 'ResetPassword',
+        numeric: true,
+        disablePadding: false,
+        label: 'Password',
     },
 ];
 
@@ -252,7 +255,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 
 export default function EnhancedTable() {
     const [order, setOrder] = React.useState<Order>('asc');
-    const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
+    const [orderBy, setOrderBy] = React.useState<keyof Data>('Username');
     const [selected, setSelected] = React.useState<readonly string[]>([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
@@ -269,7 +272,7 @@ export default function EnhancedTable() {
 
     const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
-            const newSelecteds = rows.map((n) => n.name);
+            const newSelecteds = rows.map((n) => n.Username);
             setSelected(newSelecteds);
             return;
         }
@@ -335,21 +338,21 @@ export default function EnhancedTable() {
                         />
                         <TableBody>
                             {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-              rows.slice().sort(getComparator(order, orderBy)) */}
+                rows.slice().sort(getComparator(order, orderBy)) */}
                             {stableSort(rows, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
-                                    const isItemSelected = isSelected(row.name);
+                                    const isItemSelected = isSelected(row.Username);
                                     const labelId = `enhanced-table-checkbox-${index}`;
 
                                     return (
                                         <TableRow
                                             hover
-                                            onClick={(event) => handleClick(event, row.name)}
+                                            onClick={(event) => handleClick(event, row.Username)}
                                             role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
-                                            key={row.name}
+                                            key={row.Username}
                                             selected={isItemSelected}
                                         >
                                             <TableCell padding="checkbox">
@@ -367,12 +370,13 @@ export default function EnhancedTable() {
                                                 scope="row"
                                                 padding="none"
                                             >
-                                                {row.name}
+                                                {row.Username}
                                             </TableCell>
-                                            <TableCell align="right">{row.calories}</TableCell>
-                                            <TableCell align="right">{row.fat}</TableCell>
-                                            <TableCell align="right">{row.carbs}</TableCell>
-                                            <TableCell align="right">{row.protein}</TableCell>
+                                            <TableCell align="right">{row.Name}</TableCell>
+                                            <TableCell align="right">{row.Lastname}</TableCell>
+                                            <TableCell align="right">{row.Usertype}</TableCell>
+                                            <TableCell align="right">{row.UserGroup}</TableCell>
+                                            <TableCell align="right">{row.ResetPassword}</TableCell>
                                         </TableRow>
                                     );
                                 })}
@@ -389,7 +393,7 @@ export default function EnhancedTable() {
                     </Table>
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
+                    rowsPerPageOptions={[5, 10]}
                     component="div"
                     count={rows.length}
                     rowsPerPage={rowsPerPage}
