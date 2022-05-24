@@ -97,16 +97,18 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     color="inherit"
                     variant="subtitle1"
                     component="div"
+                    fontFamily={'kanit'}
                 >
                     {numSelected} selected
                 </Typography>
             ) : (
                 <Typography
                     sx={{ flex: '1 1 100%' }}
-                    variant="h6"
+                    variant="subtitle1"
                     id="tableTitle"
                     component="div"
-                >
+                    fontFamily={'kanit'}
+                >ลบกลุ่มผู้ใช้
                 </Typography>
             )}
             {  (
@@ -281,6 +283,7 @@ export default function GDeleteTable() {
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
+                    
                 />
             </Paper>
 

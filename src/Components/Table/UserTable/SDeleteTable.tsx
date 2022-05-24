@@ -134,16 +134,18 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     color="inherit"
                     variant="subtitle1"
                     component="div"
+                    fontFamily={'kanit'}
                 >
                     {numSelected} selected
                 </Typography>
             ) : (
                 <Typography
                     sx={{ flex: '1 1 100%' }}
-                    variant="h6"
+                    variant="subtitle1"
                     id="tableTitle"
                     component="div"
-                >
+                    fontFamily={'kanit'}
+                >ลบผู้ใช้
                 </Typography>
             )}
             {(
