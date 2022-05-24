@@ -134,19 +134,12 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     id="tableTitle"
                     component="div"
                 >
-                    Nutrition
                 </Typography>
             )}
-            {numSelected > 0 ? (
+            {  (
                 <Tooltip title="Delete">
                     <IconButton>
                         <DeleteIcon />
-                    </IconButton>
-                </Tooltip>
-            ) : (
-                <Tooltip title="Filter list">
-                    <IconButton>
-                        <FilterListIcon />
                     </IconButton>
                 </Tooltip>
             )}
