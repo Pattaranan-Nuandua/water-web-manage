@@ -3,7 +3,6 @@ import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
@@ -16,6 +15,20 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { styled } from '@mui/material/styles';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        background: 'rgba(53, 83, 164, 0.1)',
+        color: theme.palette.common.black,
+        fontFamily: 'Kanit',
+
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+        fontFamily: 'Kanit',
+    },
+}));
 
 interface Data {
     Group: string;
@@ -117,7 +130,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
     return (
         <TableHead>
             <TableRow>
-                <TableCell padding="checkbox">
+                <StyledTableCell padding="checkbox">
                     <Checkbox
                         color="primary"
                         indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -127,15 +140,15 @@ function EnhancedTableHead(props: EnhancedTableProps) {
                             'aria-label': 'select all desserts',
                         }}
                     />
-                </TableCell>
+                </StyledTableCell>
                 {headCells.map((headCell) => (
-                    <TableCell
+                    <StyledTableCell
                         key={headCell.id}
                         align={headCell.numeric ? 'left' : 'left'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                     >
                         {headCell.label}
-                    </TableCell>
+                    </StyledTableCell>
                 ))}
             </TableRow>
         </TableHead>
@@ -227,7 +240,7 @@ export default function GDeleteTable() {
                                             key={row.Group}
                                             selected={isItemSelected}
                                         >
-                                            <TableCell padding="checkbox">
+                                            <StyledTableCell padding="checkbox">
                                                 <Checkbox
                                                     color="primary"
                                                     checked={isItemSelected}
@@ -235,16 +248,16 @@ export default function GDeleteTable() {
                                                         'aria-labelledby': labelId,
                                                     }}
                                                 />
-                                            </TableCell>
-                                            <TableCell
+                                            </StyledTableCell>
+                                            <StyledTableCell
                                                 component="th"
                                                 id={labelId}
                                                 scope="row"
                                                 padding="none"
                                             >
                                                 {row.Group}
-                                            </TableCell>
-                                            <TableCell align="left">{row.Details}</TableCell>
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">{row.Details}</StyledTableCell>
                                         </TableRow>
                                     );
                                 })}
@@ -254,7 +267,7 @@ export default function GDeleteTable() {
                                         height: (dense ? 33 : 53) * emptyRows,
                                     }}
                                 >
-                                    <TableCell colSpan={6} />
+                                    <StyledTableCell colSpan={6} />
                                 </TableRow>
                             )}
                         </TableBody>

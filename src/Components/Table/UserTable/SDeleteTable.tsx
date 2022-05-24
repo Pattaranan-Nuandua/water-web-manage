@@ -3,23 +3,32 @@ import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { styled } from '@mui/material/styles';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        background: 'rgba(53, 83, 164, 0.1)',
+        color: theme.palette.common.black,
+        fontFamily: 'Kanit',
+
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+        fontFamily: 'Kanit',
+    },
+}));
 
 interface Data {
     Username: string;
@@ -137,7 +146,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 >
                 </Typography>
             )}
-            {  (
+            {(
                 <Tooltip title="Delete">
                     <IconButton>
                         <DeleteIcon />
@@ -167,7 +176,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
     return (
         <TableHead>
             <TableRow>
-                <TableCell padding="checkbox">
+                <StyledTableCell padding="checkbox">
                     <Checkbox
                         color="primary"
                         indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -177,15 +186,15 @@ function EnhancedTableHead(props: EnhancedTableProps) {
                             'aria-label': 'select all desserts',
                         }}
                     />
-                </TableCell>
+                </StyledTableCell>
                 {headCells.map((headCell) => (
-                    <TableCell
+                    <StyledTableCell
                         key={headCell.id}
                         align={headCell.numeric ? 'left' : 'left'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                     >
                         {headCell.label}
-                    </TableCell>
+                    </StyledTableCell>
                 ))}
             </TableRow>
         </TableHead>
@@ -256,10 +265,10 @@ export default function DeleteTable() {
                         size={dense ? 'small' : 'medium'}
                     >
                         <EnhancedTableHead
-                                numSelected={selected.length}
-                                onSelectAllClick={handleSelectAllClick}
-                                rowCount={rows.length}
-                            />
+                            numSelected={selected.length}
+                            onSelectAllClick={handleSelectAllClick}
+                            rowCount={rows.length}
+                        />
                         <TableBody>
                             {rows
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -277,7 +286,7 @@ export default function DeleteTable() {
                                             key={row.Username}
                                             selected={isItemSelected}
                                         >
-                                            <TableCell padding="checkbox">
+                                            <StyledTableCell padding="checkbox">
                                                 <Checkbox
                                                     color="primary"
                                                     checked={isItemSelected}
@@ -285,20 +294,20 @@ export default function DeleteTable() {
                                                         'aria-labelledby': labelId,
                                                     }}
                                                 />
-                                            </TableCell>
-                                            <TableCell
+                                            </StyledTableCell>
+                                            <StyledTableCell
                                                 component="th"
                                                 id={labelId}
                                                 scope="row"
                                                 padding="none"
                                             >
                                                 {row.Username}
-                                            </TableCell>
-                                            <TableCell align="left">{row.Name}</TableCell>
-                                            <TableCell align="left">{row.Lastname}</TableCell>
-                                            <TableCell align="left">{row.Usertype}</TableCell>
-                                            <TableCell align="left">{row.Usergroup}</TableCell>
-                                            <TableCell align="left">{row.ResetPassword}</TableCell>
+                                            </StyledTableCell>
+                                            <StyledTableCell align="left">{row.Name}</StyledTableCell>
+                                            <StyledTableCell align="left">{row.Lastname}</StyledTableCell>
+                                            <StyledTableCell align="left">{row.Usertype}</StyledTableCell>
+                                            <StyledTableCell align="left">{row.Usergroup}</StyledTableCell>
+                                            <StyledTableCell align="left">{row.ResetPassword}</StyledTableCell>
                                         </TableRow>
                                     );
                                 })}
@@ -308,7 +317,7 @@ export default function DeleteTable() {
                                         height: (dense ? 33 : 53) * emptyRows,
                                     }}
                                 >
-                                    <TableCell colSpan={6} />
+                                    <StyledTableCell colSpan={6} />
                                 </TableRow>
                             )}
                         </TableBody>
