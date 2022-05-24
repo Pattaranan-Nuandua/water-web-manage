@@ -10,32 +10,32 @@ export const SidebarData = [
     {
         title: 'แผนที่',
         path: '/map',
-        icon: <MapIcon/>
+        icon: <MapIcon />
     },
     {
         title: 'อุปกรณ์',
         path: '/device',
-        icon: <VideoLabelIcon/>
+        icon: <VideoLabelIcon />
     },
     {
         title: 'จัดการผู้ใช้',
         path: '/user',
-        icon: <PersonIcon/>
+        icon: <PersonIcon />
     },
     {
         title: 'จัดการกลุ่มผู้ใช้',
         path: '/usergroup',
-        icon: <PeopleAltIcon/>
+        icon: <PeopleAltIcon />
     },
     {
         title: 'ตั้งค่า',
         path: '/setting',
-        icon: <Settings/>
+        icon: <Settings />
     },
     {
         title: 'Log out',
         path: '/login',
-        icon: <LogoutIcon/>
+        icon: <LogoutIcon />
     },
 
 ]

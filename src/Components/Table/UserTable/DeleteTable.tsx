@@ -19,6 +19,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { styled } from '@mui/material/styles';
 
 interface Data {
     Username: string;
@@ -152,6 +153,15 @@ interface EnhancedTableProps {
     rowCount: number;
 }
 function EnhancedTableHead(props: EnhancedTableProps) {
+    const EnhancedTableHead = styled(TableRow)(({ theme }) => ({
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.common.white,
+        },
+        // hide last border
+        '&:last-child td, &:last-child th': {
+            border: 0,
+        },
+    }));
     const { onSelectAllClick, numSelected, rowCount } =
         props;
     return (
