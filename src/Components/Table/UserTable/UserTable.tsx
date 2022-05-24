@@ -10,30 +10,27 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import BtnResetPassword from "../../button/resetpass-button";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { TablePagination } from '@mui/material';
-import { Visibility } from '@mui/icons-material';
+
+import Stack from '@mui/material/Stack';
 
 
 
 const style = {
-    display: 'flex',
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "490px",
-    height: "390px",
-    bgcolor: "background.paper",
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 490,
+    height: 300,
+    bgcolor: 'background.paper',
     borderRadius: "16px",
     boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
+    p: 4,
 };
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -83,10 +80,11 @@ const rows = [
     createData('Username08', 'name08', 'lastname08', 'ประเภทผู้ใช้08', ' กลุ่มผู้ใช้08', 'pass08'),
 ];
 export default function UserTable() {
+    /////////////modal////////////////////////////
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
+    //////////////////////////page/////////////////////////
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -112,7 +110,6 @@ export default function UserTable() {
                             <StyledTableCell align="left">ประเภทผู้ใช้</StyledTableCell>
                             <StyledTableCell align="left">กลุ่มผู้ใช้</StyledTableCell>
                             <StyledTableCell align="left">ResetPassword</StyledTableCell>
-
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -126,7 +123,6 @@ export default function UserTable() {
                                     <StyledTableCell align="left">{row.Usertype}</StyledTableCell>
                                     <StyledTableCell align="left">{row.UserGroup}</StyledTableCell>
                                     <StyledTableCell align="left">{row.ResetPassword}
-
                                         <Button onClick={handleOpen} className='resetpass'>
                                             <ModeEditIcon
                                                 color="action"
@@ -146,24 +142,26 @@ export default function UserTable() {
                                                     }}
                                                     noValidate
                                                     autoComplete="off">
-                                                    <Typography id="modal-modal-title" variant="h6" component="h2" className="header">
+                                                    <h2 id="modal-modal-title" style={{ fontSize: '22px', position: 'absolute', left: '190px', }}>
                                                         Reset Password
-                                                    </Typography>
-                                                    <TextField id="outlined-basic" label="New password" variant="outlined"
+                                                    </h2>
+                                                    <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '85px' }}>New password</h3>
+                                                    <TextField id="outlined-basic" variant="outlined"
                                                         style={{
                                                             position: 'absolute',
                                                             width: '420px',
                                                             height: '64px',
                                                             left: '60px',
-                                                            top: '90px',
+                                                            top: '110px',
                                                         }} />
-                                                    <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
+                                                    <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '175px' }}>Confirm new password</h3>
+                                                    <TextField id="outlined-basic" variant="outlined"
                                                         style={{
                                                             position: 'absolute',
                                                             width: '420px',
                                                             height: '64px',
                                                             left: '60px',
-                                                            top: '180px',
+                                                            top: '200px',
                                                         }} />
                                                     <BtnResetPassword />
                                                 </Box>

@@ -62,7 +62,7 @@ function SBtnAdd() {
                         >
                             <p className='text-header'>เพิ่มผู้ใช้</p>
 
-                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '70px'}}>Username</h3>
+                            <h3 style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '70px'}}>Username</h3>
                             <TextField id="outlined-basic" variant="outlined" 
                             style={{
                             position: 'absolute',
@@ -71,7 +71,7 @@ function SBtnAdd() {
                             left: '58px',
                             top: '100px',}} />
                             
-                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '170px'}}>ชื่อ</h3>
+                            <h3  style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '170px'}}>ชื่อ</h3>
                             <TextField id="outlined-basic"  variant="outlined" style={{
                             position: 'absolute',
                             width: '205px',
@@ -79,7 +79,7 @@ function SBtnAdd() {
                             left: '58px',
                             top: '200px',}} />
 
-                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '273px', top: '170px'}}>นามสกุล</h3>
+                            <h3  style={{ fontSize: '13px', position: 'absolute' , left: '273px', top: '170px'}}>นามสกุล</h3>
                             <TextField id="outlined-basic"  variant="outlined" style={{
                             position: 'absolute',
                             width: '205px',
@@ -87,7 +87,7 @@ function SBtnAdd() {
                             left: '273px',
                             top: '200px',}}  />
 
-                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '270px'}}>ประเภทผู้ใช้</h3>
+                            <h3  style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '270px'}}>ประเภทผู้ใช้</h3>
                             <TextField id="outlined-basic"  variant="outlined" style={{
                             position: 'absolute',
                             width: '420px',
@@ -95,7 +95,7 @@ function SBtnAdd() {
                             left: '58px',
                             top: '300px',}} />
                             
-                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '370px'}}>กลุ่มผู้ใช้</h3>
+                            <h3  style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '370px'}}>กลุ่มผู้ใช้</h3>
                             <TextField id="outlined-basic"  variant="outlined" style={{
                             position: 'absolute',
                             width: '420px',
@@ -103,7 +103,7 @@ function SBtnAdd() {
                             left: '58px',
                             top: '400px',}} />
 
-                            <h3 className="type-divice" style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '470px'}}>Password</h3>
+                            <h3  style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '470px'}}>Password</h3>
                             <TextField id="outlined-basic"  variant="outlined" style={{
                             position: 'absolute',
                             width: '420px',
