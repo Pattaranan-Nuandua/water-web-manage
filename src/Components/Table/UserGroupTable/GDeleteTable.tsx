@@ -18,41 +18,28 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { styled } from '@mui/material/styles';
 
 interface Data {
-    Username: string;
-    Name: string;
-    Lastname: string;
-    Usertype: string;
-    Usergroup: string;
-    ResetPassword: string;
+    Group: string;
+    Details: string;
 }
 
 function createData(
-    Username: string,
-    Name: string,
-    Lastname: string,
-    Usertype: string,
-    Usergroup: string,
-    ResetPassword: string,
+    Group: string,
+    Details: string,
 ): Data {
     return {
-        Username,
-        Name,
-        Lastname,
-        Usertype,
-        Usergroup,
-        ResetPassword,
+        Group,
+        Details,
     };
 }
 
 const rows = [
-    createData('Username01', 'name01', 'lastname01', 'ประเภทผู้ใช้01', ' กลุ่มผู้ใช้01', 'pass01'),
-    createData('Username02', 'name02', 'lastname02', 'ประเภทผู้ใช้02', ' กลุ่มผู้ใช้02', 'pass02'),
-    createData('Username03', 'name03', 'lastname03', 'ประเภทผู้ใช้03', ' กลุ่มผู้ใช้03', 'pass03'),
-    createData('Username04', 'name04', 'lastname04', 'ประเภทผู้ใช้04', ' กลุ่มผู้ใช้04', 'pass04'),
-    createData('Username05', 'name05', 'lastname05', 'ประเภทผู้ใช้05', ' กลุ่มผู้ใช้05', 'pass05'),
-    createData('Username06', 'name06', 'lastname06', 'ประเภทผู้ใช้06', ' กลุ่มผู้ใช้06', 'pass06'),
-    createData('Username07', 'name07', 'lastname07', 'ประเภทผู้ใช้07', ' กลุ่มผู้ใช้07', 'pass07'),
-    createData('Username08', 'name08', 'lastname08', 'ประเภทผู้ใช้08', ' กลุ่มผู้ใช้08', 'pass08'),
+    createData('กลุ่มผู้ใช้1', 'รายละเอียด '),
+    createData('กลุ่มผู้ใช้2', 'รายละเอียด '),
+    createData('กลุ่มผู้ใช้3', 'รายละเอียด ',),
+    createData('กลุ่มผู้ใช้4', 'รายละเอียด ',),
+    createData('กลุ่มผู้ใช้5', 'รายละเอียด ',),
+    createData('กลุ่มผู้ใช้6', 'รายละเอียด ',),
+    createData('กลุ่มผู้ใช้7', 'รายละเอียด ',),
 ];
 interface HeadCell {
     disablePadding: boolean;
@@ -62,40 +49,16 @@ interface HeadCell {
 }
 const headCells: readonly HeadCell[] = [
     {
-        id: 'Username',
+        id: 'Group',
         numeric: false,
         disablePadding: true,
-        label: 'Username',
+        label: 'ชื่อกลุ่มผู้ใช้',
     },
     {
-        id: 'Name',
+        id: 'Details',
         numeric: true,
         disablePadding: false,
-        label: 'ชื่อ',
-    },
-    {
-        id: 'Lastname',
-        numeric: true,
-        disablePadding: false,
-        label: 'นามสกุล',
-    },
-    {
-        id: 'Usertype',
-        numeric: true,
-        disablePadding: false,
-        label: 'ประเภทผู้ใช้',
-    },
-    {
-        id: 'Usergroup',
-        numeric: true,
-        disablePadding: false,
-        label: 'กลุ่มผู้ใช้',
-    },
-    {
-        id: 'ResetPassword',
-        numeric: true,
-        disablePadding: false,
-        label: 'Password',
+        label: 'รายละเอียด',
     },
 ];
 interface EnhancedTableToolbarProps {
@@ -149,15 +112,6 @@ interface EnhancedTableProps {
     rowCount: number;
 }
 function EnhancedTableHead(props: EnhancedTableProps) {
-    const EnhancedTableHead = styled(TableRow)(({ theme }) => ({
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.common.white,
-        },
-        // hide last border
-        '&:last-child td, &:last-child th': {
-            border: 0,
-        },
-    }));
     const { onSelectAllClick, numSelected, rowCount } =
         props;
     return (
@@ -177,7 +131,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
+                        align={headCell.numeric ? 'left' : 'left'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                     >
                         {headCell.label}
@@ -195,7 +149,7 @@ export default function GDeleteTable() {
 
     const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
-            const newSelecteds = rows.map((n) => n.Username);
+            const newSelecteds = rows.map((n) => n.Group);
             setSelected(newSelecteds);
             return;
         }
@@ -260,17 +214,17 @@ export default function GDeleteTable() {
                             {rows
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
-                                    const isItemSelected = isSelected(row.Username);
+                                    const isItemSelected = isSelected(row.Group);
                                     const labelId = `enhanced-table-checkbox-${index}`;
 
                                     return (
                                         <TableRow
                                             hover
-                                            onClick={(event) => handleClick(event, row.Username)}
+                                            onClick={(event) => handleClick(event, row.Group)}
                                             role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
-                                            key={row.Username}
+                                            key={row.Group}
                                             selected={isItemSelected}
                                         >
                                             <TableCell padding="checkbox">
@@ -288,13 +242,9 @@ export default function GDeleteTable() {
                                                 scope="row"
                                                 padding="none"
                                             >
-                                                {row.Username}
+                                                {row.Group}
                                             </TableCell>
-                                            <TableCell align="right">{row.Name}</TableCell>
-                                            <TableCell align="right">{row.Lastname}</TableCell>
-                                            <TableCell align="right">{row.Usertype}</TableCell>
-                                            <TableCell align="right">{row.Usergroup}</TableCell>
-                                            <TableCell align="right">{row.ResetPassword}</TableCell>
+                                            <TableCell align="left">{row.Details}</TableCell>
                                         </TableRow>
                                     );
                                 })}
