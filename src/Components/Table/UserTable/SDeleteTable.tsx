@@ -181,7 +181,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
+                        align={headCell.numeric ? 'left' : 'left'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                     >
                         {headCell.label}
@@ -294,11 +294,11 @@ export default function DeleteTable() {
                                             >
                                                 {row.Username}
                                             </TableCell>
-                                            <TableCell align="right">{row.Name}</TableCell>
-                                            <TableCell align="right">{row.Lastname}</TableCell>
-                                            <TableCell align="right">{row.Usertype}</TableCell>
-                                            <TableCell align="right">{row.Usergroup}</TableCell>
-                                            <TableCell align="right">{row.ResetPassword}</TableCell>
+                                            <TableCell align="left">{row.Name}</TableCell>
+                                            <TableCell align="left">{row.Lastname}</TableCell>
+                                            <TableCell align="left">{row.Usertype}</TableCell>
+                                            <TableCell align="left">{row.Usergroup}</TableCell>
+                                            <TableCell align="left">{row.ResetPassword}</TableCell>
                                         </TableRow>
                                     );
                                 })}
