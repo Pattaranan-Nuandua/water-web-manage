@@ -1,4 +1,6 @@
+*{
+  font-Family: 'Kanit',
+}
 .App {
   display: flex;
-  font-family: 'kanit';
 }

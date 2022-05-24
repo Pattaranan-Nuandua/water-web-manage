@@ -15,20 +15,24 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         background: 'rgba(53, 83, 164, 0.1)',
         color: theme.palette.common.black,
+        fontFamily: 'Kanit',
 
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 14,
+        fontFamily: 'Kanit',
     },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.common.white,
+        fontFamily: 'Kanit',
     },
     // hide last border
     '&:last-child td, &:last-child th': {
         border: 0,
+        fontFamily: 'Kanit',
     },
 }));
 
