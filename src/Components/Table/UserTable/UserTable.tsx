@@ -16,6 +16,7 @@ import TextField from '@mui/material/TextField';
 import BtnResetPassword from "../../button/resetpass-button";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { TablePagination } from '@mui/material';
+import { Visibility } from '@mui/icons-material';
 
 
 
@@ -86,7 +87,9 @@ export default function UserTable() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -94,10 +97,12 @@ export default function UserTable() {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-    const [page, setPage] = React.useState(0);
+    const emptyRows =
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
     return (
         <Paper>
-            <TableContainer sx={{ minWidth: 1216}}>
+            <TableContainer sx={{ minWidth: 1216 }}>
                 <Table aria-label="customized table">
                     <TableHead>
                         <TableRow>
@@ -111,60 +116,62 @@ export default function UserTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <StyledTableRow key={row.Username} >
-                                <StyledTableCell component="th" scope="row">{row.Username}</StyledTableCell>
-                                <StyledTableCell align="left">{row.name}</StyledTableCell>
-                                <StyledTableCell align="left">{row.lastname}</StyledTableCell>
-                                <StyledTableCell align="left">{row.Usertype}</StyledTableCell>
-                                <StyledTableCell align="left">{row.UserGroup}</StyledTableCell>
-                                <StyledTableCell align="left">{row.ResetPassword}
+                        {rows
+                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            .map((row, index) => (
+                                <StyledTableRow key={row.Username} >
+                                    <StyledTableCell component="th" scope="row">{row.Username}</StyledTableCell>
+                                    <StyledTableCell align="left">{row.name}</StyledTableCell>
+                                    <StyledTableCell align="left">{row.lastname}</StyledTableCell>
+                                    <StyledTableCell align="left">{row.Usertype}</StyledTableCell>
+                                    <StyledTableCell align="left">{row.UserGroup}</StyledTableCell>
+                                    <StyledTableCell align="left">{row.ResetPassword}
 
-                                    <Button onClick={handleOpen} className='resetpass'>
-                                        <ModeEditIcon 
-                                        color="action" 
-                                        fontSize="small"
-                                        sx={{ fontSize: 24 }}/>
-                                    </Button>
-                                    <Modal
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
-                                    >
-                                        <Box sx={style}>
-                                            <Box component="form"
-                                                sx={{
-                                                    "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
-                                                }}
-                                                noValidate
-                                                autoComplete="off">
-                                                <Typography id="modal-modal-title" variant="h6" component="h2" className="header">
-                                                    Reset Password
-                                                </Typography>
-                                                <TextField id="outlined-basic" label="New password" variant="outlined"
-                                                    style={{
-                                                        position: 'absolute',
-                                                        width: '420px',
-                                                        height: '64px',
-                                                        left: '60px',
-                                                        top: '90px',
-                                                    }} />
-                                                <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
-                                                    style={{
-                                                        position: 'absolute',
-                                                        width: '420px',
-                                                        height: '64px',
-                                                        left: '60px',
-                                                        top: '180px',
-                                                    }} />
-                                                <BtnResetPassword />
+                                        <Button onClick={handleOpen} className='resetpass'>
+                                            <ModeEditIcon
+                                                color="action"
+                                                fontSize="small"
+                                                sx={{ fontSize: 24 }} />
+                                        </Button>
+                                        <Modal
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description"
+                                        >
+                                            <Box sx={style}>
+                                                <Box component="form"
+                                                    sx={{
+                                                        "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
+                                                    }}
+                                                    noValidate
+                                                    autoComplete="off">
+                                                    <Typography id="modal-modal-title" variant="h6" component="h2" className="header">
+                                                        Reset Password
+                                                    </Typography>
+                                                    <TextField id="outlined-basic" label="New password" variant="outlined"
+                                                        style={{
+                                                            position: 'absolute',
+                                                            width: '420px',
+                                                            height: '64px',
+                                                            left: '60px',
+                                                            top: '90px',
+                                                        }} />
+                                                    <TextField id="outlined-basic" label="Confirm new password" variant="outlined"
+                                                        style={{
+                                                            position: 'absolute',
+                                                            width: '420px',
+                                                            height: '64px',
+                                                            left: '60px',
+                                                            top: '180px',
+                                                        }} />
+                                                    <BtnResetPassword />
+                                                </Box>
                                             </Box>
-                                        </Box>
-                                    </Modal>
-                                </StyledTableCell>
-                            </StyledTableRow>
-                        ))}
+                                        </Modal>
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                            ))}
                     </TableBody>
                 </Table>
             </TableContainer>

@@ -37,16 +37,18 @@ function createData(Group: string, Details: any,) {
 }
 
 const rows = [
-    createData('renebaebae1', 'sfafafafafawfafafafafawfafafafafafawfafafaffeafawfafafafafafawfafafafafawfafafafafawfafafafafawfwa',),
-    createData('hiiseulgi2', 'RV3'),
-    createData('imyourjoy3', 'RV3',),
-    createData('todayiswendy4', 'RV3',),
-    createData('yerimise5', 'RV3',),
-    createData('yerimise5', 'RV3',),
-    createData('yerimise5', 'RV3',),
+    createData('กลุ่มผู้ใช้1', 'รายละเอียด '),
+    createData('กลุ่มผู้ใช้2', 'รายละเอียด '),
+    createData('กลุ่มผู้ใช้3', 'รายละเอียด ',),
+    createData('กลุ่มผู้ใช้4', 'รายละเอียด ',),
+    createData('กลุ่มผู้ใช้5', 'รายละเอียด ',),
+    createData('กลุ่มผู้ใช้6', 'รายละเอียด ',),
+    createData('กลุ่มผู้ใช้7', 'รายละเอียด ',),
 ];
 export default function UserGroupTable() {
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
@@ -54,25 +56,25 @@ export default function UserGroupTable() {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-    const [page, setPage] = React.useState(0);
     return (
         <Paper >
-            <TableContainer>
-                <Table sx={{ minWidth: 1216 }} aria-label="customized table">
+            <TableContainer sx={{ minWidth: 1216 }}>
+                <Table aria-label="customized table">
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>ชื่อกลุ่มผู้ใช้</StyledTableCell>
-                            <StyledTableCell align="left" >รายละเอียด</StyledTableCell>
-
+                            <StyledTableCell align="left">รายละเอียด</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <StyledTableRow key={row.Group}>
-                                <StyledTableCell component="th" scope="row">{row.Group}</StyledTableCell>
-                                <StyledTableCell align="left" >{row.Details}</StyledTableCell>
-                            </StyledTableRow>
-                        ))}
+                        {rows
+                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            .map((row, index) => (
+                                <StyledTableRow key={row.Group} >
+                                    <StyledTableCell component="th" scope="row">{row.Group}</StyledTableCell>
+                                    <StyledTableCell align="left" >{row.Details}</StyledTableCell>
+                                </StyledTableRow>
+                            ))}
                     </TableBody>
                 </Table>
             </TableContainer>
@@ -86,7 +88,5 @@ export default function UserGroupTable() {
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
         </Paper>
-
-
     );
 }
