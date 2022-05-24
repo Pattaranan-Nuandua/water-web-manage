@@ -4,6 +4,7 @@ import SBtnDelete from "../button/SBtnDelete";
 import SBtnAdd from "../button/SBtnAdd";
 import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
+import DeleteTable from "../Table/UserTable/DeleteTable";
 
 function DeleteUser(){
     return(
@@ -14,9 +15,10 @@ function DeleteUser(){
             <div className="frame-btn">
                 <Search/>
                 <BtnFind/>
-                <SBtnAdd/>
-                <SBtnDelete/>
             </div >
+            <div className="Table">
+                <DeleteTable/>
+            </div>
         </div>
     );
 }

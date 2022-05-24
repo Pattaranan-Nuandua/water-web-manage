@@ -7,6 +7,7 @@ import Menu from './Components/Navbar/Menu-sidebar';
 import UserGroup from './Components/UserGroup/UserGroup';
 import DeleteTable from './Components/Table/UserTable/DeleteTable';
 import Vz from './Components/test/vz';
+import DeleteUser from './Components/User/DeleteUser';
 
 
 function App() {
@@ -19,12 +20,11 @@ function App() {
             <Route path="/usergroup" element={<UserGroup/>}/>
             <Route path="/deletetable" element={<DeleteTable/>}/>
             <Route path="/test" element={<Vz/>}/>
-            
-
+            <Route path="/deleteuser" element={<DeleteUser/>}/>
           </Routes>
         </div>
             <Header/>
-            <Menu/>  
+            <Menu/>
       </Router>
     );
   }
