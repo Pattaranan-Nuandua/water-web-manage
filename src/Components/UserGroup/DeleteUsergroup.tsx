@@ -1,8 +1,9 @@
 import React from "react";
-import './User.css'
+import './UserGroup.css'
 import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
-import DeleteTable from "../Table/UserTable/DeleteTable";
+import GDeleteTable from "../Table/UserGroupTable/GDeleteTable";
+
 
 function DeleteUsergroup(){
     return(
@@ -15,7 +16,7 @@ function DeleteUsergroup(){
                 <BtnFind/>
             </div >
             <div className="Table">
-                <DeleteTable/>
+                <GDeleteTable/>
             </div>
         </div>
     );

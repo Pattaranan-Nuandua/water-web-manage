@@ -1,10 +1,8 @@
-import React from "react";
+import * as React from "react";
 import './User.css'
-import SBtnDelete from "../button/SBtnDelete";
-import SBtnAdd from "../button/SBtnAdd";
 import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
-import DeleteTable from "../Table/UserTable/DeleteTable";
+import DeleteTable from "../Table/UserTable/SDeleteTable";
 
 function DeleteUser(){
     return(
