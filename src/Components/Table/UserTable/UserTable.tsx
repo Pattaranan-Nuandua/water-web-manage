@@ -15,10 +15,7 @@ import TextField from '@mui/material/TextField';
 import BtnResetPassword from "../../button/resetpass-button";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { TablePagination } from '@mui/material';
-
-import Stack from '@mui/material/Stack';
-
-
+import data from "./mock-data.json";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -47,7 +44,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         background: 'rgba(53, 83, 164, 0.1)',
         color: theme.palette.common.black,
         fontFamily: 'Kanit',
-        
+
 
     },
     [`&.${tableCellClasses.body}`]: {
@@ -102,7 +99,9 @@ export default function UserTable() {
     };
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
+    /////////////////////////////////////////////////////////////////input/////
+    const [contacts, setContacts] = React.useState(data);
+    
     return (
         <Paper>
             <TableContainer sx={{ minWidth: 1216 }}>

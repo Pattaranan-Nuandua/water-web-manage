@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import './btn.css'
 import './AddUser.css'
 import BtnUser from './button-s';
+import { nanoid } from "nanoid";
 
 const style = {
     position: "absolute" as "absolute",
@@ -28,9 +29,13 @@ function SBtnAdd() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    ///////////////////////////////////////////////
+
+
+    ////////////////////////////////////////////////////
     return (
         <Stack>
-            <Button 
+            <Button
                 sx={{ fontFamily: "Kanit" }}
                 onClick={handleOpen}
                 type="submit"
@@ -52,66 +57,78 @@ function SBtnAdd() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                        <Box
-                            component="form"
-                            sx={{
-                            "& > :not(style)": { width: "35ch", m: 1, align: "center" , fontFamily: "kanit" },
-                            }}
-                            noValidate
-                            autoComplete="off"
-                        >
-                            <p className='text-header'>เพิ่มผู้ใช้</p>
+                    <Box
+                        component="form"
+                        sx={{
+                            "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <p className='text-header'>เพิ่มผู้ใช้</p>
 
-                            <h3 style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '70px'}}>Username</h3>
-                            <TextField id="outlined-basic" variant="outlined" 
+                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '70px' }}>Username</h3>
+                        <TextField id="outlined-basic" variant="outlined"
                             style={{
-                            position: 'absolute',
-                            width: '420px',
-                            height: '64px',
-                            left: '58px',
-                            top: '100px',}} />
-                            
-                            <h3  style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '170px'}}>ชื่อ</h3>
-                            <TextField id="outlined-basic"  variant="outlined" style={{
+                                position: 'absolute',
+                                width: '420px',
+                                height: '64px',
+                                left: '58px',
+                                top: '100px',
+                            }}
+                            />
+
+                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '170px' }}>ชื่อ</h3>
+                        <TextField id="outlined-basic" variant="outlined" style={{
                             position: 'absolute',
                             width: '205px',
                             height: '64px',
                             left: '58px',
-                            top: '200px',}} />
+                            top: '200px',
+                        }}
+                        />
 
-                            <h3  style={{ fontSize: '13px', position: 'absolute' , left: '273px', top: '170px'}}>นามสกุล</h3>
-                            <TextField id="outlined-basic"  variant="outlined" style={{
+                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '273px', top: '170px' }}>นามสกุล</h3>
+                        <TextField id="outlined-basic" variant="outlined" style={{
                             position: 'absolute',
                             width: '205px',
                             height: '64px',
                             left: '273px',
-                            top: '200px',}}  />
+                            top: '200px',
+                        }}
+                            />
 
-                            <h3  style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '270px'}}>ประเภทผู้ใช้</h3>
-                            <TextField id="outlined-basic"  variant="outlined" style={{
+                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '270px' }}>ประเภทผู้ใช้</h3>
+                        <TextField id="outlined-basic" variant="outlined" style={{
                             position: 'absolute',
                             width: '420px',
                             height: '64px',
                             left: '58px',
-                            top: '300px',}} />
-                            
-                            <h3  style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '370px'}}>กลุ่มผู้ใช้</h3>
-                            <TextField id="outlined-basic"  variant="outlined" style={{
-                            position: 'absolute',
-                            width: '420px',
-                            height: '64px',
-                            left: '58px',
-                            top: '400px',}} />
+                            top: '300px',
+                        }}
+                            />
 
-                            <h3  style={{ fontSize: '13px', position: 'absolute' , left: '58px', top: '470px'}}>Password</h3>
-                            <TextField id="outlined-basic"  variant="outlined" style={{
+                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '370px' }}>กลุ่มผู้ใช้</h3>
+                        <TextField id="outlined-basic" variant="outlined" style={{
                             position: 'absolute',
                             width: '420px',
                             height: '64px',
                             left: '58px',
-                            top: '500px',}} />
-                        </Box>
-                        <BtnUser/>
+                            top: '400px',
+                        }}
+                        />
+
+                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '470px' }}>Password</h3>
+                        <TextField id="outlined-basic" variant="outlined" style={{
+                            position: 'absolute',
+                            width: '420px',
+                            height: '64px',
+                            left: '58px',
+                            top: '500px',
+                        }}
+                        />
+                    </Box>
+                    <BtnUser />
                 </Box>
             </Modal>
         </Stack>

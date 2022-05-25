@@ -1,0 +1,58 @@
+[
+    {
+        "username": "username1",
+        "firstname": "name1",
+        "lastname": "lastname1",
+        "usertype": "ประเภทผู้ใช้1",
+        "usergroup": "กลุ่มผู้ใช้1",
+        "resetpassword": "password1"
+    },
+    {
+        "username": "username2",
+        "firstname": "name2",
+        "lastname": "lastname2",
+        "usertype": "ประเภทผู้ใช้2",
+        "usergroup": "กลุ่มผู้ใช้2",
+        "resetpassword": "password2"
+    },
+    {
+        "username": "username3",
+        "firstname": "name3",
+        "lastname": "lastname3",
+        "usertype": "ประเภทผู้ใช้3",
+        "usergroup": "กลุ่มผู้ใช้3",
+        "resetpassword": "password3"
+    },
+    {
+        "username": "username4",
+        "firstname": "name4",
+        "lastname": "lastname4",
+        "usertype": "ประเภทผู้ใช้4",
+        "usergroup": "กลุ่มผู้ใช้4",
+        "resetpassword": "password4"
+    },
+    {
+        "username": "username5",
+        "firstname": "name5",
+        "lastname": "lastname5",
+        "usertype": "ประเภทผู้ใช้5",
+        "usergroup": "กลุ่มผู้ใช้5",
+        "resetpassword": "password5"
+    }, 
+    {
+        "username": "username6",
+        "firstname": "name6",
+        "lastname": "lastname6",
+        "usertype": "ประเภทผู้ใช้6",
+        "usergroup": "กลุ่มผู้ใช้6",
+        "resetpassword": "password6"
+    },
+    {
+        "username": "username6",
+        "firstname": "name6",
+        "lastname": "lastname6",
+        "usertype": "ประเภทผู้ใช้6",
+        "usergroup": "กลุ่มผู้ใช้6",
+        "resetpassword": "password6"
+    }
+]

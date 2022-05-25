@@ -1,0 +1,11 @@
+{
+    "configurations": [
+    
+        {
+            "type": "pwa-chrome",
+            "name": "escape",
+            "request": "launch",
+            "url": "escape"
+        }
+    ]
+}

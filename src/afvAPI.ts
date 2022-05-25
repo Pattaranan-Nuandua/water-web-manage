@@ -52,7 +52,7 @@ export const GetAfvTelemetryData = (device_id: string, start?: Date, end?: Date,
             sw_version: "0.0.0",
         })
     }
-    // console.log(mockAfvTelemetryData);
+    //console.log(mockAfvTelemetryData);
 
     return mockAfvTelemetryData;
 }
