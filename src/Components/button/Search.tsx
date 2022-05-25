@@ -4,8 +4,10 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
+import BtnFind from "./BtnFind";
+import '../User/User.css';
 
-const style1 = {
+const style = {
     width: '316px',
     height: '47px',
     borderRadius: '8px',
@@ -16,7 +18,7 @@ const style1 = {
 }
 function Search(){
     return(
-        <Paper style={style1}>
+        <Paper style={style}>
             <IconButton type="submit"  aria-label="search" className="search-btn">
                 <SearchIcon className="search-icon"/>
             </IconButton>
