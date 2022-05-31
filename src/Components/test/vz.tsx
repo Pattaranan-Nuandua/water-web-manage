@@ -17,6 +17,7 @@ import { TablePagination } from '@mui/material';
 import { produce } from "immer";
 import Stack from '@mui/material/Stack';
 import { Formik, Form } from 'formik';
+import { generate } from "shortid";
 import './btn.css'
 
 const style = {
@@ -82,6 +83,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 /////////////////////////////////////////////////////
 interface Values {
+    id: string;
     username: string,
     firstname: string,
     lastname: string,
@@ -131,7 +133,7 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
     /////////////////////////////////////////////////////////////////input/////
 
     const [people, setPeople] = React.useState<Values[]>([
-        { username: "username", firstname: "one", lastname: "two", usertype: "usertype", usergroup: "usergroup", resetpassword: "123" }
+        { id: "1", username: "username", firstname: "firstname", lastname: "lastname", usertype: "usertype", usergroup: "usergroup", resetpassword: "123" }
     ]);
 
     return (
@@ -256,20 +258,23 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                 >
                     เพิ่มผู้ใช้
                 </Button>
-                {people.map((p,index) =>{
-                    return(
-                        <Formik initialValues={{
-                            username: "",
-                            firstname: "",
-                            lastname: "",
-                            usertype: "",
-                            usergroup: "",
-                            resetpassword: ""
-                        }}
+                {people.map((p, index) => {
+                    return (
+                        <Formik
+                            key={p.id}
+                            initialValues={{
+                                id: generate(),
+                                username: "",
+                                firstname: "",
+                                lastname: "",
+                                usertype: "",
+                                usergroup: "",
+                                resetpassword: ""
+                            }}
                             onSubmit={values => {
                                 onSubmit(values);
                             }}>
-                            {({ values, handleChange, handleBlur }) => (
+                            {({ values }) => (
                                 <Form>
                                     <Modal
                                         open={open1}
@@ -293,7 +298,7 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                     id="outlined-basic"
                                                     variant="outlined"
                                                     name="username"
-                                                    value={values.username}
+                                                    //value={values.username}
                                                     onChange={e => {
                                                         const username = e.target.value;
                                                         setPeople(currentPeople =>
@@ -302,7 +307,6 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                             })
                                                         );
                                                     }}
-                                                    onBlur={handleBlur}
                                                     style={{
                                                         position: 'absolute',
                                                         width: '420px',
@@ -310,24 +314,22 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                         left: '58px',
                                                         top: '100px',
                                                     }}
-
                                                 />
-
                                                 <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '170px' }}>ชื่อ</h3>
                                                 <TextField
                                                     id="outlined-basic"
                                                     variant="outlined"
                                                     name="firstname"
-                                                    value={values.firstname}
+                                                    //value={values.firstname}
                                                     onChange={e => {
                                                         const firstname = e.target.value;
                                                         setPeople(currentPeople =>
-                                                            produce(currentPeople, v => {
-                                                                v[index].firstname = firstname;
+                                                            produce(currentPeople, value => {
+                                                                value[index].firstname = firstname;
                                                             })
                                                         );
                                                     }}
-                                                    onBlur={handleBlur}
+
                                                     style={{
                                                         position: 'absolute',
                                                         width: '205px',
@@ -335,15 +337,13 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                         left: '58px',
                                                         top: '200px',
                                                     }}
-
                                                 />
-
                                                 <h3 style={{ fontSize: '13px', position: 'absolute', left: '273px', top: '170px' }}>นามสกุล</h3>
                                                 <TextField
                                                     id="outlined-basic"
                                                     variant="outlined"
                                                     name="lastname"
-                                                    value={values.lastname}
+                                                    //value={values.lastname}
                                                     onChange={e => {
                                                         const lastname = e.target.value;
                                                         setPeople(currentPeople =>
@@ -352,7 +352,6 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                             })
                                                         );
                                                     }}
-                                                    onBlur={handleBlur}
                                                     style={{
                                                         position: 'absolute',
                                                         width: '205px',
@@ -361,13 +360,12 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                         top: '200px',
                                                     }}
                                                 />
-
                                                 <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '270px' }}>ประเภทผู้ใช้</h3>
                                                 <TextField
                                                     id="outlined-basic"
                                                     variant="outlined"
                                                     name="usertype"
-                                                    value={values.usertype}
+                                                    //value={values.usertype}
                                                     onChange={e => {
                                                         const usertype = e.target.value;
                                                         setPeople(currentPeople =>
@@ -376,7 +374,6 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                             })
                                                         );
                                                     }}
-                                                    onBlur={handleBlur}
                                                     style={{
                                                         position: 'absolute',
                                                         width: '420px',
@@ -385,13 +382,12 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                         top: '300px',
                                                     }}
                                                 />
-
                                                 <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '370px' }}>กลุ่มผู้ใช้</h3>
                                                 <TextField
                                                     id="outlined-basic"
                                                     variant="outlined"
                                                     name="usergroup"
-                                                    value={values.usergroup}
+                                                    //value={values.usergroup}
                                                     onChange={e => {
                                                         const usergroup = e.target.value;
                                                         setPeople(currentPeople =>
@@ -400,7 +396,6 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                             })
                                                         );
                                                     }}
-                                                    onBlur={handleBlur}
                                                     style={{
                                                         position: 'absolute',
                                                         width: '420px',
@@ -415,7 +410,7 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                     id="outlined-basic"
                                                     variant="outlined"
                                                     name="resetpassword"
-                                                    value={values.resetpassword}
+                                                    //value={values.resetpassword}
                                                     onChange={e => {
                                                         const resetpassword = e.target.value;
                                                         setPeople(currentPeople =>
@@ -424,7 +419,6 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                             })
                                                         );
                                                     }}
-                                                    onBlur={handleBlur}
                                                     style={{
                                                         position: 'absolute',
                                                         width: '420px',
@@ -443,6 +437,7 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                                 setPeople(currentPeople => [
                                                                     ...currentPeople,
                                                                     {
+                                                                        id: generate(),
                                                                         username: "",
                                                                         firstname: "",
                                                                         lastname: "",
@@ -460,7 +455,6 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                                             onClick={() => {
                                                                 alert('ยกเลิก');
                                                             }}
-
                                                         >ยกเลิก</Button>
                                                     </Stack>
                                                 </div>
@@ -473,7 +467,7 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                     )
                 })}
             </div>
-            <pre>{JSON.stringify(people, null, 2)}</pre>
+
         </Paper >
     );
 }

@@ -19,8 +19,8 @@ const App = () => {
           <Route path="/user" element={<User />} />
           <Route path="/usergroup" element={<UserGroup />} />
           <Route path="/test" element={<MyForm 
-          onSubmit={({ username, firstname, lastname, usertype, usergroup, resetpassword }) => {
-            console.log(username, firstname, lastname, usertype, usergroup, resetpassword);
+          onSubmit={({ id,username, firstname, lastname, usertype, usergroup, resetpassword }) => {
+            console.log(id,username, firstname, lastname, usertype, usergroup, resetpassword);
           }}/>} />
           <Route path="/deleteuser" element={<DeleteUser />} />
           <Route path="/deleteusergroup" element={<DeleteUsergroup />} />
