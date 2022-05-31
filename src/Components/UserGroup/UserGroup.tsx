@@ -6,6 +6,8 @@ import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
 import UserGroupTable from "../Table/UserGroupTable/UserGroupTable";
 import Sidebar from '../Navbar/Header';
+import Header from '../Navbar/Header';
+import Menu from '../Navbar/Menu-sidebar';
 
 function UserGroup(){
     return(
@@ -23,6 +25,8 @@ function UserGroup(){
             <div className="Table">
                 <UserGroupTable/>
             </div>
+            <Header/>
+            <Menu/>
         </div>
 
     );

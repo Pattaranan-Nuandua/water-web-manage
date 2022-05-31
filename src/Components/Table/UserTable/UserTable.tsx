@@ -67,7 +67,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 /////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////
-function createData(Username: any, name: string, lastname: string, Usertype: string, UserGroup: string, ResetPassword: string) {
+function createData(Username: string, name: string, lastname: string, Usertype: string, UserGroup: string, ResetPassword: string) {
     return { Username, name, lastname, Usertype, UserGroup, ResetPassword };
 }
 

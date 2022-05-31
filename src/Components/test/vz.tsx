@@ -14,10 +14,10 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { TablePagination } from '@mui/material';
-import data from "./mock-data.json";
-import BtnResetPassword from '../button/resetpass-button';
-import BtnUser from '../button/button-s';
+import { produce } from "immer";
 import Stack from '@mui/material/Stack';
+import { Formik, Form } from 'formik';
+import './btn.css'
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -81,12 +81,32 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 /////////////////////////////////////////////////////
-
+interface Values {
+    username: string,
+    firstname: string,
+    lastname: string,
+    usertype: string,
+    usergroup: string,
+    resetpassword: string,
+}
+interface Props {
+    onSubmit: (values: Values) => void;
+}
+/*
+    id: string,
+    username: string,
+    firstname: string,
+    lastname: string,
+    usertype: string,
+    usergroup: string,
+    resetpassword: string,
+*/
 /////////////////////////////////////////////////////
 
 
 
-export default function View() {
+export const MyForm: React.FC<Props> = ({ onSubmit }) => {
+
     //////////////////add user//////////////////////
     const [open1, setOpen1] = React.useState(false);
     const handleOpen1 = () => setOpen1(true);
@@ -109,43 +129,15 @@ export default function View() {
     /*const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - contacts.length) : 0;*/
     /////////////////////////////////////////////////////////////////input/////
-    const [contacts, setContacts] = React.useState(data);
-    const [addFormData, setAddFormData] = React.useState({
-        username: '',
-        firstname: '',
-        lastname: '',
-        usertype: '',
-        usergroup: '',
-        resetpassword: ''
-    });
-    const handleAddFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
 
-        const fieldName = event.target.getAttribute("name");
-        const fieldValue = event.target.value;
-
-        const newFormData = { ...addFormData };
-        //newFormData[fieldName] = fieldValue;
-        setAddFormData(newFormData);
-    };
-    const handleAddFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        const newContact = {
-            username: addFormData.username,
-            firstname: addFormData.firstname,
-            lastname: addFormData.lastname,
-            usertype: addFormData.usertype,
-            usergroup: addFormData.usergroup,
-            resetPassword: addFormData.resetpassword,
-        };
-        const newContacts = {...contacts, newContact };
-        setContacts(newContacts);
-    };
+    const [people, setPeople] = React.useState<Values[]>([
+        { username: "username", firstname: "one", lastname: "two", usertype: "usertype", usergroup: "usergroup", resetpassword: "123" }
+    ]);
 
     return (
         <Paper>
             <TableContainer sx={{ minWidth: 1216 }}>
+
                 <Table aria-label="customized table">
                     <TableHead>
                         <TableRow>
@@ -158,17 +150,18 @@ export default function View() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {contacts
+
+                        {people
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((contact) => (
+                            .map((p) => (
                                 /*.map((row, index) => (*/
-                                <StyledTableRow key={contact.username} >
-                                    <StyledTableCell component="th" scope="row">{contact.username}</StyledTableCell>
-                                    <StyledTableCell align="left">{contact.firstname}</StyledTableCell>
-                                    <StyledTableCell align="left">{contact.lastname}</StyledTableCell>
-                                    <StyledTableCell align="left">{contact.usertype}</StyledTableCell>
-                                    <StyledTableCell align="left">{contact.usergroup}</StyledTableCell>
-                                    <StyledTableCell align="left">{contact.resetpassword}
+                                <StyledTableRow key={p.username} >
+                                    <StyledTableCell component="th" scope="row">{p.username}</StyledTableCell>
+                                    <StyledTableCell align="left">{p.firstname}</StyledTableCell>
+                                    <StyledTableCell align="left">{p.lastname}</StyledTableCell>
+                                    <StyledTableCell align="left">{p.usertype}</StyledTableCell>
+                                    <StyledTableCell align="left">{p.usergroup}</StyledTableCell>
+                                    <StyledTableCell align="left">{p.resetpassword}
                                         <Button onClick={handleOpen} className='resetpass'>
                                             <ModeEditIcon
                                                 color="action"
@@ -180,6 +173,7 @@ export default function View() {
                                             onClose={handleClose}
                                             aria-labelledby="modal-modal-title"
                                             aria-describedby="modal-modal-description"
+
                                         >
                                             <Box sx={style}>
                                                 <Box component="form"
@@ -199,7 +193,9 @@ export default function View() {
                                                             height: '64px',
                                                             left: '60px',
                                                             top: '110px',
-                                                        }} />
+                                                        }}
+
+                                                    />
                                                     <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '175px' }}>Confirm new password</h3>
                                                     <TextField id="outlined-basic" variant="outlined"
                                                         style={{
@@ -209,7 +205,22 @@ export default function View() {
                                                             left: '60px',
                                                             top: '200px',
                                                         }} />
-                                                    <BtnResetPassword />
+                                                    <div >
+                                                        <Stack direction="row" spacing={2} >
+                                                            <Button
+                                                                className='btn-resetpass'
+                                                                variant="contained"
+                                                                style={{ background: "#0C3483", marginLeft: "auto", marginRight: 40 }}
+
+                                                            >ยืนยัน
+                                                            </Button>
+                                                            <Button
+                                                                className='btn-resetpass'
+                                                                variant="contained"
+                                                                style={{ background: "#DF0000", marginLeft: 30, marginRight: "auto" }}
+                                                            >ยกเลิก</Button>
+                                                        </Stack>
+                                                    </div>
                                                 </Box>
                                             </Box>
                                         </Modal>
@@ -223,7 +234,7 @@ export default function View() {
             <TablePagination
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
-                count={contacts.length}
+                count={people.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
@@ -232,7 +243,6 @@ export default function View() {
             <div>
                 <Button
                     sx={{ fontFamily: "Kanit" }}
-                    onClick={handleOpen1}
                     type="submit"
                     className="btn-add"
                     variant="contained"
@@ -242,121 +252,228 @@ export default function View() {
                         backgroundColor: "#0b4693",
                         marginTop: -47
                     }}
+                    onClick={handleOpen1}
                 >
                     เพิ่มผู้ใช้
                 </Button>
-                <Modal
-                    open={open1}
-                    onClose={handleClose1}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style2}>
-                        <form onSubmit={handleAddFormSubmit}>
-                            <Box
-                                component="form"
-                                sx={{
-                                    "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
-                                }}
-                                noValidate
-                                autoComplete="off"
-                            >
-                                <p className='text-header'>เพิ่มผู้ใช้</p>
+                {people.map((p,index) =>{
+                    return(
+                        <Formik initialValues={{
+                            username: "",
+                            firstname: "",
+                            lastname: "",
+                            usertype: "",
+                            usergroup: "",
+                            resetpassword: ""
+                        }}
+                            onSubmit={values => {
+                                onSubmit(values);
+                            }}>
+                            {({ values, handleChange, handleBlur }) => (
+                                <Form>
+                                    <Modal
+                                        open={open1}
+                                        onClose={handleClose1}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box sx={style2}>
+                                            <Box
+                                                component="form"
+                                                sx={{
+                                                    "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
+                                                }}
+                                                noValidate
+                                                autoComplete="off"
+                                            >
+                                                <p className='text-header'>เพิ่มผู้ใช้</p>
 
-                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '70px' }}>Username</h3>
-                                <TextField id="outlined-basic" variant="outlined" name='username' type="text" 
-                                    style={{
-                                        position: 'absolute',
-                                        width: '420px',
-                                        height: '64px',
-                                        left: '58px',
-                                        top: '100px',
-                                    }}
-                                    onChange={handleAddFormChange}
-                                />
+                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '70px' }}>Username</h3>
+                                                <TextField
+                                                    id="outlined-basic"
+                                                    variant="outlined"
+                                                    name="username"
+                                                    value={values.username}
+                                                    onChange={e => {
+                                                        const username = e.target.value;
+                                                        setPeople(currentPeople =>
+                                                            produce(currentPeople, v => {
+                                                                v[index].username = username;
+                                                            })
+                                                        );
+                                                    }}
+                                                    onBlur={handleBlur}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        width: '420px',
+                                                        height: '64px',
+                                                        left: '58px',
+                                                        top: '100px',
+                                                    }}
 
-                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '170px' }}>ชื่อ</h3>
-                                <TextField id="outlined-basic" variant="outlined" name='firstname'type="text" 
-                                    style={{ 
-                                        position: 'absolute',
-                                        width: '205px',
-                                        height: '64px',
-                                        left: '58px',
-                                        top: '200px',
-                                    }}
-                                    onChange={handleAddFormChange}
-                                />
+                                                />
 
-                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '273px', top: '170px' }}>นามสกุล</h3>
-                                <TextField id="outlined-basic" variant="outlined" name='lastname' type="text" 
-                                    style={{
-                                        position: 'absolute',
-                                        width: '205px',
-                                        height: '64px',
-                                        left: '273px',
-                                        top: '200px',
-                                    }}
-                                    onChange={handleAddFormChange}
-                                />
+                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '170px' }}>ชื่อ</h3>
+                                                <TextField
+                                                    id="outlined-basic"
+                                                    variant="outlined"
+                                                    name="firstname"
+                                                    value={values.firstname}
+                                                    onChange={e => {
+                                                        const firstname = e.target.value;
+                                                        setPeople(currentPeople =>
+                                                            produce(currentPeople, v => {
+                                                                v[index].firstname = firstname;
+                                                            })
+                                                        );
+                                                    }}
+                                                    onBlur={handleBlur}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        width: '205px',
+                                                        height: '64px',
+                                                        left: '58px',
+                                                        top: '200px',
+                                                    }}
 
-                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '270px' }}>ประเภทผู้ใช้</h3>
-                                <TextField id="outlined-basic" variant="outlined" name='usertype' type="text" 
-                                    style={{
-                                        position: 'absolute',
-                                        width: '420px',
-                                        height: '64px',
-                                        left: '58px',
-                                        top: '300px',
-                                    }}
-                                    onChange={handleAddFormChange}
-                                />
+                                                />
 
-                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '370px' }}>กลุ่มผู้ใช้</h3>
-                                <TextField id="outlined-basic" variant="outlined" name='usergroup' type="text" 
-                                    style={{
-                                        position: 'absolute',
-                                        width: '420px',
-                                        height: '64px',
-                                        left: '58px',
-                                        top: '400px',
-                                    }}
-                                    onChange={handleAddFormChange}
-                                />
+                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '273px', top: '170px' }}>นามสกุล</h3>
+                                                <TextField
+                                                    id="outlined-basic"
+                                                    variant="outlined"
+                                                    name="lastname"
+                                                    value={values.lastname}
+                                                    onChange={e => {
+                                                        const lastname = e.target.value;
+                                                        setPeople(currentPeople =>
+                                                            produce(currentPeople, v => {
+                                                                v[index].lastname = lastname;
+                                                            })
+                                                        );
+                                                    }}
+                                                    onBlur={handleBlur}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        width: '205px',
+                                                        height: '64px',
+                                                        left: '273px',
+                                                        top: '200px',
+                                                    }}
+                                                />
 
-                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '470px' }}>Password</h3>
-                                <TextField id="outlined-basic" variant="outlined" name='resetpassword' type="text" 
-                                    style={{
-                                        position: 'absolute',
-                                        width: '420px',
-                                        height: '64px',
-                                        left: '58px',
-                                        top: '500px',
-                                    }}
-                                    onChange={handleAddFormChange}
-                                />
-                                <div >
-                                    <Stack direction="row" spacing={2} >
-                                        <Button className="add-user"
-                                            variant="contained"
-                                            type="submit"
-                                            style={{ background: "#0C3483", marginLeft: "auto", marginRight: 260, }}
-                                        >ยืนยัน
-                                        </Button>
-                                        <Button className="btn-cancle"
-                                            variant="contained"
-                                            style={{ background: "#DF0000", marginLeft: 20, marginRight: "auto" }}
-                                            onClick={() => {
-                                                alert('ยกเลิก');
-                                            }}
+                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '270px' }}>ประเภทผู้ใช้</h3>
+                                                <TextField
+                                                    id="outlined-basic"
+                                                    variant="outlined"
+                                                    name="usertype"
+                                                    value={values.usertype}
+                                                    onChange={e => {
+                                                        const usertype = e.target.value;
+                                                        setPeople(currentPeople =>
+                                                            produce(currentPeople, v => {
+                                                                v[index].usertype = usertype;
+                                                            })
+                                                        );
+                                                    }}
+                                                    onBlur={handleBlur}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        width: '420px',
+                                                        height: '64px',
+                                                        left: '58px',
+                                                        top: '300px',
+                                                    }}
+                                                />
 
-                                        >ยกเลิก</Button>
-                                    </Stack>
-                                </div>
-                            </Box>
-                        </form>
-                    </Box>
-                </Modal>
+                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '370px' }}>กลุ่มผู้ใช้</h3>
+                                                <TextField
+                                                    id="outlined-basic"
+                                                    variant="outlined"
+                                                    name="usergroup"
+                                                    value={values.usergroup}
+                                                    onChange={e => {
+                                                        const usergroup = e.target.value;
+                                                        setPeople(currentPeople =>
+                                                            produce(currentPeople, v => {
+                                                                v[index].usergroup = usergroup;
+                                                            })
+                                                        );
+                                                    }}
+                                                    onBlur={handleBlur}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        width: '420px',
+                                                        height: '64px',
+                                                        left: '58px',
+                                                        top: '400px',
+                                                    }}
+                                                />
+
+                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '470px' }}>Password</h3>
+                                                <TextField
+                                                    id="outlined-basic"
+                                                    variant="outlined"
+                                                    name="resetpassword"
+                                                    value={values.resetpassword}
+                                                    onChange={e => {
+                                                        const resetpassword = e.target.value;
+                                                        setPeople(currentPeople =>
+                                                            produce(currentPeople, v => {
+                                                                v[index].resetpassword = resetpassword;
+                                                            })
+                                                        );
+                                                    }}
+                                                    onBlur={handleBlur}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        width: '420px',
+                                                        height: '64px',
+                                                        left: '58px',
+                                                        top: '500px',
+                                                    }}
+                                                />
+                                                <div >
+                                                    <Stack direction="row" spacing={2} >
+                                                        <Button className="add-user"
+                                                            variant="contained"
+                                                            type="submit"
+                                                            style={{ background: "#0C3483", marginLeft: "auto", marginRight: 260, }}
+                                                            onClick={() => {
+                                                                setPeople(currentPeople => [
+                                                                    ...currentPeople,
+                                                                    {
+                                                                        username: "",
+                                                                        firstname: "",
+                                                                        lastname: "",
+                                                                        usertype: "",
+                                                                        usergroup: "",
+                                                                        resetpassword: "",
+                                                                    }
+                                                                ]);
+                                                            }}
+                                                        >ยืนยัน
+                                                        </Button>
+                                                        <Button className="btn-cancle"
+                                                            variant="contained"
+                                                            style={{ background: "#DF0000", marginLeft: 20, marginRight: "auto" }}
+                                                            onClick={() => {
+                                                                alert('ยกเลิก');
+                                                            }}
+
+                                                        >ยกเลิก</Button>
+                                                    </Stack>
+                                                </div>
+                                            </Box>
+                                        </Box>
+                                    </Modal>
+                                </Form>
+                            )}
+                        </Formik>
+                    )
+                })}
             </div>
-        </Paper>
+            <pre>{JSON.stringify(people, null, 2)}</pre>
+        </Paper >
     );
 }
