@@ -50,7 +50,7 @@ const Login: FC<Props> = ({ userList, setUserList }) => {
   return (
     <>
       <div className="page">
-        <div className="box">
+        <div className="box" style={{textAlign:"center"}}>
           <h3 className="text-welcome">เข้าสู่ระบบ</h3>
           <h3 className="text-water">ระบบบริหารจัดการมาตรวัดน้ำอัจฉริยะ</h3>
           <div className="mb">

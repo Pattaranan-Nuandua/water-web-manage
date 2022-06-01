@@ -1,9 +1,10 @@
-
 .page{
   background: linear-gradient(90deg, #0c3483 0%, #a2b6df 100%, #6b8cce 100%);
   min-height: 100vh;
   display: flex;
   font-weight: 400;
+  text-align: center;
+  justify-content: center;
 }
 .forgot-password,
 .forgot-password a {
@@ -74,6 +75,7 @@
   /* White */
   background: #fefefe;
   border-radius: 16px;
+  text-align: center;
 }
 
 .btn-success {
