@@ -11,7 +11,7 @@
     align-items: flex-start;
     padding: 0px;
     position: absolute;
-    width: 250px;
+    width: 150px;
     height: 23px;
     font-size: 22px;
     top: 80px;
@@ -27,7 +27,11 @@
 }
 .Table{
     display: flex;
+    width: 1216px;
     left: 290px;
-    position: absolute;
-    margin-top: 250px;
+    margin-bottom: 300px;
+}
+.delete{
+    top: 30px;
+    left: -60px;
 }

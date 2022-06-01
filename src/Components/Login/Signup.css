@@ -1,0 +1,105 @@
+
+.page{
+  background: linear-gradient(90deg, #0c3483 0%, #a2b6df 100%, #6b8cce 100%);
+  min-height: 100vh;
+  display: flex;
+  font-weight: 400;
+}
+.forgot-password,
+.forgot-password a {
+  text-decoration: none;
+  font-size: 13px;
+  padding-top: 10px;
+  margin: 5px;
+  padding-left: 100px;
+}
+
+.forgot-password a {
+  color: #167bff;
+}
+.Login-button {
+  background-color: #0b4693;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 24px;
+  border-radius: 10px;
+  width: 400px;
+  height: 40px;
+  display: inline-block;
+}
+
+.form-control {
+  margin: 10px;
+  text-align: left;
+  padding-right: 0%;
+  border-radius: 10px;
+  border: 2px solid #c7c7c7;
+  width: 400px;
+  height: 40px;
+}
+.form-label {
+  text-align: left;
+  margin: 0px;
+  padding-top: 10px;
+  padding-right: 360px;
+}
+.text-welcome {
+  font-size: 25px;
+  padding-bottom: 15px;
+}
+.text-water {
+  padding-bottom: 15px;
+  font-size: 16px;
+}
+.btn-primary {
+  background-color: #0b4693;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 30px;
+  border-radius: 10px;
+  min-width: 130px;
+  height: 40px;
+  display: inline-block;
+}
+.box {
+  width: auto;
+  padding: 40px 55px 45px 55px;
+  transition: all 0.3s;
+  /* White */
+  background: #fefefe;
+  border-radius: 16px;
+}
+
+.btn-success {
+  background-color: #0b9326;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 30px;
+  border-radius: 10px;
+  min-width: 130px;
+  height: 40px;
+  display: inline-block;
+}
+.text-control {
+  text-align: left;
+  margin: 0px;
+  padding-right: 340px;
+}
+
+.mb {
+  margin-top: 20px;
+}
+.text-controll {
+  text-align: left;
+  margin: 0px;
+  padding-right: 300px;
+}

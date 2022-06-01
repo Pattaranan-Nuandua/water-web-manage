@@ -13,7 +13,8 @@ function SBtnDelete(){
                     style={{
                         borderRadius: 8,
                         backgroundColor: "#DF0000",
-                        marginTop: -48
+                        marginTop: -50,
+                        marginLeft: "150px"
                         
                     }}
                     >ลบผู้ใช้

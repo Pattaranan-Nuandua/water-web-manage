@@ -19,6 +19,7 @@ import Stack from '@mui/material/Stack';
 import { Formik, Form } from 'formik';
 import { generate } from "shortid";
 import './btn.css'
+import './User.css'
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -133,7 +134,8 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
     /////////////////////////////////////////////////////////////////input/////
 
     const [people, setPeople] = React.useState<Values[]>([
-        { id: "1", username: "username", firstname: "firstname", lastname: "lastname", usertype: "usertype", usergroup: "usergroup", resetpassword: "123" }
+        { id: "", username: "", firstname: "", lastname: "", usertype: "", usergroup: "", resetpassword: "" }
+
     ]);
 
     return (
@@ -163,7 +165,7 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                                     <StyledTableCell align="left">{p.lastname}</StyledTableCell>
                                     <StyledTableCell align="left">{p.usertype}</StyledTableCell>
                                     <StyledTableCell align="left">{p.usergroup}</StyledTableCell>
-                                    <StyledTableCell align="left">{p.resetpassword}
+                                    <StyledTableCell align="center">{p.resetpassword}
                                         <Button onClick={handleOpen} className='resetpass'>
                                             <ModeEditIcon
                                                 color="action"
@@ -243,21 +245,6 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
             <div>
-                <Button
-                    sx={{ fontFamily: "Kanit" }}
-                    type="submit"
-                    className="btn-add"
-                    variant="contained"
-                    style=
-                    {{
-                        borderRadius: 8,
-                        backgroundColor: "#0b4693",
-                        marginTop: -47
-                    }}
-                    onClick={handleOpen1}
-                >
-                    เพิ่มผู้ใช้
-                </Button>
                 {people.map((p, index) => {
                     return (
                         <Formik
@@ -467,7 +454,24 @@ export const MyForm: React.FC<Props> = ({ onSubmit }) => {
                     )
                 })}
             </div>
-
+            <Button
+                sx={{ fontFamily: "Kanit" }}
+                type="submit"
+                className="btn-add"
+                variant="contained"
+                style=
+                {{
+                    borderRadius: 8,
+                    backgroundColor: "#0C3483",
+                    marginTop: "-145px",
+                    marginLeft: "290px",
+                    position: "absolute"
+                }}
+                onClick={handleOpen1}
+            >
+                เพิ่มผู้ใช้
+            </Button>
         </Paper >
     );
+    
 }

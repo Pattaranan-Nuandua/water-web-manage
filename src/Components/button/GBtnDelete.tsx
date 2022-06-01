@@ -13,7 +13,9 @@ function GBtnDelete(){
                     style={{
                         borderRadius: 8,
                         backgroundColor: "#DF0000",
-                        marginTop: -48
+                        marginTop: -50,
+                        marginLeft: "150px"
+                        
                         
                     }}
                     >ลบกลุ่มผู้ใช้</Button>

@@ -3,6 +3,8 @@ import './User.css'
 import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
 import DeleteTable from "../Table/UserTable/SDeleteTable";
+import Header from "../Navbar/Header";
+import Menu from "../Navbar/Menu-sidebar";
 
 function DeleteUser(){
     return(
@@ -16,6 +18,8 @@ function DeleteUser(){
             </div >
             <div className="Table">
                 <DeleteTable/>
+                <Header/>
+                <Menu/>
             </div>
         </div>
     );

@@ -1,32 +1,34 @@
 import * as React from 'react';
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import User from './Components/User/User';
-import Header from './Components/Navbar/Header';
-import Menu from './Components/Navbar/Menu-sidebar';
 import UserGroup from './Components/UserGroup/UserGroup';
 import DeleteUser from './Components/User/DeleteUser';
 import DeleteUsergroup from './Components/UserGroup/DeleteUsergroup';
-import { Main } from './main';
-import {MyForm} from './Components/test/vz';
+import { MyForm } from './Components/test/vz';
+import { UserProps } from './Components/Login/interface1';
+import Login from './Components/Login/Login';
+import Signup from './Components/Login/Signup';
 
-const App = () => {
+function App() {
+  const [userList, setUserList] = React.useState<UserProps["userList"]>([]);
   return (
-
-    <Router>
-      <div className='App'>
+    <div className='App'>
+      <BrowserRouter>
         <Routes>
+          <Route path="/login" element={<Login userList={userList} setUserList={setUserList} />} />
+          <Route path="/signup" element={<Signup userList={userList} setUserList={setUserList} />} />
           <Route path="/user" element={<User />} />
           <Route path="/usergroup" element={<UserGroup />} />
-          <Route path="/test" element={<MyForm 
-          onSubmit={({ id,username, firstname, lastname, usertype, usergroup, resetpassword }) => {
-            console.log(id,username, firstname, lastname, usertype, usergroup, resetpassword);
-          }}/>} />
+          <Route path="/test" element={<MyForm
+            onSubmit={({ id, username, firstname, lastname, usertype, usergroup, resetpassword }) => {
+              console.log(id, username, firstname, lastname, usertype, usergroup, resetpassword);
+            }} />} />
           <Route path="/deleteuser" element={<DeleteUser />} />
           <Route path="/deleteusergroup" element={<DeleteUsergroup />} />
         </Routes>
-      </div>
-    </Router>
+      </BrowserRouter>
+    </div>
   );
 }
 export default App;

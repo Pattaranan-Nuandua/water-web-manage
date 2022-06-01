@@ -49,7 +49,7 @@ const rows = [
     createData('กลุ่มผู้ใช้6', 'รายละเอียด ',),
     createData('กลุ่มผู้ใช้7', 'รายละเอียด ',),
 ];
-export default function UserGroupTable() {
+export default function UserGroupTablez() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 

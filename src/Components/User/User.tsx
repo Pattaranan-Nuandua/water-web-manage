@@ -1,12 +1,12 @@
 import * as React from "react";
 import './User.css'
 import SBtnDelete from "../button/SBtnDelete";
-import SBtnAdd from "../button/SBtnAdd";
 import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
-import UserTable from "../Table/UserTable/UserTable";
+import {UserTable} from "../Table/UserTable/UserTable";
 import Header from "../Navbar/Header";
 import Menu from "../Navbar/Menu-sidebar";
+
 
 function User() {
     return (
@@ -17,14 +17,15 @@ function User() {
             <div className="frame-btn">
                 <Search />
                 <BtnFind />
-                <SBtnAdd />
                 <SBtnDelete />
             </div >
             <div className="Table">
-                <UserTable />
+                <UserTable onSubmit={({  id, username, firstname, lastname, usertype, usergroup, resetpassword }) => {
+                    console.log(id, username, firstname, lastname, usertype, usergroup, resetpassword);
+                }}/>
             </div>
-            <Header/>
-            <Menu/>
+            <Header />
+            <Menu />
         </div>
     );
 }
