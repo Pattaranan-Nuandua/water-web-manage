@@ -10,7 +10,6 @@ import { UserProps } from './Components/Login/interface1';
 import Login from './Components/Login/Login';
 import Signup from './Components/Login/Signup';
 import Setting from './Components/Setting/setting';
-import Map from './Components/Map/Map';
 
 function App() {
   const [userList, setUserList] = React.useState<UserProps["userList"]>([]);
@@ -21,7 +20,7 @@ function App() {
           <Route path="/" element={<Login userList={userList} setUserList={setUserList} />} />
           <Route path="/login" element={<Login userList={userList} setUserList={setUserList} />} />
           <Route path="/signup" element={<Signup userList={userList} setUserList={setUserList} />} />
-          <Route path="/map" element={<Map />} />
+          
           <Route path="/user" element={<User />} />
           <Route path="/usergroup" element={<UserGroup />} />
           <Route path="/test" element={<MyForm

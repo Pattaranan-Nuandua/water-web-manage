@@ -281,7 +281,7 @@ export const UserTable: React.FC<Props> = ({ onSubmit }) => {
                                                 noValidate
                                                 autoComplete="off"
                                             >
-                                                <p className='text-header'>เพิ่มผู้ใช้</p>
+                                                <p style={{fontSize:"large",marginLeft:"200px"}}>เพิ่มผู้ใช้</p>
 
                                                 <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '70px' }}>Username</h3>
                                                 <TextField
