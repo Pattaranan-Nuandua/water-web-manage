@@ -2,9 +2,9 @@ import * as React from "react";
 import './User.css'
 import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
-import DeleteTable from "../Table/UserTable/SDeleteTable";
 import Header from "../Navbar/Header";
 import Menu from "../Navbar/Menu-sidebar";
+import DeleteTable from "./Table/SDeleteTable";
 
 function DeleteUser(){
     return(

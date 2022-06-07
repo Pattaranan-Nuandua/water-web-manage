@@ -7,7 +7,7 @@ import Search from "../button/Search";
 import Sidebar from '../Navbar/Header';
 import Header from '../Navbar/Header';
 import Menu from '../Navbar/Menu-sidebar';
-import { UserGroupTable } from '../Table/UserGroupTable/GAddTable';
+import { UserGroupTable } from './Table/GAddTable';
 
 function UserGroup(){
     return(

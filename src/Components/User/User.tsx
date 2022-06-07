@@ -3,9 +3,9 @@ import './User.css'
 import SBtnDelete from "../button/SBtnDelete";
 import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
-import {UserTable} from "../Table/UserTable/UserTable";
 import Header from "../Navbar/Header";
 import Menu from "../Navbar/Menu-sidebar";
+import { UserTable } from "./Table/UserTable";
 
 
 function User() {

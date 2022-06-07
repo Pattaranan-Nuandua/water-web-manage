@@ -1,9 +1,11 @@
 import React from "react";
 import Home from "./pages/Home";
-import Header from "./pages/Header";
+import Header1 from "./pages/Header1";
 import Sidebar from "./pages/Sidebar";
 import { useState } from "react";
-import '../src/App.css'
+import './Map.css'
+import Menu from "../Navbar/Menu-sidebar";
+import Header from "../Navbar/Header";
 // import PolygonMap from "./components/pages/Polygon";
 
 function Map() {
@@ -12,7 +14,7 @@ function Map() {
     if (show) {
         return (
             <div className="App">
-                <Header />
+                <Header1 />
                 {show ? <Sidebar /> : null}
                 <div className="btnsidebar">
                     <button className="btn" onClick={() => setShow(!show)}>
@@ -25,7 +27,7 @@ function Map() {
     } else {
         return (
             <div className="App">
-                <Header />
+                <Header1 />
                 {show ? <Sidebar /> : null}
                 <div className="btnsidebar">
                     <button className="btn" onClick={() => setShow(!show)}>
@@ -34,6 +36,8 @@ function Map() {
                 </div>
                 <Home />
                 {/* <PolygonMap /> */}
+                <Header/>
+                <Menu/>
             </div>
         );
     }

@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { BsFillArrowUpLeftSquareFill, BsFillPencilFill } from "react-icons/bs";
 
-class Header extends Component {
+class Header1 extends Component {
   render() {
     return (
       <div className="Main">
@@ -17,11 +17,10 @@ class Header extends Component {
               <BsFillPencilFill size="2em" color="white" />
             </div>
           </div>
-          
         </div>
       </div>
     );
   }
 }
 
-export default Header;
+export default Header1;

@@ -2,9 +2,9 @@ import React from "react";
 import './UserGroup.css'
 import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
-import GDeleteTable from "../Table/UserGroupTable/GDeleteTable";
 import Header from "../Navbar/Header";
 import Menu from "../Navbar/Menu-sidebar";
+import GDeleteTable from "./Table/GDeleteTable";
 
 
 function DeleteUsergroup(){
