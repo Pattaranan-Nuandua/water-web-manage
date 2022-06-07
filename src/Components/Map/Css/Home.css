@@ -1,0 +1,28 @@
+.bottom-right {
+    position: absolute; 
+    z-index: 1000;
+    bottom: 5%;
+    right: 2%;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255, 0.75); 
+    padding: 1rem;
+    /* border: 1.5px solid gray; */
+    width: 35vh;
+    height: 25vh;
+}
+
+.onoff { 
+  display: flex;
+}
+
+.onoff img{
+  float: left;
+  width: 10%;
+  margin: auto;
+  padding: auto;
+}
+.onoff p{
+  padding: auto;
+  font-size: calc(0.7vw + 0.7vh);
+  width: 20vw;
+}

@@ -9,6 +9,7 @@ import { MyForm } from './Components/test/vz';
 import { UserProps } from './Components/Login/interface1';
 import Login from './Components/Login/Login';
 import Signup from './Components/Login/Signup';
+import Setting from './Components/Setting/setting';
 
 function App() {
   const [userList, setUserList] = React.useState<UserProps["userList"]>([]);
@@ -16,6 +17,7 @@ function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Login userList={userList} setUserList={setUserList} />} />
           <Route path="/login" element={<Login userList={userList} setUserList={setUserList} />} />
           <Route path="/signup" element={<Signup userList={userList} setUserList={setUserList} />} />
           <Route path="/user" element={<User />} />
@@ -26,6 +28,7 @@ function App() {
             }} />} />
           <Route path="/deleteuser" element={<DeleteUser />} />
           <Route path="/deleteusergroup" element={<DeleteUsergroup />} />
+          <Route path="/setting" element={<Setting />} />
         </Routes>
       </BrowserRouter>
     </div>

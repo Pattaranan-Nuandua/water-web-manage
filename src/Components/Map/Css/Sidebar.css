@@ -1,0 +1,33 @@
+.sidebar {
+  position: absolute;
+  background-color: #3553a4;
+  color: white;
+  top: 10;
+  right: 0;
+  height: 90vh;
+  width: 280px;
+  padding-top: 20px;
+  z-index: 2000;
+  max-height: 90vh;
+  opacity: 1;
+  overflow-y: scroll;
+}
+
+.sidebar li {
+  list-style: none;
+  text-align: center;
+  justify-content: left;
+  border-bottom: solid white 1px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.textbox {
+  margin-bottom: 20px;
+  height: 25px;
+}
+.li{
+  border: solid white 1px;
+  padding-bottom: 20px;
+}
+

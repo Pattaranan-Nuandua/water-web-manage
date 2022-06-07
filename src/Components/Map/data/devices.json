@@ -1,0 +1,41 @@
+{
+    "data": [
+        {
+            "id"        : 1,
+            "name"      : "Device 1",
+            "position"  : [13.85, 100.57],
+            "id_markericon" : 0
+            
+        },
+        {
+            "id"        : 2,
+            "name": "Device 2",
+            "position": [13.811, 100.569],
+            "id_markericon" : 1
+        },
+        {
+            "id"        : 3,
+            "name": "Device 3",
+            "position": [13.90, 100.54],
+            "id_markericon" : 2
+        },
+        {
+            "id"        : 4,
+            "name": "Device 4",
+            "position": [13.78, 100.55],
+            "id_markericon" : 3
+        },
+        {
+            "id"        : 5,
+            "name": "Device 5",
+            "position": [13.83, 100.62],
+            "id_markericon" : 4
+        },
+        {
+            "id"        : 6,
+            "name": "Device 6",
+            "position": [13.85, 100.44],
+            "id_markericon" : 4
+        }
+    ]
+}
