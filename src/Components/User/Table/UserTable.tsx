@@ -173,6 +173,7 @@ export const UserTable: React.FC<Props> = ({ onSubmit }) => {
                                             <ModeEditIcon
                                                 color="action"
                                                 fontSize="medium"
+                                                className='icon-edit'
                                             />
                                         </Button>
                                         <Modal

@@ -20,7 +20,6 @@ function App() {
           <Route path="/" element={<Login userList={userList} setUserList={setUserList} />} />
           <Route path="/login" element={<Login userList={userList} setUserList={setUserList} />} />
           <Route path="/signup" element={<Signup userList={userList} setUserList={setUserList} />} />
-          
           <Route path="/user" element={<User />} />
           <Route path="/usergroup" element={<UserGroup />} />
           <Route path="/test" element={<MyForm
