@@ -34,6 +34,9 @@ const Login: FC<Props> = ({ userList, setUserList }) => {
       alert("กรุณาใส่อีเมลล์และรหัสผ่านให้ถูกต้อง");
       return;
     }
+    else {
+        navigate("/map");
+    }
     const userData = { user, password };
     setUserList([...userList, userData]);
     setUser("");
@@ -63,6 +66,7 @@ const Login: FC<Props> = ({ userList, setUserList }) => {
                   className="form-control"
                   value={user}
                   onChange={setUserinputHandler}
+                  
                 />
               </div>
             </label>
@@ -76,6 +80,7 @@ const Login: FC<Props> = ({ userList, setUserList }) => {
                   className="form-control"
                   value={password}
                   onChange={setPasswordinputHandler}
+                  
                 />
               </div>
             </label>
