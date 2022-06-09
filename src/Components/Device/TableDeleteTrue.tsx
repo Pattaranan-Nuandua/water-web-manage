@@ -194,7 +194,6 @@ interface EnhancedTableToolbarProps {
   numSelected: number;
 }
 
-
 interface DeleteProps {
   rows : Device[];
 }
@@ -293,7 +292,7 @@ export default function TableDelete(props: DeleteProps) {
                     <TableRow
                       hover
                       onClick={(event: React.MouseEvent<unknown, MouseEvent>) => handleClick(event, row.name)}
-                     
+                    
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.name}

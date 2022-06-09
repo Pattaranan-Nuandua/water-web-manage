@@ -66,15 +66,17 @@
     order: 1;
     flex-grow: 1;
     margin: 0px 8px;
+    margin-left: -70px;
 }
 .search-icon{
-    margin-left: 380;
+    margin-left: -60px;
     position: absolute;
     left: 3.53%;
     right: 94.74%;
     top: 27.08%;
     bottom: 70.08%;
     background: rgb(#080B0F4D);
+    
 }
 .Paper{
     box-sizing: border-box;
@@ -89,9 +91,10 @@
 }
 .in-find-text{
     top:7px;
-    left: 20px;
+    left: -30px;
 }
 .search-btn{
+    margin-left: -60px;
     position: absolute;
     left: 3.53%;
     right: 70.74%;

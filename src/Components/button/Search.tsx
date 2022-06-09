@@ -4,7 +4,6 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
-import BtnFind from "./BtnFind";
 import '../User/User.css';
 
 const style = {
