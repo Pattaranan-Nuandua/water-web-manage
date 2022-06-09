@@ -1,4 +1,4 @@
-.Main{
+.ItemsBar{
     background-color: #3553A4;
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,7 +15,7 @@
 .imglogo{
     display: flex;
     justify-content: space-between;
-    padding-top: 30px;
+    padding-top: 10px;
     margin: 30px;
 }
 .imglogo2{
