@@ -5,6 +5,7 @@ import { useState } from "react";
 import '../css/AppMap.css'
 import Menu from "../../Navbar/Menu-sidebar";
 import Header from "../../Navbar/Header";
+import MapHeader from "./MapHeader";
 // import PolygonMap from "./components/pages/Polygon";
 
 function MapEvent() {
@@ -13,8 +14,8 @@ function MapEvent() {
   if (show) {
     return (
       <div className='App'>
-        <Header />
-        <Menu />
+        
+        <MapHeader/>
         <div className="container" style={{marginLeft:'230px' ,width:'85%' }}>
           <div>
           {show ? <SidebarMap /> : null}
@@ -33,6 +34,7 @@ function MapEvent() {
       <div className='App'>
         <Header />
         <Menu />
+        <MapHeader/>
         <div className="container" style={{marginLeft:'230px' ,width:'85%' }}>
           <div>
           {show ? <SidebarMap /> : null}

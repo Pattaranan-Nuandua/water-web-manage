@@ -39,10 +39,9 @@
 .btnsidebar{
   display: flex;
   position: absolute;
-  top: 50px;
   right: 60px;
   padding: 5px;
-  margin-top: px;
+  top: 100px;
   
 }
 .btn {
