@@ -105,10 +105,10 @@ const Signup: FC<Props> = ({ userList, setUserList }) => {
             </label>
           </div>
 
-          <button className="btn btn-primary" type="submit" onClick={handleClick}>
+          <button className="btn-primary" type="submit" onClick={handleClick}>
             ยืนยันลงทะเบียน
           </button>
-          <button className="btn btn-success" onClick={signuppage}>
+          <button className="btn-success" onClick={signuppage}>
             กลับไปเข้าสู่ระบบ
           </button>
         </div>

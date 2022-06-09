@@ -69,7 +69,7 @@
   display: inline-block;
 }
 .box {
-  width: auto;
+  width: 500px ; 
   padding: 40px 55px 45px 55px;
   transition: all 0.3s;
   /* White */
