@@ -1,7 +1,7 @@
 import React from "react";
-import "../Css/Sidebar.css";
+import "../css/Sidebar.css";
 
-function Sidebar() {
+function SidebarMap() {
   return (
     <div className="sidebar">
       <li className="li">
@@ -80,4 +80,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default SidebarMap;

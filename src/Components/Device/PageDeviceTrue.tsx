@@ -2,7 +2,7 @@ import { Button, IconButton, InputBase, Paper } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import '../css/App.css';
+import './css/Device.css';
 /*import AddButton from '../Component/AddButton';*/
 //import SearchButton from '../Component/SearchButton';
 //import TableDevice from './TableDevice';
@@ -17,7 +17,7 @@ import axios from 'axios';
 //import Left from '../Component/left';
 //import  SidebarData  from '../Component/SidebarData';
 //import TabMenu from '../Component/Menu-sidebar';
-import DeleteButton from '../button/DeleteButton';
+import DeleteButton from './DeleteButton';
 import Header from '../Navbar/Header';
 import Menu from '../Navbar/Menu-sidebar';
 import TableDevice from './TableDevice';

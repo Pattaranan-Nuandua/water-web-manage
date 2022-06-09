@@ -2,9 +2,9 @@ import { Button, IconButton, InputBase, Paper } from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import '../css/App.css';
+import './css/Device.css';
 //import AddButton from '../Component/AddButton';
-import DeleteButton from '../button/DeleteButton';
+import DeleteButton from './DeleteButton';
 import SearchButton from '../button/SearchButton';
 //import TableDevice from './TableDevice';
 //import BasicPopover from './Popup';
@@ -17,7 +17,7 @@ import axios from 'axios';
 //import TabMenu from '../Component/Menu-sidebar';
 import Header from '../Navbar/Header';
 import Menu from '../Navbar/Menu-sidebar';
-import EditButton from '../button/EditButton';
+import EditButton from './EditButton';
 
 type Device = {
     id: string;

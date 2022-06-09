@@ -2,7 +2,7 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 //import history from '../Component/history';
-import "../css/Button.css";
+import "./css/DeviceButton.css";
 import { useNavigate } from "react-router-dom";
 
 export default function DeleteButton() {

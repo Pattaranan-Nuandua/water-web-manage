@@ -6,8 +6,8 @@ import Button from '@mui/material/Button';
 import AddButton from '../button/AddButton';*/
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, IconButton, Modal, Stack, TextField } from '@mui/material';
-import '../css/App.css';
-import '../css/Button.css';
+import './css/Device.css';
+import './css/DeviceButton.css';
 import axios from 'axios'
 
 const style = {

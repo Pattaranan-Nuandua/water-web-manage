@@ -2,7 +2,7 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-import '../css/Button.css';
+import './css/DeviceButton.css';
 
 export default function EditButton() {
   return (

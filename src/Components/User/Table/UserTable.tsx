@@ -19,7 +19,6 @@ import Stack from '@mui/material/Stack';
 import { Formik, Form } from 'formik';
 import { generate } from "shortid";
 
-
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -46,6 +45,7 @@ const style2 = {
     px: 4,
     pb: 3,
 };
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -83,13 +83,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 /////////////////////////////////////////////////////
 interface Values {
-        id: string;
-        username: string;
-        firstname: string;
-        lastname: string;
-        usertype: string;
-        usergroup: string;
-        resetpassword: string;
+    id: string;
+    username: string;
+    firstname: string;
+    lastname: string;
+    usertype: string;
+    usergroup: string;
+    resetpassword: string;
 }
 interface Props {
     onSubmit: (values: Values) => void;
@@ -108,7 +108,7 @@ interface Props {
 
 
 export const UserTable: React.FC<Props> = ({ onSubmit }) => {
-
+    
     //////////////////add user//////////////////////
     const [open1, setOpen1] = React.useState(false);
     const handleOpen1 = () => setOpen1(true);
@@ -132,10 +132,10 @@ export const UserTable: React.FC<Props> = ({ onSubmit }) => {
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - contacts.length) : 0;*/
     /////////////////////////////////////////////////////////////////input/////
 
-    const [people, setPeople] = React.useState<Values[]>([{id: "", username: "", firstname: "", lastname: "", usertype: "", usergroup: "", resetpassword: ""}]);
+    const [people, setPeople] = React.useState<Values[]>([{ id: "", username: "", firstname: "", lastname: "", usertype: "", usergroup: "", resetpassword: "" }]);
     /*>([
         { id: "", username: "", firstname: "", lastname: "", usertype: "", usergroup: "", resetpassword: "" }
-
+ 
     ]);*/
 
     return (
@@ -282,7 +282,7 @@ export const UserTable: React.FC<Props> = ({ onSubmit }) => {
                                                 noValidate
                                                 autoComplete="off"
                                             >
-                                                <p style={{fontSize:"large",marginLeft:"200px"}}>เพิ่มผู้ใช้</p>
+                                                <p style={{ fontSize: "large", marginLeft: "200px" }}>เพิ่มผู้ใช้</p>
 
                                                 <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '70px' }}>Username</h3>
                                                 <TextField

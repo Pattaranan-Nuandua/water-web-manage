@@ -9,8 +9,8 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from 'axios'
-import '../css/App.css';
-import '../css/Button.css';
+import './css/Device.css';
+import './css/DeviceButton.css';
 
 
 

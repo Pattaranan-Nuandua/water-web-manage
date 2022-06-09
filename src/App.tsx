@@ -10,7 +10,10 @@ import { UserProps } from './Components/Login/interface1';
 import Login from './Components/Login/Login';
 import Signup from './Components/Login/Signup';
 import Setting from './Components/Setting/setting';
-import Map from './Components/Map/Map';
+import Map from './Components/Map/page/Map';
+import PageDevice from './Components/Device/PageDeviceTrue';
+import PageDelete from './Components/Device/PageDeleteTrue';
+import PageDetail from './Components/Device/DetailDevice';
 
 function App() {
   const [userList, setUserList] = React.useState<UserProps["userList"]>([]);
@@ -21,13 +24,12 @@ function App() {
           <Route path="/" element={<Login userList={userList} setUserList={setUserList} />} />
           <Route path="/login" element={<Login userList={userList} setUserList={setUserList} />} />
           <Route path="/signup" element={<Signup userList={userList} setUserList={setUserList} />} />
-          <Route path="/map" element={<Map/>} />
+          <Route path="/map" element={<Map  />} />
+          <Route path='/device' element={<PageDevice />} />
+          <Route path='/delete' element={<PageDelete />} />
+          <Route path='/detail' element={<PageDetail />} />
           <Route path="/user" element={<User />} />
           <Route path="/usergroup" element={<UserGroup />} />
-          <Route path="/test" element={<MyForm
-            onSubmit={({ id, username, firstname, lastname, usertype, usergroup, resetpassword }) => {
-              console.log(id, username, firstname, lastname, usertype, usergroup, resetpassword);
-            }} />} />
           <Route path="/deleteuser" element={<DeleteUser />} />
           <Route path="/deleteusergroup" element={<DeleteUsergroup />} />
           <Route path="/setting" element={<Setting />} />

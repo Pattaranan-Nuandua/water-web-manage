@@ -78,7 +78,7 @@
 
 .box {
   position: absolute;
-  width: auto;
+  width: 600px;
   padding: 40px 55px 45px 55px;
   transition: all 0.3s;
   /* White */

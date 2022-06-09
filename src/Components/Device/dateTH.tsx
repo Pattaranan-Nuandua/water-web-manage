@@ -1,4 +1,4 @@
-import '../css/App.css';
+import './css/Device.css';
 
 const date = new Date()
 
