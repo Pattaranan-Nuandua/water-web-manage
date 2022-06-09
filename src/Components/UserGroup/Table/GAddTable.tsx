@@ -232,7 +232,7 @@ const theme = useTheme();
                                                 noValidate
                                                 autoComplete="off"
                                             >
-                                                <p className='text-header'>เพิ่มกลุ่มผู้ใช้</p>
+                                                <p style={{ fontSize: "large", marginLeft: "200px" }}>เพิ่มกลุ่มผู้ใช้</p>
 
                                                 <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '70px' }}>ชื่อกลุ่มผู้ใช้</h3>
                                                 <TextField
@@ -253,10 +253,10 @@ const theme = useTheme();
                                                         width: '420px',
                                                         height: '64px',
                                                         left: '58px',
-                                                        top: '80px',
+                                                        top: '100px',
                                                     }}
                                                 />
-                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '170px' }}>ชื่อ</h3>
+                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '170px' }}>รายละเอียด</h3>
                                                 <TextField
                                                     id="outlined-basic"
                                                     variant="outlined"
@@ -275,16 +275,17 @@ const theme = useTheme();
                                                         width: '420px',
                                                         height: '64px',
                                                         left: '58px',
-                                                        top: '160px',
+                                                        top: '200px',
                                                     }}
                                                 />
+                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '290px' }}>พื้นที่</h3>
                                                 <TextField id="outlined-basic" label="สาขา" variant="outlined"
                                                     style={{
                                                         position: 'absolute',
                                                         width: '420px',
                                                         height: '64px',
                                                         left: '58px',
-                                                        top: '330px',
+                                                        top: '320px',
                                                     }} />
                                                 <div>
                                                     <FormControl
@@ -293,7 +294,7 @@ const theme = useTheme();
                                                             width: '420px',
                                                             height: '64px',
                                                             left: '66px',
-                                                            top: '410px',
+                                                            top: '400px',
                                                         }} >
                                                         <InputLabel id="demo-multiple-name-label">เขต</InputLabel>
                                                         <Select
@@ -322,7 +323,7 @@ const theme = useTheme();
                                                         <Button className="add-user"
                                                             variant="contained"
                                                             type="submit"
-                                                            style={{ background: "#0C3483", marginLeft: "auto", marginRight: 260, }}
+                                                            style={{ background: "#0C3483",   marginLeft: "26px", marginTop: "520px" }}
                                                             onClick={() => {
                                                                 setPeople(currentPeople => [
                                                                     ...currentPeople,
@@ -338,7 +339,7 @@ const theme = useTheme();
                                                         </Button>
                                                         <Button className="btn-cancle"
                                                             variant="contained"
-                                                            style={{ background: "#DF0000", marginLeft: 20, marginRight: "auto" }}
+                                                            style={{ background: "#DF0000",  marginLeft: "290px", marginTop: "520px" }}
                                                             onClick={() => {
                                                                 alert('ยกเลิก');
                                                             }}
@@ -369,7 +370,7 @@ const theme = useTheme();
                 }}
                 onClick={handleOpen1}
             >
-                เพิ่มผู้ใช้
+                เพิ่มกลุ่มผู้ใช้
             </Button>
         </Paper >
     );
