@@ -82,7 +82,7 @@ const markerIcon5 = new L.Icon({
 //   ]
 
 
-function home(this: any) {
+function Home(this: any) {
   const HandleClickMap = () => {
     return null;
   };
@@ -115,7 +115,7 @@ function home(this: any) {
     <div>
       
       <MapContainer
-        style={{ height: "100vh" }}
+        style={{ height: "100vh"}}
         center={[13.85, 100.57]}
         zoom={13}
         scrollWheelZoom={true}
@@ -191,4 +191,4 @@ function home(this: any) {
   );
 }
 
-export default home;
+export default Home;

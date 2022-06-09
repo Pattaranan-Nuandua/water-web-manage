@@ -10,7 +10,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Theme, useTheme } from '@mui/material/styles';
+import { createTheme, Theme, useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
 /////////////////////////////////////////////////////เขต///////////////////////////////////////////////
@@ -123,26 +123,24 @@ export default function Header() {
                                         top: '5px',
                                     }}
                                     size="small"
-                                    //color="warning"
-                                    >
+                                    
+                                >
                                     <Select
-
-                                        multiple
                                         displayEmpty
                                         value={districtName}
                                         onChange={handleChange1}
                                         input={<OutlinedInput />}
+                                        
                                         renderValue={(selected) => {
                                             if (selected.length === 0) {
                                                 return <em>- เลือกเขต -</em>;
                                             }
-
                                             return selected.join(', ');
                                         }}
+
                                         MenuProps={MenuProps}
                                         inputProps={{ 'aria-label': 'Without label' }}
                                     >
-
                                         {districtnames.map((name1) => (
                                             <MenuItem
                                                 key={name1}
@@ -153,6 +151,7 @@ export default function Header() {
                                             </MenuItem>
                                         ))}
                                     </Select>
+                                    
                                 </FormControl>
                             </div>
                             <div>
@@ -166,12 +165,12 @@ export default function Header() {
                                         minHeight: '50px',
                                         right: '300px',
                                         top: '5px',
-                                        
+
                                     }}
                                     size="small">
                                     <Select
                                         color="info"
-                                        multiple
+
                                         displayEmpty
                                         value={branchName}
                                         onChange={handleChange2}

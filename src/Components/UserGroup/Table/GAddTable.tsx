@@ -300,7 +300,7 @@ const theme = useTheme();
                                                         <Select
                                                             labelId="demo-multiple-name-label"
                                                             id="demo-multiple-name"
-                                                            multiple
+                                                            
                                                             value={districtName}
                                                             onChange={handleChange}
                                                             input={<OutlinedInput label="Name" />}
