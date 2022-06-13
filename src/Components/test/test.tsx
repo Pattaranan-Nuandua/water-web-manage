@@ -22,7 +22,7 @@ import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { TablePagination } from '@mui/material';
 import Stack from '@mui/material/Stack';
-import { AddProps } from "./interface2";
+import { AddProps } from "../User/Table/interface2";
 import ModeEdit from "@mui/icons-material/ModeEdit";
 import { Form, Formik } from "formik";
 import { People } from "@mui/icons-material";
@@ -204,13 +204,69 @@ const Table1: FC<Props> = ({ adduser, setAddUser }) => {
                                     <StyledTableCell align="left">{p.usergroup}</StyledTableCell>
                                     <StyledTableCell align="left">{p.resetpassword}</StyledTableCell>
                                     <StyledTableCell align="left">
-                                        <Button >
+                                        <Button onClick={handleOpen}>
                                             <ModeEdit
                                                 color="action"
                                                 fontSize="medium"
                                                 className='icon-edit'
                                             />
                                         </Button>
+                                        <Modal
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description"
+
+                                        >
+                                            <Box sx={style}>
+                                                <Box component="form"
+                                                    sx={{
+                                                        "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
+                                                    }}
+                                                    noValidate
+                                                    autoComplete="off">
+                                                    <h2 id="modal-modal-title" style={{ fontSize: '22px', position: 'absolute', left: '190px', }}>
+                                                        Reset Password
+                                                    </h2>
+                                                    <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '85px' }}>New password</h3>
+                                                    <TextField id="outlined-basic" variant="outlined"
+                                                        style={{
+                                                            position: 'absolute',
+                                                            width: '420px',
+                                                            height: '64px',
+                                                            left: '60px',
+                                                            top: '110px',
+                                                        }}
+
+                                                    />
+                                                    <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '175px' }}>Confirm new password</h3>
+                                                    <TextField id="outlined-basic" variant="outlined"
+                                                        style={{
+                                                            position: 'absolute',
+                                                            width: '420px',
+                                                            height: '64px',
+                                                            left: '60px',
+                                                            top: '200px',
+                                                        }} />
+                                                    <div >
+                                                        <Stack direction="row" spacing={2} >
+                                                            <Button
+                                                                className='btn-resetpass'
+                                                                variant="contained"
+                                                                style={{ background: "#0C3483", marginLeft: "28px", marginTop: "250px" }}
+
+                                                            >ยืนยัน
+                                                            </Button>
+                                                            <Button
+                                                                className='btn-resetpass'
+                                                                variant="contained"
+                                                                style={{ background: "#DF0000", marginLeft: "290px", marginTop: "250px" }}
+                                                            >ยกเลิก</Button>
+                                                        </Stack>
+                                                    </div>
+                                                </Box>
+                                            </Box>
+                                        </Modal>
                                     </StyledTableCell>
                                 </StyledTableRow>
                                 /*))}*/

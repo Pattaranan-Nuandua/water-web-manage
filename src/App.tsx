@@ -15,7 +15,7 @@ import PageDelete from './Components/Device/PageDeleteTrue';
 import PageDetail from './Components/Device/DetailDevice';
 import MapEvent from './Components/Map/page/MapEvent';
 import Test from './Components/test/test';
-import { AddProps } from "./Components/test/interface2";
+import { AddProps } from "./Components/User/Table/interface2";
 import Table1 from './Components/test/test';
 
 
