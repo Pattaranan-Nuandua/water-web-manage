@@ -1,412 +1,387 @@
-import * as React from 'react';
-import { alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import React, {
+    FC,
+    ChangeEvent,
+    MouseEvent,
+    useState,
+    Dispatch,
+    SetStateAction,
+} from "react";
+import './UserTable.css'
+import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { visuallyHidden } from '@mui/utils';
-import './test.css'
+import { TablePagination } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import { AddProps } from "./interface2";
+import ModeEdit from "@mui/icons-material/ModeEdit";
+import { Form, Formik } from "formik";
+import { People } from "@mui/icons-material";
+import { produce } from "immer";
 
-interface Data {
-    Username: string;
-    Name: string;
-    Lastname: string;
-    Usertype: string;
-    UserGroup: string;
-    ResetPassword: string;
-}
-
-function createData(
-    Username: string,
-    Name: string,
-    Lastname: string,
-    Usertype: string,
-    UserGroup: string,
-    ResetPassword: string,
-): Data {
-    return {
-        Username,
-        Name,
-        Lastname,
-        Usertype,
-        UserGroup,
-        ResetPassword,
-    };
-}
-
-const rows = [
-    createData('Username01', 'name01', 'lastname01', 'ประเภทผู้ใช้01', ' กลุ่มผู้ใช้01', 'pass01'),
-    createData('Username02', 'name02', 'lastname02', 'ประเภทผู้ใช้02', ' กลุ่มผู้ใช้02', 'pass02'),
-    createData('Username03', 'name03', 'lastname03', 'ประเภทผู้ใช้03', ' กลุ่มผู้ใช้03', 'pass03'),
-    createData('Username04', 'name04', 'lastname04', 'ประเภทผู้ใช้04', ' กลุ่มผู้ใช้04', 'pass04'),
-    createData('Username05', 'name05', 'lastname05', 'ประเภทผู้ใช้05', ' กลุ่มผู้ใช้05', 'pass05'),
-    createData('Username06', 'name06', 'lastname06', 'ประเภทผู้ใช้06', ' กลุ่มผู้ใช้06', 'pass06'),
-    createData('Username07', 'name07', 'lastname07', 'ประเภทผู้ใช้07', ' กลุ่มผู้ใช้07', 'pass07'),
-    createData('Username08', 'name08', 'lastname08', 'ประเภทผู้ใช้08', ' กลุ่มผู้ใช้08', 'pass08'),
-];
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-type Order = 'asc' | 'desc';
-
-function getComparator<Key extends keyof any>(
-    order: Order,
-    orderBy: Key,
-): (
-        a: { [key in Key]: number | string },
-        b: { [key in Key]: number | string },
-    ) => number {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-// This method is created for cross-browser compatibility, if you don't
-// need to support IE11, you can use Array.prototype.sort() directly
-function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
-    const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-    stabilizedThis.sort((a, b) => {
-        const order = comparator(a[0], b[0]);
-        if (order !== 0) {
-            return order;
-        }
-        return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-}
-
-interface HeadCell {
-    disablePadding: boolean;
-    id: keyof Data;
-    label: string;
-    numeric: boolean;
-}
-
-const headCells: readonly HeadCell[] = [
-    {
-        id: 'Username',
-        numeric: false,
-        disablePadding: true,
-        label: 'Username',
-    },
-    {
-        id: 'Name',
-        numeric: true,
-        disablePadding: false,
-        label: 'ชื่อ',
-    },
-    {
-        id: 'Lastname',
-        numeric: true,
-        disablePadding: false,
-        label: 'นามสกุล',
-    },
-    {
-        id: 'Usertype',
-        numeric: true,
-        disablePadding: false,
-        label: 'ประเภทผู้ใช้',
-    },
-    {
-        id: 'UserGroup',
-        numeric: true,
-        disablePadding: false,
-        label: 'กลุ่มผู้ใช้',
-    },
-    {
-        id: 'ResetPassword',
-        numeric: true,
-        disablePadding: false,
-        label: 'Password',
-    },
-];
-
-interface EnhancedTableProps {
-    numSelected: number;
-    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
-    onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    order: Order;
-    orderBy: string;
-    rowCount: number;
-}
-
-function EnhancedTableHead(props: EnhancedTableProps) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
-        props;
-    const createSortHandler =
-        (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
-            onRequestSort(event, property);
-        };
-
-    return (
-        <TableHead>
-            <TableRow>
-                <TableCell padding="checkbox">
-                    <Checkbox
-                        color="primary"
-                        indeterminate={numSelected > 0 && numSelected < rowCount}
-                        checked={rowCount > 0 && numSelected === rowCount}
-                        onChange={onSelectAllClick}
-                        inputProps={{
-                            'aria-label': 'select all desserts',
-                        }}
-                    />
-                </TableCell>
-                {headCells.map((headCell) => (
-                    <TableCell
-                        key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'left'}
-                        padding={headCell.disablePadding ? 'none' : 'normal'}
-                        sortDirection={orderBy === headCell.id ? order : false}
-                    >
-                        <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
-                            onClick={createSortHandler(headCell.id)}
-                        >
-                            {headCell.label}
-                            {orderBy === headCell.id ? (
-                                <Box component="span" sx={visuallyHidden}>
-                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                                </Box>
-                            ) : null}
-                        </TableSortLabel>
-                    </TableCell>
-                ))}
-            </TableRow>
-        </TableHead>
-    );
-}
-
-interface EnhancedTableToolbarProps {
-    numSelected: number;
-}
-
-const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-    const { numSelected } = props;
-
-    return (
-        <Toolbar
-            sx={{
-                pl: { sm: 2 },
-                pr: { xs: 1, sm: 1 },
-                ...(numSelected > 0 && {
-                    bgcolor: (theme) =>
-                        alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-                }),
-            }}
-        >
-            {numSelected > 0 ? (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    color="inherit"
-                    variant="subtitle1"
-                    component="div"
-                >
-                    {numSelected} selected
-                </Typography>
-            ) : (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    variant="h6"
-                    id="tableTitle"
-                    component="div"
-                >
-                    Nutrition
-                </Typography>
-            )}
-            {numSelected > 0 ? (
-                <Tooltip title="Delete">
-                    <IconButton>
-                        <DeleteIcon />
-                    </IconButton>
-                </Tooltip>
-            ) : (
-                <Tooltip title="Filter list">
-                    <IconButton>
-                        <FilterListIcon />
-                    </IconButton>
-                </Tooltip>
-            )}
-        </Toolbar>
-    );
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 490,
+    height: 300,
+    bgcolor: 'background.paper',
+    borderRadius: "16px",
+    boxShadow: 24,
+    p: 4,
+};
+const style2 = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "490px",
+    height: "620px",
+    bgcolor: "background.paper",
+    borderRadius: "16px",
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
 };
 
-export default function Test() {
-    const [order, setOrder] = React.useState<Order>('asc');
-    const [orderBy, setOrderBy] = React.useState<keyof Data>('Username');
-    const [selected, setSelected] = React.useState<readonly string[]>([]);
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        background: 'rgba(53, 83, 164, 0.1)',
+        color: theme.palette.common.black,
+        fontFamily: 'Kanit',
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+        fontFamily: 'Kanit',
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.common.white,
+        fontFamily: 'Kanit',
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+        fontFamily: 'Kanit',
+    },
+}));
+/////////////////////////////////////////////////////
+interface Props {
+    adduser: AddProps["adduser"];
+    setAddUser: Dispatch<SetStateAction<AddProps["adduser"]>>;
+}
+/*
+    id: string,
+    username: string,
+    firstname: string,
+    lastname: string,
+    usertype: string,
+    usergroup: string,
+    resetpassword: string,
+*/
+/////////////////////////////////////////////////////
+
+
+
+const Table1: FC<Props> = ({ adduser, setAddUser }) => {
+
+    //////////////////add user//////////////////////
+    const [open1, setOpen1] = React.useState(false);
+    const handleOpen1 = () => setOpen1(true);
+    const handleClose1 = () => setOpen1(false);
+    /////////////modal  pass////////////////////////////
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    //////////////////////////page/////////////////////////
     const [page, setPage] = React.useState(0);
-    const [dense, setDense] = React.useState(false);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-    const handleRequestSort = (
-        event: React.MouseEvent<unknown>,
-        property: keyof Data,
-    ) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-    };
-
-    const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.checked) {
-            const newSelecteds = rows.map((n) => n.Username);
-            setSelected(newSelecteds);
-            return;
-        }
-        setSelected([]);
-    };
-
-    const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-        const selectedIndex = selected.indexOf(name);
-        let newSelected: readonly string[] = [];
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
-
-        setSelected(newSelected);
-    };
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
-
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-
-    const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDense(event.target.checked);
+    /*const emptyRows =
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - contacts.length) : 0;*/
+    /////////////////////////////////////////////////////////////////input/////
+    const [username, setUsername] = useState("");
+    const setUsernameinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setUsername(event.target.value);
     };
-
-    const isSelected = (name: string) => selected.indexOf(name) !== -1;
-
-    // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
+    const [firstname, setFirstName] = useState("");
+    const setFirstNameinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setFirstName(event.target.value);
+    };
+    const [lastname, setLastName] = useState("");
+    const setLastNameinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setLastName(event.target.value);
+    };
+    const [usertype, setUserType] = useState("");
+    const setUserTypeinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setUserType(event.target.value);
+    };
+    const [usergroup, setUserGroup] = useState("");
+    const setUserGroupinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setUserGroup(event.target.value);
+    };
+    const [resetpassword, setResetPassword] = useState("");
+    const setResetPasswordinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setResetPassword(event.target.value);
+    };
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        /*if (!username && !firstname && !lastname && !usertype && !usergroup && !resetpassword) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+            return;
+        }*/
+        event.preventDefault();
+        console.log(event.currentTarget.elements);
+        console.log(event.currentTarget.elements[0]);
+        const userData = { username, firstname, lastname, usertype, usergroup, resetpassword };
+        setAddUser([...adduser, userData]);
+        setUsername("");
+        setFirstName("");
+        setLastName("");
+        setUserType("");
+        setUserGroup("");
+        setResetPassword("");
+    };
+    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+        if (!username && !firstname && !lastname && !usertype && !usergroup && !resetpassword) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+            return;
+        }
+        /*const userData = { username, firstname, lastname, usertype, usergroup, resetpassword };
+        setAddUser([...adduser, userData]);
+        setUsername("");
+        setFirstName("");
+        setLastName("");
+        setUserType("");
+        setUserGroup("");
+        setResetPassword("");*/
+    };
+    console.log(username, firstname, lastname, usertype, usergroup, resetpassword);
     return (
-        <Box sx={{ width: '100%' }}>
-            <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar numSelected={selected.length} />
-                <TableContainer>
-                    <Table
-                        sx={{ minWidth: 750 }}
-                        aria-labelledby="tableTitle"
-                        size={dense ? 'small' : 'medium'}
-                    >
-                        <EnhancedTableHead
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
-                            onSelectAllClick={handleSelectAllClick}
-                            onRequestSort={handleRequestSort}
-                            rowCount={rows.length}
-                        />
-                        <TableBody>
-                            {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                rows.slice().sort(getComparator(order, orderBy)) */}
-                            {stableSort(rows, getComparator(order, orderBy))
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((row, index) => {
-                                    const isItemSelected = isSelected(row.Username);
-                                    const labelId = `enhanced-table-checkbox-${index}`;
-
-                                    return (
-                                        <TableRow
-                                            hover
-                                            onClick={(event) => handleClick(event, row.Username)}
-                                            role="checkbox"
-                                            aria-checked={isItemSelected}
-                                            tabIndex={-1}
-                                            key={row.Username}
-                                            selected={isItemSelected}
-                                        >
-                                            <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    color="primary"
-                                                    checked={isItemSelected}
-                                                    inputProps={{
-                                                        'aria-labelledby': labelId,
-                                                    }}
-                                                />
-                                            </TableCell>
-                                            <TableCell
-                                                component="th"
-                                                id={labelId}
-                                                scope="row"
-                                                padding="none"
-                                            >
-                                                {row.Username}
-                                            </TableCell>
-                                            <TableCell align="right">{row.Name}</TableCell>
-                                            <TableCell align="right">{row.Lastname}</TableCell>
-                                            <TableCell align="right">{row.Usertype}</TableCell>
-                                            <TableCell align="right">{row.UserGroup}</TableCell>
-                                            <TableCell align="right">{row.ResetPassword}</TableCell>
-                                        </TableRow>
-                                    );
-                                })}
-                            {emptyRows > 0 && (
-                                <TableRow
-                                    style={{
-                                        height: (dense ? 33 : 53) * emptyRows,
-                                    }}
-                                >
-                                    <TableCell colSpan={6} />
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10]}
-                    component="div"
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper>
-            <FormControlLabel
-                control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
+        <Paper>
+            <TableContainer sx={{ minWidth: 1216 }}>
+                <Table aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell>Username</StyledTableCell>
+                            <StyledTableCell align="left">ชื่อ</StyledTableCell>
+                            <StyledTableCell align="left">นามสกุล</StyledTableCell>
+                            <StyledTableCell align="left">ประเภทผู้ใช้</StyledTableCell>
+                            <StyledTableCell align="left">กลุ่มผู้ใช้</StyledTableCell>
+                            <StyledTableCell align="left">ResetPassword</StyledTableCell>
+                            <StyledTableCell align="left"></StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {adduser
+                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            .map((p) => (
+                                /*.map((row, index) => (*/
+                                <StyledTableRow key={p.username} >
+                                    <StyledTableCell component="th" scope="row">{p.username}</StyledTableCell>
+                                    <StyledTableCell align="left">{p.firstname}</StyledTableCell>
+                                    <StyledTableCell align="left">{p.lastname}</StyledTableCell>
+                                    <StyledTableCell align="left">{p.usertype}</StyledTableCell>
+                                    <StyledTableCell align="left">{p.usergroup}</StyledTableCell>
+                                    <StyledTableCell align="left">{p.resetpassword}</StyledTableCell>
+                                    <StyledTableCell align="left">
+                                        <Button >
+                                            <ModeEdit
+                                                color="action"
+                                                fontSize="medium"
+                                                className='icon-edit'
+                                            />
+                                        </Button>
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                                /*))}*/
+                            ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={adduser.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
             />
-        </Box>
+            <form onSubmit={handleSubmit}>
+                <Modal
+                    open={open1}
+                    onClose={handleClose1}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style2}>
+                        <Box
+                            component="form"
+                            sx={{
+                                "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
+                            }}
+                            noValidate
+                            autoComplete="off"
+                        >
+                            <p style={{ fontSize: "large", marginLeft: "200px" }}>เพิ่มผู้ใช้</p>
+                            <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '70px' }}>Username</h3>
+                            <TextField
+                                id="outlined-basic"
+                                variant="outlined"
+                                name="username"
+                                //value={values.username}
+                                value={username}
+                                onChange={setUsernameinputHandler}
+                                style={{
+                                    position: 'absolute',
+                                    width: '420px',
+                                    height: '64px',
+                                    left: '58px',
+                                    top: '100px',
+                                }}
+                            />
+                            <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '170px' }}>ชื่อ</h3>
+                            <TextField
+                                id="outlined-basic"
+                                variant="outlined"
+                                name="firstname"
+                                //value={values.firstname}
+                                value={firstname}
+                                onChange={setFirstNameinputHandler}
+                                style={{
+                                    position: 'absolute',
+                                    width: '205px',
+                                    height: '64px',
+                                    left: '58px',
+                                    top: '200px',
+                                }}
+                            />
+                            <h3 style={{ fontSize: '13px', position: 'absolute', left: '273px', top: '170px' }}>นามสกุล</h3>
+                            <TextField
+                                id="outlined-basic"
+                                variant="outlined"
+                                name="lastname"
+                                //value={values.lastname}
+                                value={lastname}
+                                onChange={setLastNameinputHandler}
+                                style={{
+                                    position: 'absolute',
+                                    width: '205px',
+                                    height: '64px',
+                                    left: '273px',
+                                    top: '200px',
+                                }}
+                            />
+                            <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '270px' }}>ประเภทผู้ใช้</h3>
+                            <TextField
+                                id="outlined-basic"
+                                variant="outlined"
+                                name="usertype"
+                                //value={values.usertype}
+                                value={usertype}
+                                onChange={setUserTypeinputHandler}
+                                style={{
+                                    position: 'absolute',
+                                    width: '420px',
+                                    height: '64px',
+                                    left: '58px',
+                                    top: '300px',
+                                }}
+                            />
+                            <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '370px' }}>กลุ่มผู้ใช้</h3>
+                            <TextField
+                                id="outlined-basic"
+                                variant="outlined"
+                                name="usergroup"
+                                //value={values.usergroup}
+                                value={usergroup}
+                                onChange={setUserGroupinputHandler}
+                                style={{
+                                    position: 'absolute',
+                                    width: '420px',
+                                    height: '64px',
+                                    left: '58px',
+                                    top: '400px',
+                                }}
+                            />  
+
+                            <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '470px' }}>Password</h3>
+                            <TextField
+                                id="outlined-basic"
+                                variant="outlined"
+                                name="resetpassword"
+                                //value={values.resetpassword}
+                                value={resetpassword}
+                                onChange={setResetPasswordinputHandler}
+                                style={{
+                                    position: 'absolute',
+                                    width: '420px',
+                                    height: '64px',
+                                    left: '58px',
+                                    top: '500px',
+                                }}
+                            />
+                            <div >
+                                <Stack direction="row" spacing={2} >
+                                    <Button className="add-user"
+                                        variant="contained"
+                                        type="submit"
+                                        onClick={handleClick}
+                                        style={{ background: "#0C3483", marginLeft: "26px", marginTop: "520px" }}
+                                    >ยืนยัน
+                                    </Button>
+                                    <Button className="btn-cancle"
+                                        variant="contained"
+                                        style={{ background: "#DF0000", marginLeft: "290px", marginTop: "520px" }}
+                                        onClick={() => {
+                                            alert('ยกเลิก');
+                                        }}
+                                    >ยกเลิก</Button>
+                                </Stack>
+                            </div>
+                        </Box>
+                    </Box>
+                </Modal>
+            </form>
+            <Button
+                sx={{ fontFamily: "Kanit" }}
+                type="submit"
+                className="btn-add"
+                variant="contained"
+                style=
+                {{
+                    borderRadius: 8,
+                    backgroundColor: "#0C3483",
+                    marginTop: "-145px",
+                    marginLeft: "290px",
+                    position: "absolute"
+                }}
+                onClick={handleOpen1}
+            >
+                เพิ่มผู้ใช้
+            </Button>
+        </Paper >
     );
 }
+
+export default Table1;

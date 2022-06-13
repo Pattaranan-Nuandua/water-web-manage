@@ -14,9 +14,14 @@ import PageDevice from './Components/Device/PageDeviceTrue';
 import PageDelete from './Components/Device/PageDeleteTrue';
 import PageDetail from './Components/Device/DetailDevice';
 import MapEvent from './Components/Map/page/MapEvent';
+import Test from './Components/test/test';
+import { AddProps } from "./Components/test/interface2";
+import Table1 from './Components/test/test';
+
 
 function App() {
   const [userList, setUserList] = React.useState<UserProps["userList"]>([]);
+  const [adduser, setAddUser] = React.useState<AddProps["adduser"]>([]);
   return (
     <div className='App'>
       <BrowserRouter>
@@ -24,7 +29,7 @@ function App() {
           <Route path="/" element={<Login userList={userList} setUserList={setUserList} />} />
           <Route path="/login" element={<Login userList={userList} setUserList={setUserList} />} />
           <Route path="/signup" element={<Signup userList={userList} setUserList={setUserList} />} />
-          <Route path='/map' element={<MapEvent/>} />  
+          <Route path='/map' element={<MapEvent />} />
           <Route path='/device' element={<PageDevice />} />
           <Route path='/delete' element={<PageDelete />} />
           <Route path='/detail' element={<PageDetail />} />
@@ -33,6 +38,8 @@ function App() {
           <Route path="/deleteuser" element={<DeleteUser />} />
           <Route path="/deleteusergroup" element={<DeleteUsergroup />} />
           <Route path="/setting" element={<Setting />} />
+          <Route path="/test" element={<Table1 adduser={adduser} setAddUser={setAddUser}
+          />} />
         </Routes>
       </BrowserRouter>
     </div>

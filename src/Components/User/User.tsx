@@ -6,9 +6,15 @@ import Search from "../button/Search";
 import Header from "../Navbar/Header";
 import Menu from "../Navbar/Menu-sidebar";
 import { UserTable } from "./Table/SAddTable";
+import { AddProps } from "../test/interface2";
+import Table1 from "../test/test";
 
 
 function User() {
+    const [adduser, setAddUser] = React.useState<AddProps["adduser"]>([]);
+    /*const [adduser, setAddUser] = React.useState<AddProps[]>([
+        {username: "", firstname: "", lastname: "", usertype: "", usergroup: "", resetpassword: ""}
+    ]);*/
     return (
         <div className="bg-user">
             <h3 className="text-user">
@@ -20,9 +26,8 @@ function User() {
                 <SBtnDelete />
             </div >
             <div className="Table">
-                <UserTable onSubmit={({  id, username, firstname, lastname, usertype, usergroup, resetpassword }) => {
-                    console.log(id, username, firstname, lastname, usertype, usergroup, resetpassword);
-                }}/>
+                <Table1 adduser={adduser} setAddUser={setAddUser}
+                />
             </div>
             <Header />
             <Menu />
