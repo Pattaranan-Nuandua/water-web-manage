@@ -8,3 +8,10 @@ export interface AddProps {
         resetpassword: string;
     }[];
 }
+
+export interface ResetPass{
+    resetpass:{
+        newpassword: string;
+        confirmpassword: string;
+    }[];
+}

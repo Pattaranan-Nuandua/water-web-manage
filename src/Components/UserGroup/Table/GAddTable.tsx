@@ -1,4 +1,11 @@
-import * as React from 'react';
+import React, {
+    FC,
+    ChangeEvent,
+    MouseEvent,
+    useState,
+    Dispatch,
+    SetStateAction,
+} from "react";
 import './UserGroupTable.css'
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -24,6 +31,8 @@ import { Theme, useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import { GroupProps } from "../Table/interface3";
+import Delete from "@mui/icons-material/Delete";
 
 const names = [
     'เขต1',
@@ -41,18 +50,6 @@ function getStyles(name: string, districtName: string[], theme: Theme) {
     };
 }
 
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 490,
-    height: 300,
-    bgcolor: 'background.paper',
-    borderRadius: "16px",
-    boxShadow: 24,
-    p: 4,
-};
 const style2 = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -103,29 +100,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 /////////////////////////////////////////////////////
-interface Values {
-    id: string;
-    group: string,
-    details: string,
-
-}
 interface Props {
-    onSubmit: (values: Values) => void;
+    addusergroup: GroupProps["addusergroup"];
+    setAddUserGroup: Dispatch<SetStateAction<GroupProps["addusergroup"]>>;
 }
-/*
-    id: string,
-    username: string,
-    firstname: string,
-    lastname: string,
-    usertype: string,
-    usergroup: string,
-    resetpassword: string,
-*/
-/////////////////////////////////////////////////////
 
-
-
-export const UserGroupTable: React.FC<Props> = ({ onSubmit }) => {
+const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
 
     //////////////////add user//////////////////////
     const [open1, setOpen1] = React.useState(false);
@@ -137,7 +117,7 @@ export const UserGroupTable: React.FC<Props> = ({ onSubmit }) => {
     const handleClose = () => setOpen(false);
     //////////////////////////page/////////////////////////
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
@@ -150,14 +130,23 @@ export const UserGroupTable: React.FC<Props> = ({ onSubmit }) => {
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - contacts.length) : 0;*/
     /////////////////////////////////////////////////////////////////input/////
 
-    const [people, setPeople] = React.useState<Values[]>([
-        { id: "", group: "", details: "" }
+    const [group, setGroup] = useState("");
+    const setGroupinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setGroup(event.target.value);
+    };
+    const [details, setDetails] = useState("");
+    const setDetailsinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setDetails(event.target.value);
+    };
+    const [company, setCompany] = useState("");
+    const setCompanyinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setCompany(event.target.value);
+    };
 
-    ]);
-/////////////////////////////////เขต////
-const theme = useTheme();
+    /////////////////////////////////เขต/////////////////////////////
+    const theme = useTheme();
     const [districtName, setdistrictName] = React.useState<string[]>([]);
-    const handleChange = (event: SelectChangeEvent<typeof districtName>) => {
+    const setdistrictNameinputHandler = (event: SelectChangeEvent<typeof districtName>) => {
         const {
             target: { value },
         } = event;
@@ -166,27 +155,59 @@ const theme = useTheme();
             typeof value === 'string' ? value.split(',') : value,
         );
     };
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        /*if (!username && !firstname && !lastname && !usertype && !usergroup && !resetpassword) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+            return;
+        }*/
+        event.preventDefault();
+        console.log(event.currentTarget.elements);
+        console.log(event.currentTarget.elements[0]);
+        const userData = { group, details, company };
+        setAddUserGroup([...addusergroup, userData]);
+        setGroup("");
+        setDetails("");
+        setCompany("");
+    };
+
+    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+        if (!group || !details || !company ) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+            handleClose1()
+            return;
+        }
+        handleClose1()
+    };
+    console.log(group, details, company, districtName);
     return (
         <Paper>
             <TableContainer sx={{ minWidth: 1216 }}>
-
                 <Table aria-label="customized table">
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>ชื่อกลุ่มผู้ใช้</StyledTableCell>
-                            <StyledTableCell align="left">รายละเอียด</StyledTableCell>
-
+                            <StyledTableCell align="center">รายละเอียด</StyledTableCell>
+                            <StyledTableCell align="center"></StyledTableCell> 
                         </TableRow>
                     </TableHead>
                     <TableBody>
-
-                        {people
+                        {addusergroup
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((p) => (
                                 /*.map((row, index) => (*/
                                 <StyledTableRow key={p.group} >
                                     <StyledTableCell component="th" scope="row">{p.group}</StyledTableCell>
-                                    <StyledTableCell align="left">{p.details}</StyledTableCell>
+                                    <StyledTableCell align="center">{p.details}</StyledTableCell>
+                                    <StyledTableCell align="center">
+                                        <Button onClick={handleOpen}>
+                                            <Delete
+                                                color="action"
+                                                fontSize="medium"
+                                                className='icon-edit' /////
+                                            />
+                                        </Button>
+                                    </StyledTableCell>
                                 </StyledTableRow>
                                 /*))}*/
                             ))}
@@ -196,165 +217,125 @@ const theme = useTheme();
             <TablePagination
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
-                count={people.length}
+                count={addusergroup.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
-            <div>
-                {people.map((p, index) => {
-                    return (
-                        <Formik
-                            key={p.id}
-                            initialValues={{
-                                id: generate(),
-                                group: "",
-                                details: "",
+            <form onSubmit={handleSubmit}>
+                <Modal
+                    open={open1}
+                    onClose={handleClose1}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style2}>
+                        <Box
+                            component="form"
+                            sx={{
+                                "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
                             }}
-                            onSubmit={values => {
-                                onSubmit(values);
-                            }}>
-                            {({ values }) => (
-                                <Form>
-                                    <Modal
-                                        open={open1}
-                                        onClose={handleClose1}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
+                            noValidate
+                            autoComplete="off"
+                        >
+                            <p style={{ fontSize: "large", marginLeft: "200px" }}>เพิ่มกลุ่มผู้ใช้</p>
+                            <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '70px' }}>ชื่อกลุ่มผู้ใช้</h3>
+                            <TextField
+                                id="outlined-basic"
+                                variant="outlined"
+                                name="group"
+                                value={group}
+                                onChange={setGroupinputHandler}
+                                style={{
+                                    position: 'absolute',
+                                    width: '420px',
+                                    height: '64px',
+                                    left: '58px',
+                                    top: '100px',
+                                }}
+                            />
+                            <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '170px' }}>รายละเอียด</h3>
+                            <TextField
+                                id="outlined-basic"
+                                variant="outlined"
+                                name="details"
+                                value={details}
+                                onChange={setDetailsinputHandler}
+                                style={{
+                                    position: 'absolute',
+                                    width: '420px',
+                                    height: '64px',
+                                    left: '58px',
+                                    top: '200px',
+                                }}
+                            />
+                            <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '290px' }}>พื้นที่</h3>
+                            <TextField
+                                id="outlined-basic"
+                                label="สาขา"
+                                variant="outlined"
+                                name="company"
+                                value={company}
+                                onChange={setCompanyinputHandler}
+                                style={{
+                                    position: 'absolute',
+                                    width: '420px',
+                                    height: '64px',
+                                    left: '58px',
+                                    top: '320px',
+                                }} />
+                            <div>
+                                <FormControl
+                                    style={{
+                                        position: 'absolute',
+                                        width: '420px',
+                                        height: '64px',
+                                        left: '66px',
+                                        top: '400px',
+                                    }} >
+                                    <InputLabel id="demo-multiple-name-label">เขต</InputLabel>
+                                    <Select
+                                        labelId="demo-multiple-name-label"
+                                        id="demo-multiple-name"
+
+                                        value={districtName}
+                                        onChange={setdistrictNameinputHandler}
+                                        input={<OutlinedInput label="Name" />}
+                                        MenuProps={MenuProps}
                                     >
-                                        <Box sx={style2}>
-                                            <Box
-                                                component="form"
-                                                sx={{
-                                                    "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
-                                                }}
-                                                noValidate
-                                                autoComplete="off"
+                                        {names.map((name) => (
+                                            <MenuItem
+                                                key={name}
+                                                value={name}
+                                                style={getStyles(name, districtName, theme)}
                                             >
-                                                <p style={{ fontSize: "large", marginLeft: "200px" }}>เพิ่มกลุ่มผู้ใช้</p>
-
-                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '70px' }}>ชื่อกลุ่มผู้ใช้</h3>
-                                                <TextField
-                                                    id="outlined-basic"
-                                                    variant="outlined"
-                                                    name="username"
-                                                    //value={values.username}
-                                                    onChange={e => {
-                                                        const username = e.target.value;
-                                                        setPeople(currentPeople =>
-                                                            produce(currentPeople, v => {
-                                                                v[index].group = username;
-                                                            })
-                                                        );
-                                                    }}
-                                                    style={{
-                                                        position: 'absolute',
-                                                        width: '420px',
-                                                        height: '64px',
-                                                        left: '58px',
-                                                        top: '100px',
-                                                    }}
-                                                />
-                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '170px' }}>รายละเอียด</h3>
-                                                <TextField
-                                                    id="outlined-basic"
-                                                    variant="outlined"
-                                                    name="details"
-                                                    //value={values.firstname}
-                                                    onChange={e => {
-                                                        const details = e.target.value;
-                                                        setPeople(currentPeople =>
-                                                            produce(currentPeople, value => {
-                                                                value[index].details = details;
-                                                            })
-                                                        );
-                                                    }}
-                                                    style={{
-                                                        position: 'absolute',
-                                                        width: '420px',
-                                                        height: '64px',
-                                                        left: '58px',
-                                                        top: '200px',
-                                                    }}
-                                                />
-                                                <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '290px' }}>พื้นที่</h3>
-                                                <TextField id="outlined-basic" label="สาขา" variant="outlined"
-                                                    style={{
-                                                        position: 'absolute',
-                                                        width: '420px',
-                                                        height: '64px',
-                                                        left: '58px',
-                                                        top: '320px',
-                                                    }} />
-                                                <div>
-                                                    <FormControl
-                                                        style={{
-                                                            position: 'absolute',
-                                                            width: '420px',
-                                                            height: '64px',
-                                                            left: '66px',
-                                                            top: '400px',
-                                                        }} >
-                                                        <InputLabel id="demo-multiple-name-label">เขต</InputLabel>
-                                                        <Select
-                                                            labelId="demo-multiple-name-label"
-                                                            id="demo-multiple-name"
-                                                            
-                                                            value={districtName}
-                                                            onChange={handleChange}
-                                                            input={<OutlinedInput label="Name" />}
-                                                            MenuProps={MenuProps}
-                                                        >
-                                                            {names.map((name) => (
-                                                                <MenuItem
-                                                                    key={name}
-                                                                    value={name}
-                                                                    style={getStyles(name, districtName, theme)}
-                                                                >
-                                                                    {name}
-                                                                </MenuItem>
-                                                            ))}
-                                                        </Select>
-                                                    </FormControl>
-                                                </div>
-                                                <div >
-                                                    <Stack direction="row" spacing={2} >
-                                                        <Button className="add-user"
-                                                            variant="contained"
-                                                            type="submit"
-                                                            style={{ background: "#0C3483",   marginLeft: "26px", marginTop: "520px" }}
-                                                            onClick={() => {
-                                                                setPeople(currentPeople => [
-                                                                    ...currentPeople,
-                                                                    {
-                                                                        id: generate(),
-                                                                        group: "",
-                                                                        details: "",
-
-                                                                    }
-                                                                ]);
-                                                            }}
-                                                        >ยืนยัน
-                                                        </Button>
-                                                        <Button className="btn-cancle"
-                                                            variant="contained"
-                                                            style={{ background: "#DF0000",  marginLeft: "290px", marginTop: "520px" }}
-                                                            onClick={() => {
-                                                                alert('ยกเลิก');
-                                                            }}
-                                                        >ยกเลิก</Button>
-                                                    </Stack>
-                                                </div>
-                                            </Box>
-                                        </Box>
-                                    </Modal>
-                                </Form>
-                            )}
-                        </Formik>
-                    )
-                })}
-            </div>
+                                                {name}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </FormControl>
+                            </div>
+                            <div >
+                                <Stack direction="row" spacing={2} >
+                                    <Button className="add-user"
+                                        variant="contained"
+                                        type="submit"
+                                        style={{ background: "#0C3483", marginLeft: "26px", marginTop: "520px" }}
+                                        onClick={handleClick}
+                                    >ยืนยัน
+                                    </Button>
+                                    <Button className="btn-cancle"
+                                        variant="contained"
+                                        onClick={handleClose1}
+                                        style={{ background: "#DF0000", marginLeft: "290px", marginTop: "520px" }}
+                                    >ยกเลิก</Button>
+                                </Stack>
+                            </div>
+                        </Box>
+                    </Box>
+                </Modal>
+            </form>
             <Button
                 sx={{ fontFamily: "Kanit" }}
                 type="submit"
@@ -376,3 +357,4 @@ const theme = useTheme();
     );
 
 }
+export default UserGroupTable;

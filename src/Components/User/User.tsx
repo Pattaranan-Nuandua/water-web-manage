@@ -5,12 +5,14 @@ import BtnFind from "../button/BtnFind";
 import Search from "../button/Search";
 import Header from "../Navbar/Header";
 import Menu from "../Navbar/Menu-sidebar";
-import  UserTable  from "./Table/SAddTable";
+import UserTable from "./Table/SAddTable";
 import { AddProps } from "./Table/interface2";
+import { ResetPass } from "./Table/interface2";
 
 
 function User() {
     const [adduser, setAddUser] = React.useState<AddProps["adduser"]>([]);
+    const [resetpass, setResetPass] = React.useState<ResetPass["resetpass"]>([]);
     return (
         <div className="bg-user">
             <h3 className="text-user">
@@ -22,7 +24,9 @@ function User() {
                 <SBtnDelete />
             </div >
             <div className="Table">
-                <UserTable adduser={adduser} setAddUser={setAddUser}
+                <UserTable 
+                    adduser={adduser} setAddUser={setAddUser}
+                    resetpass={resetpass} setResetPass={setResetPass} 
                 />
             </div>
             <Header />

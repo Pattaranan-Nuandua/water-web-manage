@@ -23,10 +23,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { TablePagination } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { AddProps } from "../Table/interface2";
+import { ResetPass } from "../Table/interface2";
 import ModeEdit from "@mui/icons-material/ModeEdit";
 import { Form, Formik } from "formik";
 import { People } from "@mui/icons-material";
 import { produce } from "immer";
+import Delete from "@mui/icons-material/Delete";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -82,21 +84,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 interface Props {
     adduser: AddProps["adduser"];
     setAddUser: Dispatch<SetStateAction<AddProps["adduser"]>>;
+    resetpass: ResetPass["resetpass"];
+    setResetPass: Dispatch<SetStateAction<ResetPass["resetpass"]>>;
 }
-/*
-    id: string,
-    username: string,
-    firstname: string,
-    lastname: string,
-    usertype: string,
-    usergroup: string,
-    resetpassword: string,
-*/
-/////////////////////////////////////////////////////
 
-
-
-const UserTable: FC<Props> = ({ adduser, setAddUser }) => {
+const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) => {
 
     //////////////////add user//////////////////////
     const [open1, setOpen1] = React.useState(false);
@@ -106,9 +98,9 @@ const UserTable: FC<Props> = ({ adduser, setAddUser }) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    //////////////////////////page/////////////////////////
+    //////////////////////////page///////////////////////// นี่หรอ
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
@@ -144,11 +136,15 @@ const UserTable: FC<Props> = ({ adduser, setAddUser }) => {
     const setResetPasswordinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setResetPassword(event.target.value);
     };
+    const [newpassword, setNewPassword] = useState("");
+    const setNewPasswordinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setNewPassword(event.target.value);
+    };
+    const [confirmpassword, setConfirmPassword] = useState("");
+    const setConfirmPasswordinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setConfirmPassword(event.target.value);
+    };
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        /*if (!username && !firstname && !lastname && !usertype && !usergroup && !resetpassword) {
-            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
-            return;
-        }*/
         event.preventDefault();
         console.log(event.currentTarget.elements);
         console.log(event.currentTarget.elements[0]);
@@ -160,21 +156,41 @@ const UserTable: FC<Props> = ({ adduser, setAddUser }) => {
         setUserType("");
         setUserGroup("");
         setResetPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
     };
-    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-        if (!username && !firstname && !lastname && !usertype && !usergroup && !resetpassword) {
+    const handleClick = () => {
+        if (!username || !firstname || !lastname || !usertype || !usergroup || !resetpassword) {
             alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+            handleClose()
             return;
         }
-        /*const userData = { username, firstname, lastname, usertype, usergroup, resetpassword };
-        setAddUser([...adduser, userData]);
-        setUsername("");
-        setFirstName("");
-        setLastName("");
-        setUserType("");
-        setUserGroup("");
-        setResetPassword("");*/
+        else {
+            handleClose()
+        }
+    }
+    const handleClick2 = (event: MouseEvent<HTMLButtonElement>) => {
+        if (!newpassword || !confirmpassword) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+            handleClose()
+            return;
+        }
+        if (newpassword !== confirmpassword) {
+            alert("กรุณาใส่รหัสผ่านให้ตรงกัน");
+            console.log("ลงทะเบียนไม่ได้");
+            handleClose()
+            return;
+        }
+        else {
+            handleClose()
+        }
+        
     };
+
+    const handleDelete = (e:MouseEvent<HTMLButtonElement>) => {
+    
+    }
+
     console.log(username, firstname, lastname, usertype, usergroup, resetpassword);
     return (
         <Paper>
@@ -183,12 +199,12 @@ const UserTable: FC<Props> = ({ adduser, setAddUser }) => {
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>Username</StyledTableCell>
-                            <StyledTableCell align="left">ชื่อ</StyledTableCell>
-                            <StyledTableCell align="left">นามสกุล</StyledTableCell>
-                            <StyledTableCell align="left">ประเภทผู้ใช้</StyledTableCell>
-                            <StyledTableCell align="left">กลุ่มผู้ใช้</StyledTableCell>
-                            <StyledTableCell align="left">ResetPassword</StyledTableCell>
-                            <StyledTableCell align="left"></StyledTableCell>
+                            <StyledTableCell align="center">ชื่อ</StyledTableCell>
+                            <StyledTableCell align="center">นามสกุล</StyledTableCell>
+                            <StyledTableCell align="center">ประเภทผู้ใช้</StyledTableCell>
+                            <StyledTableCell align="center">กลุ่มผู้ใช้</StyledTableCell>
+                            <StyledTableCell align="center">ResetPassword</StyledTableCell>
+                            <StyledTableCell align="center"></StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -198,75 +214,91 @@ const UserTable: FC<Props> = ({ adduser, setAddUser }) => {
                                 /*.map((row, index) => (*/
                                 <StyledTableRow key={p.username} >
                                     <StyledTableCell component="th" scope="row">{p.username}</StyledTableCell>
-                                    <StyledTableCell align="left">{p.firstname}</StyledTableCell>
-                                    <StyledTableCell align="left">{p.lastname}</StyledTableCell>
-                                    <StyledTableCell align="left">{p.usertype}</StyledTableCell>
-                                    <StyledTableCell align="left">{p.usergroup}</StyledTableCell>
-                                    <StyledTableCell align="left">{p.resetpassword}</StyledTableCell>
-                                    <StyledTableCell align="left">
+                                    <StyledTableCell align="center">{p.firstname}</StyledTableCell>
+                                    <StyledTableCell align="center">{p.lastname}</StyledTableCell>
+                                    <StyledTableCell align="center">{p.usertype}</StyledTableCell>
+                                    <StyledTableCell align="center">{p.usergroup}</StyledTableCell>
+                                    <StyledTableCell align="center" >{p.resetpassword}</StyledTableCell>
+                                    <StyledTableCell align="center">
                                         <Button onClick={handleOpen}>
                                             <ModeEdit
                                                 color="action"
                                                 fontSize="medium"
-                                                className='icon-edit'
                                             />
                                         </Button>
-                                        <Modal
-                                            open={open}
-                                            onClose={handleClose}
-                                            aria-labelledby="modal-modal-title"
-                                            aria-describedby="modal-modal-description"
-
-                                        >
-                                            <Box sx={style}>
-                                                <Box component="form"
-                                                    sx={{
-                                                        "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
-                                                    }}
-                                                    noValidate
-                                                    autoComplete="off">
-                                                    <h2 id="modal-modal-title" style={{ fontSize: '22px', position: 'absolute', left: '190px', }}>
-                                                        Reset Password
-                                                    </h2>
-                                                    <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '85px' }}>New password</h3>
-                                                    <TextField id="outlined-basic" variant="outlined"
-                                                        style={{
-                                                            position: 'absolute',
-                                                            width: '420px',
-                                                            height: '64px',
-                                                            left: '60px',
-                                                            top: '110px',
+                                        <Button onClick={handleDelete}>
+                                            <Delete
+                                                color="action"
+                                                fontSize="medium"
+                                            />
+                                        </Button>
+                                        <form onSubmit={handleSubmit}>
+                                            <Modal
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="modal-modal-title"
+                                                aria-describedby="modal-modal-description"
+                                            >
+                                                <Box sx={style}>
+                                                    <Box component="form"
+                                                        sx={{
+                                                            "& > :not(style)": { width: "35ch", m: 1, align: "center", fontFamily: "kanit" },
                                                         }}
-
-                                                    />
-                                                    <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '175px' }}>Confirm new password</h3>
-                                                    <TextField id="outlined-basic" variant="outlined"
-                                                        style={{
-                                                            position: 'absolute',
-                                                            width: '420px',
-                                                            height: '64px',
-                                                            left: '60px',
-                                                            top: '200px',
-                                                        }} />
-                                                    <div >
-                                                        <Stack direction="row" spacing={2} >
-                                                            <Button
-                                                                className='btn-resetpass'
-                                                                variant="contained"
-                                                                style={{ background: "#0C3483", marginLeft: "28px", marginTop: "250px" }}
-
-                                                            >ยืนยัน
-                                                            </Button>
-                                                            <Button
-                                                                className='btn-resetpass'
-                                                                variant="contained"
-                                                                style={{ background: "#DF0000", marginLeft: "290px", marginTop: "250px" }}
-                                                            >ยกเลิก</Button>
-                                                        </Stack>
-                                                    </div>
+                                                        noValidate
+                                                        autoComplete="off">
+                                                        <h2 id="modal-modal-title" style={{ fontSize: '22px', position: 'absolute', left: '190px', }}>
+                                                            Reset Password
+                                                        </h2>
+                                                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '85px' }}>New password</h3>
+                                                        <TextField
+                                                            id="outlined-basic"
+                                                            variant="outlined"
+                                                            name="newpassword"
+                                                            onChange={setNewPasswordinputHandler}
+                                                            value={newpassword}
+                                                            style={{
+                                                                position: 'absolute',
+                                                                width: '420px',
+                                                                height: '64px',
+                                                                left: '60px',
+                                                                top: '110px',
+                                                            }}
+                                                        />
+                                                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '175px' }}>Confirm new password</h3>
+                                                        <TextField
+                                                            id="outlined-basic"
+                                                            variant="outlined"
+                                                            name="confirmpassword"
+                                                            value={confirmpassword}
+                                                            onChange={setConfirmPasswordinputHandler}
+                                                            style={{
+                                                                position: 'absolute',
+                                                                width: '420px',
+                                                                height: '64px',
+                                                                left: '60px',
+                                                                top: '200px',
+                                                            }} />
+                                                        <div >
+                                                            <Stack direction="row" spacing={2} >
+                                                                <Button
+                                                                    className='btn-resetpass'
+                                                                    variant="contained"
+                                                                    onClick={handleClick2}
+                                                                    style={{ background: "#0C3483", marginLeft: "28px", marginTop: "250px" }}
+                                                                >ยืนยัน
+                                                                </Button>
+                                                                <Button
+                                                                    className='btn-resetpass'
+                                                                    variant="contained"
+                                                                    onClick={handleClose1}
+                                                                    style={{ background: "#DF0000", marginLeft: "290px", marginTop: "250px" }}
+                                                                >ยกเลิก</Button>
+                                                            </Stack>
+                                                        </div>
+                                                    </Box>
                                                 </Box>
-                                            </Box>
-                                        </Modal>
+                                            </Modal>
+                                        </form>
                                     </StyledTableCell>
                                 </StyledTableRow>
                                 /*))}*/
@@ -379,7 +411,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser }) => {
                                     left: '58px',
                                     top: '400px',
                                 }}
-                            />  
+                            />
 
                             <h3 style={{ fontSize: '13px', position: 'absolute', left: '58px', top: '470px' }}>Password</h3>
                             <TextField
@@ -387,6 +419,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser }) => {
                                 variant="outlined"
                                 name="resetpassword"
                                 //value={values.resetpassword}
+                                //type="password"
                                 value={resetpassword}
                                 onChange={setResetPasswordinputHandler}
                                 style={{
@@ -408,10 +441,8 @@ const UserTable: FC<Props> = ({ adduser, setAddUser }) => {
                                     </Button>
                                     <Button className="btn-cancle"
                                         variant="contained"
+                                        onClick={handleClose1}
                                         style={{ background: "#DF0000", marginLeft: "290px", marginTop: "520px" }}
-                                        onClick={() => {
-                                            alert('ยกเลิก');
-                                        }}
                                     >ยกเลิก</Button>
                                 </Stack>
                             </div>
