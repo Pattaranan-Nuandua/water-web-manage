@@ -157,18 +157,9 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        /*if (!username && !firstname && !lastname && !usertype && !usergroup && !resetpassword) {
-            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
-            return;
-        }*/
         event.preventDefault();
         console.log(event.currentTarget.elements);
         console.log(event.currentTarget.elements[0]);
-        const userData = { group, details, company };
-        setAddUserGroup([...addusergroup, userData]);
-        setGroup("");
-        setDetails("");
-        setCompany("");
     };
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -178,8 +169,20 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
             return;
         }
         handleClose1()
+        const userData = { group, details, company };
+        setAddUserGroup([...addusergroup, userData]);
+        setGroup("");
+        setDetails("");
+        setCompany("");
     };
     console.log(group, details, company, districtName);
+
+    const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
+        const deleteusergroup = [...addusergroup];
+        const index = addusergroup.findIndex((addusergroup) => addusergroup === addusergroup);       
+        deleteusergroup.splice(index,1);
+        setAddUserGroup(deleteusergroup);
+    }
     return (
         <Paper>
             <TableContainer sx={{ minWidth: 1216 }}>
@@ -200,11 +203,11 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
                                     <StyledTableCell component="th" scope="row">{p.group}</StyledTableCell>
                                     <StyledTableCell align="center">{p.details}</StyledTableCell>
                                     <StyledTableCell align="center">
-                                        <Button onClick={handleOpen}>
+                                        <Button onClick={handleDelete}>
                                             <Delete
                                                 color="action"
                                                 fontSize="medium"
-                                                className='icon-edit' /////
+                                                className='icon-edit' ////
                                             />
                                         </Button>
                                     </StyledTableCell>

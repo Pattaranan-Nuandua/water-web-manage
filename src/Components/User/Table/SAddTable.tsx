@@ -19,15 +19,11 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { TablePagination } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { AddProps } from "../Table/interface2";
 import { ResetPass } from "../Table/interface2";
 import ModeEdit from "@mui/icons-material/ModeEdit";
-import { Form, Formik } from "formik";
-import { People } from "@mui/icons-material";
-import { produce } from "immer";
 import Delete from "@mui/icons-material/Delete";
 
 const style = {
@@ -195,6 +191,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
         setConfirmPassword("");
     };
     console.log(newpassword,confirmpassword)
+
     const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
         const deleteuser = [...adduser];
         const index = adduser.findIndex((adduser) => adduser === adduser);       
