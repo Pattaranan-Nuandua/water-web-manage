@@ -148,6 +148,14 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
         event.preventDefault();
         console.log(event.currentTarget.elements);
         console.log(event.currentTarget.elements[0]);
+    };
+    const handleadduser = () => {
+        if (!username || !firstname || !lastname || !usertype || !usergroup || !resetpassword) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+            handleClose1()
+            return;
+        }
+        handleClose1()
         const userData = { username, firstname, lastname, usertype, usergroup, resetpassword };
         setAddUser([...adduser, userData]);
         setUsername("");
@@ -156,42 +164,43 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
         setUserType("");
         setUserGroup("");
         setResetPassword("");
-        setNewPassword("");
-        setConfirmPassword("");
-    };
-    const handleClick = () => {
-        if (!username || !firstname || !lastname || !usertype || !usergroup || !resetpassword) {
-            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
-            handleClose()
-            return;
-        }
-        else {
-            handleClose()
-        }
     }
-    const handleClick2 = (event: MouseEvent<HTMLButtonElement>) => {
+    console.log(username, firstname, lastname, usertype, usergroup, resetpassword);
+
+    const handleSubmitPassword = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log(event.currentTarget.elements);
+        console.log(event.currentTarget.elements[0]);
+    };
+    const handleresetpassword = (event: MouseEvent<HTMLButtonElement>) => {
         if (!newpassword || !confirmpassword) {
-            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+            alert("กรุณากรอกรหัสผ่านให้ตรงกัน");
             handleClose()
             return;
         }
         if (newpassword !== confirmpassword) {
             alert("กรุณาใส่รหัสผ่านให้ตรงกัน");
-            console.log("ลงทะเบียนไม่ได้");
+            console.log("เปลี่ยนรหัสผ่านไม่สำเร็จ");
             handleClose()
             return;
         }
         else {
-            handleClose()
+            const handleresetpassword  = (event: ChangeEvent<HTMLInputElement>) => {
+                setResetPassword(event.target.value);
+            };
         }
-        
+        const passwordData = { newpassword, confirmpassword };
+        setResetPass([...resetpass, passwordData]);
+        setNewPassword("");
+        setConfirmPassword("");
     };
-
-    const handleDelete = (e:MouseEvent<HTMLButtonElement>) => {
-    
+    console.log(newpassword,confirmpassword)
+    const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
+        const deleteuser = [...adduser];
+        const index = adduser.findIndex((adduser) => adduser === adduser);       
+        deleteuser.splice(index,1);
+        setAddUser(deleteuser);
     }
-
-    console.log(username, firstname, lastname, usertype, usergroup, resetpassword);
     return (
         <Paper>
             <TableContainer sx={{ minWidth: 1216 }}>
@@ -232,7 +241,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                                 fontSize="medium"
                                             />
                                         </Button>
-                                        <form onSubmit={handleSubmit}>
+                                        <form onSubmit={handleSubmitPassword}>
                                             <Modal
                                                 open={open}
                                                 onClose={handleClose}
@@ -283,7 +292,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                                                 <Button
                                                                     className='btn-resetpass'
                                                                     variant="contained"
-                                                                    onClick={handleClick2}
+                                                                    onClick={handleresetpassword}
                                                                     style={{ background: "#0C3483", marginLeft: "28px", marginTop: "250px" }}
                                                                 >ยืนยัน
                                                                 </Button>
@@ -435,7 +444,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                     <Button className="add-user"
                                         variant="contained"
                                         type="submit"
-                                        onClick={handleClick}
+                                        onClick={handleadduser}
                                         style={{ background: "#0C3483", marginLeft: "26px", marginTop: "520px" }}
                                     >ยืนยัน
                                     </Button>

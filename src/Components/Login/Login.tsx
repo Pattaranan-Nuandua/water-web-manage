@@ -30,7 +30,7 @@ const Login: FC<Props> = ({ userList, setUserList }) => {
   };
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    if (!user && !password) {
+    if (!user || !password) {
       alert("กรุณาใส่อีเมลล์และรหัสผ่านให้ถูกต้อง");
       return;
     }
