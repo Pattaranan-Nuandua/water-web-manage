@@ -191,7 +191,7 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
                         <TableRow>
                             <StyledTableCell>ชื่อกลุ่มผู้ใช้</StyledTableCell>
                             <StyledTableCell align="center">รายละเอียด</StyledTableCell>
-                            <StyledTableCell align="center"></StyledTableCell> 
+                            <StyledTableCell align="right"></StyledTableCell> 
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -202,7 +202,7 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
                                 <StyledTableRow key={p.group} >
                                     <StyledTableCell component="th" scope="row">{p.group}</StyledTableCell>
                                     <StyledTableCell align="center">{p.details}</StyledTableCell>
-                                    <StyledTableCell align="center">
+                                    <StyledTableCell align="right">
                                         <Button onClick={handleDelete}>
                                             <Delete
                                                 color="action"

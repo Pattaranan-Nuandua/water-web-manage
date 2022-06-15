@@ -168,7 +168,8 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
         console.log(event.currentTarget.elements);
         console.log(event.currentTarget.elements[0]);
     };
-    const handleresetpassword = (event: MouseEvent<HTMLButtonElement>) => {
+    const handleresetpassword = (event: ChangeEvent<HTMLButtonElement>) => {
+        
         if (!newpassword || !confirmpassword) {
             alert("กรุณากรอกรหัสผ่านให้ตรงกัน");
             handleClose()
@@ -180,17 +181,13 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
             handleClose()
             return;
         }
-        else {
-            const handleresetpassword  = (event: ChangeEvent<HTMLInputElement>) => {
-                setResetPassword(event.target.value);
-            };
-        }
-        const passwordData = { newpassword, confirmpassword };
+        const passwordData = { newpassword, confirmpassword,resetpassword };
         setResetPass([...resetpass, passwordData]);
         setNewPassword("");
         setConfirmPassword("");
+        setResetPassword(event.target.value);
     };
-    console.log(newpassword,confirmpassword)
+    console.log(newpassword,confirmpassword,resetpassword)
 
     const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
         const deleteuser = [...adduser];
@@ -210,7 +207,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                             <StyledTableCell align="center">ประเภทผู้ใช้</StyledTableCell>
                             <StyledTableCell align="center">กลุ่มผู้ใช้</StyledTableCell>
                             <StyledTableCell align="center">ResetPassword</StyledTableCell>
-                            <StyledTableCell align="center"></StyledTableCell>
+                            <StyledTableCell align="right"></StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -225,7 +222,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                     <StyledTableCell align="center">{p.usertype}</StyledTableCell>
                                     <StyledTableCell align="center">{p.usergroup}</StyledTableCell>
                                     <StyledTableCell align="center" >{p.resetpassword}</StyledTableCell>
-                                    <StyledTableCell align="center">
+                                    <StyledTableCell align="right">
                                         <Button onClick={handleOpen}>
                                             <ModeEdit
                                                 color="action"
@@ -289,7 +286,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                                                 <Button
                                                                     className='btn-resetpass'
                                                                     variant="contained"
-                                                                    onClick={handleresetpassword}
+                                                                    onChange={handleresetpassword}
                                                                     style={{ background: "#0C3483", marginLeft: "28px", marginTop: "250px" }}
                                                                 >ยืนยัน
                                                                 </Button>
