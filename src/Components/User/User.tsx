@@ -20,8 +20,6 @@ function User() {
             </h3>
             <div className="frame-btn">
                 <Search />
-                <BtnFind />
-                <SBtnDelete />
             </div >
             <div className="Table">
                 <UserTable 

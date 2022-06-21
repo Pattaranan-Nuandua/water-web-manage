@@ -7,6 +7,7 @@ import InputBase from "@mui/material/InputBase";
 import CloseIcon from "@mui/icons-material/Close";
 import "../User/User.css";
 import mockdata from "../User/Table/mock-data.json";
+import Button from '@mui/material/Button';
 
 let result: any;
 
@@ -27,6 +28,12 @@ const style = {
 
 function GSearch() {
     const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log(event.currentTarget.elements);
+        console.log(event.currentTarget.elements[0]);
+    };
     return (
         <Paper style={style}>
             <IconButton type="submit" aria-label="search" className="search-btn">
@@ -61,6 +68,21 @@ function GSearch() {
                         })}
                 </div>
             )}
+            <form onSubmit={handleSubmit}>
+                <Button
+                    type="submit"
+                    className="btn-find"
+                    variant="contained"
+                    style={{
+                        borderRadius: 8,
+                        backgroundColor: "#0b4693",
+                        marginLeft: 220,
+                        position: "absolute",
+                        fontFamily: "Kanit"
+                    }}
+                //onClick= {handleClick}
+                >ค้นหา</Button>
+            </form>
         </Paper>
     );
 }

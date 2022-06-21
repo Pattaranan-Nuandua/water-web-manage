@@ -324,7 +324,7 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
                                     <Button className="add-user"
                                         variant="contained"
                                         type="submit"
-                                        style={{ background: "#0C3483", marginLeft: "26px", marginTop: "520px" }}
+                                        style={{ background: "#0b4693", marginLeft: "26px", marginTop: "520px" }}
                                         onClick={handleClick}
                                     >ยืนยัน
                                     </Button>
@@ -347,9 +347,9 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
                 style=
                 {{
                     borderRadius: 8,
-                    backgroundColor: "#0C3483",
+                    backgroundColor: "#0b4693",
                     marginTop: "-145px",
-                    marginLeft: "290px",
+                    marginLeft: "485px",
                     position: "absolute"
                 }}
                 onClick={handleOpen1}

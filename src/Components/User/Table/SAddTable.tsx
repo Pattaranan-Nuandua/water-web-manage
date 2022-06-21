@@ -287,7 +287,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                                                     className='btn-resetpass'
                                                                     variant="contained"
                                                                     onChange={handleresetpassword}
-                                                                    style={{ background: "#0C3483", marginLeft: "28px", marginTop: "250px" }}
+                                                                    style={{ background: "#0b4693", marginLeft: "28px", marginTop: "250px" }}
                                                                 >ยืนยัน
                                                                 </Button>
                                                                 <Button
@@ -439,7 +439,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                         variant="contained"
                                         type="submit"
                                         onClick={handleadduser}
-                                        style={{ background: "#0C3483", marginLeft: "26px", marginTop: "520px" }}
+                                        style={{ background: "#0b4693", marginLeft: "26px", marginTop: "520px" }}
                                     >ยืนยัน
                                     </Button>
                                     <Button className="btn-cancle"
@@ -461,9 +461,9 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                 style=
                 {{
                     borderRadius: 8,
-                    backgroundColor: "#0C3483",
+                    backgroundColor: "#0b4693",
                     marginTop: "-145px",
-                    marginLeft: "290px",
+                    marginLeft: "485px",
                     position: "absolute"
                 }}
                 onClick={handleOpen1}

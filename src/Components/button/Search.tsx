@@ -5,6 +5,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import CloseIcon from "@mui/icons-material/Close";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import "../User/User.css";
 import mockdata from "../User/Table/mock-data.json";
 
@@ -27,6 +29,21 @@ const style = {
 
 function Search() {
     const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log(event.currentTarget.elements);
+        console.log(event.currentTarget.elements[0]);
+    };
+    /*const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+        if (searchTerm == "") {
+            return val;
+        } else if (
+            val.username.toLowerCase().includes(searchTerm.toLowerCase())
+        ) {
+            return val;
+        }
+    }*/
     return (
         <Paper style={style}>
             <IconButton type="submit" aria-label="search" className="search-btn">
@@ -61,6 +78,21 @@ function Search() {
                         })}
                 </div>
             )}
+            <form onSubmit={handleSubmit}>
+                <Button
+                    type="submit"
+                    className="btn-find"
+                    variant="contained"
+                    style={{
+                        borderRadius: 8,
+                        backgroundColor: "#0b4693",
+                        marginLeft: 220,
+                        position: "absolute",
+                        fontFamily: "Kanit"
+                    }}
+                    //onClick= {handleClick}
+                >ค้นหา</Button>
+            </form>
         </Paper>
     );
 }

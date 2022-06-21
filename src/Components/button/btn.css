@@ -1,4 +1,4 @@
-.btn-delete{
+.btn-delete {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,7 +15,8 @@
     border-radius: 8px;
     font-size: 16px;
 }
-.btn-add{
+
+.btn-add {
     display: flex;
     flex-direction: row;
     padding: 0px 20px;
@@ -30,9 +31,10 @@
     font-size: 16px;
     color: #FFFFFF;
     background: #3553A4;
-    
+
 }
-.btn-find{
+
+.btn-find {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -48,10 +50,11 @@
     color: #FFFFFF;
     border-radius: 8px;
     border: 0px;
-    
-    
+
+
 }
-.text-find{
+
+.text-find {
     position: static;
     left: 0%;
     right: 0%;
@@ -68,7 +71,8 @@
     margin: 0px 8px;
     margin-left: -70px;
 }
-.search-icon{
+
+.search-icon {
     margin-left: -60px;
     position: absolute;
     left: 3.53%;
@@ -76,9 +80,10 @@
     top: 27.08%;
     bottom: 70.08%;
     background: rgb(#080B0F4D);
-    
+
 }
-.Paper{
+
+.Paper {
     box-sizing: border-box;
     position: absolute;
     width: 316px;
@@ -89,11 +94,13 @@
     border: 1px solid rgba(8, 11, 15, 0.3);
     border-radius: 8px;
 }
-.in-find-text{
-    top:7px;
+
+.in-find-text {
+    top: 7px;
     left: -30px;
 }
-.search-btn{
+
+.search-btn {
     margin-left: -60px;
     position: absolute;
     left: 3.53%;
@@ -102,4 +109,14 @@
     bottom: 27.08%;
     background: rgba(8, 11, 15, 0.3);
 
+}
+
+.dataResult {
+    margin-top: 5px;
+    width: 316px;
+    height: 47px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow: hidden;
+    overflow-y: auto;
 }

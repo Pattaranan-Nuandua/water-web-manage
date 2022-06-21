@@ -19,8 +19,6 @@ function UserGroup() {
                 </h3>
                 <div className="frame-btn">
                     <GSearch/>
-                    <BtnFind/>
-                    <GBtnDelete/>
                 </div >
                 <div className="Table">
                     <UserGroupTable addusergroup={addusergroup} setAddUserGroup={setAddUserGroup}/>
