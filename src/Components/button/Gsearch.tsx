@@ -25,7 +25,7 @@ const style = {
     border: "1px solid rgba(8, 11, 15, 0.3)",
 };
 
-function Search() {
+function GSearch() {
     const [searchTerm, setSearchTerm] = useState("");
     return (
         <Paper style={style}>
@@ -65,7 +65,7 @@ function Search() {
     );
 }
 
-export default Search;
+export default GSearch;
 export { result };
 
 /*

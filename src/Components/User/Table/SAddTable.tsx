@@ -257,7 +257,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                                             id="outlined-basic"
                                                             variant="outlined"
                                                             name="newpassword"
-                                                            onChange={setNewPasswordinputHandler}
+                                                            onChange={setResetPasswordinputHandler}
                                                             value={newpassword}
                                                             style={{
                                                                 position: 'absolute',
@@ -273,7 +273,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                                             variant="outlined"
                                                             name="confirmpassword"
                                                             value={confirmpassword}
-                                                            onChange={setConfirmPasswordinputHandler}
+                                                            onChange={setResetPasswordinputHandler}
                                                             style={{
                                                                 position: 'absolute',
                                                                 width: '420px',
