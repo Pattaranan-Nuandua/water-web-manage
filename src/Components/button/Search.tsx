@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import "../User/User.css";
 import mockdata from "../User/Table/mock-data.json";
+import { AddProps } from "../User/Table/interface2";
 
 let result: any;
 
@@ -35,15 +36,6 @@ function Search() {
         console.log(event.currentTarget.elements);
         console.log(event.currentTarget.elements[0]);
     };
-    /*const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-        if (searchTerm == "") {
-            return val;
-        } else if (
-            val.username.toLowerCase().includes(searchTerm.toLowerCase())
-        ) {
-            return val;
-        }
-    }*/
     return (
         <Paper style={style}>
             <IconButton type="submit" aria-label="search" className="search-btn">
@@ -90,7 +82,7 @@ function Search() {
                         position: "absolute",
                         fontFamily: "Kanit"
                     }}
-                    //onClick= {handleClick}
+                //onClick= {handleClick}
                 >ค้นหา</Button>
             </form>
         </Paper>
@@ -102,13 +94,13 @@ export { result };
 
 /*
     <Paper style={style}>
-      <IconButton type="submit" aria-label="search" className="search-btn">
+        <IconButton type="submit" aria-label="search" className="search-btn">
         <SearchIcon className="search-icon" />
-      </IconButton>
-      <InputBase
+        </IconButton>
+        <InputBase
         className="in-find-text"
         placeholder="ค้นหา"
         sx={{ fontFamily: "Kanit" }}
-      />
+        />
     </Paper>
 */

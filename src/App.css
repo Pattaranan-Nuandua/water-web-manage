@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500&family=Lexend:wght@200;400&family=Prompt:wght@300;400&display=swap');
-*{
+
+* {
   font-Family: 'Kanit';
 }
-.App{
+
+.App {
   text-align: center;
 }

@@ -5,6 +5,7 @@ import React, {
     useState,
     Dispatch,
     SetStateAction,
+    FocusEvent,
 } from "react";
 import './UserTable.css'
 import { styled } from '@mui/material/styles';
@@ -23,8 +24,10 @@ import { TablePagination } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import { AddProps } from "../Table/interface2";
 import { ResetPass } from "../Table/interface2";
+import { Password } from "../Table/interface2";
 import ModeEdit from "@mui/icons-material/ModeEdit";
 import Delete from "@mui/icons-material/Delete";
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -52,7 +55,18 @@ const style2 = {
     px: 4,
     pb: 3,
 };
-
+const style3 = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    height: 250,
+    bgcolor: 'background.paper',
+    borderRadius: "16px",
+    boxShadow: 24,
+    p: 4,
+};
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         background: 'rgba(53, 83, 164, 0.1)',
@@ -76,15 +90,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         fontFamily: 'Kanit',
     },
 }));
+
 /////////////////////////////////////////////////////
 interface Props {
     adduser: AddProps["adduser"];
     setAddUser: Dispatch<SetStateAction<AddProps["adduser"]>>;
     resetpass: ResetPass["resetpass"];
     setResetPass: Dispatch<SetStateAction<ResetPass["resetpass"]>>;
+    //setPassword: Dispatch<SetStateAction<Password["password"]>>;
+    password: Password["password"];
+    setPassword: Dispatch<SetStateAction<{ newpassword: Password; }[]>>;
 }
 
-const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) => {
+
+const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass, setPassword }) => {
 
     //////////////////add user//////////////////////
     const [open1, setOpen1] = React.useState(false);
@@ -94,7 +113,11 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    //////////////////////////page///////////////////////// นี่หรอ
+    /////////////delete////////////////////////////
+    const [open3, setOpen3] = React.useState(false);
+    const handleOpen3 = () => setOpen3(true);
+    const handleClose3 = () => setOpen3(false);
+    //////////////////////////page///////////////////////// 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -135,10 +158,12 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
     const [newpassword, setNewPassword] = useState("");
     const setNewPasswordinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setNewPassword(event.target.value);
+        setResetPassword(event.target.value);
     };
     const [confirmpassword, setConfirmPassword] = useState("");
     const setConfirmPasswordinputHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setConfirmPassword(event.target.value);
+        setResetPassword(event.target.value);
     };
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -168,8 +193,8 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
         console.log(event.currentTarget.elements);
         console.log(event.currentTarget.elements[0]);
     };
-    const handleresetpassword = (event: ChangeEvent<HTMLButtonElement>) => {
-        
+
+    const handleChangePassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         if (!newpassword || !confirmpassword) {
             alert("กรุณากรอกรหัสผ่านให้ตรงกัน");
             handleClose()
@@ -181,20 +206,26 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
             handleClose()
             return;
         }
-        const passwordData = { newpassword, confirmpassword,resetpassword };
+        const passwordData = { newpassword, confirmpassword };
         setResetPass([...resetpass, passwordData]);
         setNewPassword("");
         setConfirmPassword("");
-        setResetPassword(event.target.value);
+        if (newpassword === confirmpassword) {
+            setResetPassword("");
+
+        }
+        handleClose()
     };
-    console.log(newpassword,confirmpassword,resetpassword)
+    console.log(newpassword, confirmpassword)
 
     const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
         const deleteuser = [...adduser];
-        const index = adduser.findIndex((adduser) => adduser === adduser);       
-        deleteuser.splice(index,1);
+        const index = adduser.findIndex((adduser) => adduser === adduser);
+        deleteuser.splice(index, 1);
         setAddUser(deleteuser);
-    }
+        handleClose()
+    };
+
     return (
         <Paper>
             <TableContainer sx={{ minWidth: 1216 }}>
@@ -221,7 +252,7 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                     <StyledTableCell align="center">{p.lastname}</StyledTableCell>
                                     <StyledTableCell align="center">{p.usertype}</StyledTableCell>
                                     <StyledTableCell align="center">{p.usergroup}</StyledTableCell>
-                                    <StyledTableCell align="center" >{p.resetpassword}</StyledTableCell>
+                                    <StyledTableCell align="center">{p.resetpassword}</StyledTableCell>
                                     <StyledTableCell align="right">
                                         <Button onClick={handleOpen}>
                                             <ModeEdit
@@ -229,12 +260,37 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                                 fontSize="medium"
                                             />
                                         </Button>
-                                        <Button onClick={handleDelete}>
+                                        <Button onClick={handleOpen3}>
                                             <Delete
                                                 color="action"
                                                 fontSize="medium"
                                             />
                                         </Button>
+                                        <Modal
+                                            open={open3}
+                                            onClose={handleClose3}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description"
+                                        >
+                                            <Box sx={style3}>
+                                                <ErrorOutlineIcon style={{color:"red" ,fontSize:"100px",marginLeft: "150px",display:"flex"}}/>
+                                                <p style={{marginLeft: "140px",marginTop:"30px",display:"flex"}}>ยืนยันการลบข้อมูล</p>
+                                                <Button
+                                                    type="submit"
+                                                    className='btn-resetpass'
+                                                    variant="contained"
+                                                    onClick={handleDelete}
+                                                    style={{ background: "#0b4693", marginLeft: "28px", marginTop:"50px", display:"flex"}}
+                                                >ยืนยัน
+                                                </Button>
+                                                <Button
+                                                    className='btn-resetpass'
+                                                    variant="contained"
+                                                    onClick={handleClose3}
+                                                    style={{ background: "#DF0000", marginLeft: "295px",marginTop:"-35px", display:"flex" }}
+                                                >ยกเลิก</Button>
+                                            </Box>
+                                        </Modal>
                                         <form onSubmit={handleSubmitPassword}>
                                             <Modal
                                                 open={open}
@@ -252,12 +308,12 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                                         <h2 id="modal-modal-title" style={{ fontSize: '22px', position: 'absolute', left: '190px', }}>
                                                             Reset Password
                                                         </h2>
-                                                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '85px' }}>New password</h3>
+                                                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '85px' }}>รหัสผ่านใหม่</h3>
                                                         <TextField
                                                             id="outlined-basic"
                                                             variant="outlined"
                                                             name="newpassword"
-                                                            onChange={setResetPasswordinputHandler}
+                                                            onChange={setNewPasswordinputHandler}
                                                             value={newpassword}
                                                             style={{
                                                                 position: 'absolute',
@@ -267,13 +323,13 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                                                 top: '110px',
                                                             }}
                                                         />
-                                                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '175px' }}>Confirm new password</h3>
+                                                        <h3 style={{ fontSize: '13px', position: 'absolute', left: '60px', top: '175px' }}>ยืนยันรหัสผ่าน</h3>
                                                         <TextField
                                                             id="outlined-basic"
                                                             variant="outlined"
                                                             name="confirmpassword"
                                                             value={confirmpassword}
-                                                            onChange={setResetPasswordinputHandler}
+                                                            onChange={setConfirmPasswordinputHandler}
                                                             style={{
                                                                 position: 'absolute',
                                                                 width: '420px',
@@ -284,16 +340,17 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass }) 
                                                         <div >
                                                             <Stack direction="row" spacing={2} >
                                                                 <Button
+                                                                    type="submit"
                                                                     className='btn-resetpass'
                                                                     variant="contained"
-                                                                    onChange={handleresetpassword}
+                                                                    onClick={handleChangePassword}
                                                                     style={{ background: "#0b4693", marginLeft: "28px", marginTop: "250px" }}
                                                                 >ยืนยัน
                                                                 </Button>
                                                                 <Button
                                                                     className='btn-resetpass'
                                                                     variant="contained"
-                                                                    onClick={handleClose1}
+                                                                    onClick={handleClose}
                                                                     style={{ background: "#DF0000", marginLeft: "290px", marginTop: "250px" }}
                                                                 >ยกเลิก</Button>
                                                             </Stack>

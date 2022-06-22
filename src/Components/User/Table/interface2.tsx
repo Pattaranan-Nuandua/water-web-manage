@@ -15,3 +15,8 @@ export interface ResetPass{
         confirmpassword: string;
     }[];
 }
+export interface Password {
+    password:{
+        newpassword: Password;
+    }[];
+}
