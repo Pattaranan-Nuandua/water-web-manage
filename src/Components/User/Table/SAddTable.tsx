@@ -61,7 +61,7 @@ const style3 = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    height: 250,
+    height: 220,
     bgcolor: 'background.paper',
     borderRadius: "16px",
     boxShadow: 24,
@@ -273,21 +273,21 @@ const UserTable: FC<Props> = ({ adduser, setAddUser, resetpass, setResetPass, se
                                             aria-describedby="modal-modal-description"
                                         >
                                             <Box sx={style3}>
-                                                <ErrorOutlineIcon style={{color:"red" ,fontSize:"100px",marginLeft: "150px",display:"flex"}}/>
-                                                <p style={{marginLeft: "140px",marginTop:"30px",display:"flex"}}>ยืนยันการลบข้อมูล</p>
+                                                <ErrorOutlineIcon style={{color:"red" ,fontSize:"120px",marginLeft: "140px",display:"flex"}}/>
+                                                <p style={{marginLeft: "142px",marginTop:"10px",display:"flex"}}>ยืนยันการลบข้อมูล</p>
                                                 <Button
                                                     type="submit"
                                                     className='btn-resetpass'
                                                     variant="contained"
                                                     onClick={handleDelete}
-                                                    style={{ background: "#0b4693", marginLeft: "28px", marginTop:"50px", display:"flex"}}
+                                                    style={{ background: "#0b4693", marginLeft: "100px", marginTop:"40px", display:"flex"}}
                                                 >ยืนยัน
                                                 </Button>
                                                 <Button
                                                     className='btn-resetpass'
                                                     variant="contained"
                                                     onClick={handleClose3}
-                                                    style={{ background: "#DF0000", marginLeft: "295px",marginTop:"-35px", display:"flex" }}
+                                                    style={{ background: "#DF0000", marginLeft: "240px",marginTop:"-35px", display:"flex" }}
                                                 >ยกเลิก</Button>
                                             </Box>
                                         </Modal>
