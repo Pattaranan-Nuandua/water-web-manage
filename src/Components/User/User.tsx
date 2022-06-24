@@ -17,7 +17,7 @@ function User() {
     const [resetpass, setResetPass] = React.useState<ResetPass["resetpass"]>([]);
     const [password, setPassword] = React.useState<Password["password"]>([]);
     return (
-        <div className="bg-user">
+        <div className="bg-user" style={{  width: '85%' }}>
             <h3 className="text-user">
                 จัดการผู้ใช้
             </h3>

@@ -1,11 +1,11 @@
-
-.bg-user{
-    background: #FFFFFF ;
+.bg-user {
+    background: #FFFFFF;
     min-height: 100vh;
     display: flex;
     font-weight: 400;
 }
-.text-user{
+
+.text-user {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -17,7 +17,8 @@
     top: 75px;
     left: 290px;
 }
-.frame-btn{
+
+.frame-btn {
     display: flex;
     position: absolute;
     width: 1274px;
@@ -25,13 +26,15 @@
     left: 166px;
     top: 156px;
 }
-.Table{
+
+.Table {
     display: flex;
     width: 1216px;
     left: 290px;
     margin-bottom: 300px;
 }
-.delete{
+
+.delete {
     top: 30px;
     left: -60px;
 }
