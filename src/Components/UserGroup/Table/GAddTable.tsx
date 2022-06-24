@@ -19,12 +19,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { TablePagination } from '@mui/material';
-import { produce } from "immer";
 import Stack from '@mui/material/Stack';
-import { Formik, Form } from 'formik';
-import { generate } from "shortid";
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Theme, useTheme } from '@mui/material/styles';
@@ -33,6 +29,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { GroupProps } from "../Table/interface3";
 import Delete from "@mui/icons-material/Delete";
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 const names = [
     'เขต1',
@@ -64,6 +61,20 @@ const style2 = {
     px: 4,
     pb: 3,
 };
+
+const style3 = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    height: 220,
+    bgcolor: 'background.paper',
+    borderRadius: "16px",
+    boxShadow: 24,
+    p: 4,
+};
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -112,9 +123,9 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
     const handleOpen1 = () => setOpen1(true);
     const handleClose1 = () => setOpen1(false);
     /////////////modal  pass////////////////////////////
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [open2, setOpen2] = React.useState(false);
+    const handleOpen2 = () => setOpen2(true);
+    const handleClose2 = () => setOpen2(false);
     //////////////////////////page/////////////////////////
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -163,7 +174,7 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
     };
 
     const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-        if (!group || !details || !company ) {
+        if (!group || !details || !company) {
             alert("กรุณากรอกข้อมูลให้ครบถ้วน");
             handleClose1()
             return;
@@ -179,8 +190,8 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
 
     const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
         const deleteusergroup = [...addusergroup];
-        const index = addusergroup.findIndex((addusergroup) => addusergroup === addusergroup);       
-        deleteusergroup.splice(index,1);
+        const index = addusergroup.findIndex((addusergroup) => addusergroup === addusergroup);
+        deleteusergroup.splice(index, 1);
         setAddUserGroup(deleteusergroup);
     }
     return (
@@ -191,7 +202,7 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
                         <TableRow>
                             <StyledTableCell>ชื่อกลุ่มผู้ใช้</StyledTableCell>
                             <StyledTableCell align="center">รายละเอียด</StyledTableCell>
-                            <StyledTableCell align="right"></StyledTableCell> 
+                            <StyledTableCell align="right"></StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -203,13 +214,37 @@ const UserGroupTable: React.FC<Props> = ({ addusergroup, setAddUserGroup }) => {
                                     <StyledTableCell component="th" scope="row">{p.group}</StyledTableCell>
                                     <StyledTableCell align="center">{p.details}</StyledTableCell>
                                     <StyledTableCell align="right">
-                                        <Button onClick={handleDelete}>
+                                        <Button onClick={handleOpen2}>
                                             <Delete
                                                 color="action"
                                                 fontSize="medium"
-                                                className='icon-edit' ////
                                             />
                                         </Button>
+                                        <Modal
+                                            open={open2}
+                                            onClose={handleClose2}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description"
+                                        >
+                                            <Box sx={style3}>
+                                                <ErrorOutlineIcon style={{ color: "red", fontSize: "120px", marginLeft: "140px", display: "flex" }} />
+                                                <p style={{ marginLeft: "142px", marginTop: "10px", display: "flex" }}>ยืนยันการลบข้อมูล</p>
+                                                <Button
+                                                    type="submit"
+                                                    className='btn-resetpass'
+                                                    variant="contained"
+                                                    onClick={handleDelete}
+                                                    style={{ background: "#0b4693", marginLeft: "100px", marginTop: "40px", display: "flex" }}
+                                                >ยืนยัน
+                                                </Button>
+                                                <Button
+                                                    className='btn-resetpass'
+                                                    variant="contained"
+                                                    onClick={handleClose2}
+                                                    style={{ background: "#DF0000", marginLeft: "240px", marginTop: "-35px", display: "flex" }}
+                                                >ยกเลิก</Button>
+                                            </Box>
+                                        </Modal>
                                     </StyledTableCell>
                                 </StyledTableRow>
                                 /*))}*/
